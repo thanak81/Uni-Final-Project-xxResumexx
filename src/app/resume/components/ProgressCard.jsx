@@ -1,17 +1,12 @@
 import DownloadIcon from "@/app/components/icons/DownloadIcon";
 import {
-  Box,
   Button,
   Card,
   Flex,
-  Heading,
-  ScrollArea,
   Text,
 } from "@radix-ui/themes";
 import React from "react";
-import Hidden from "./Hidden";
 import { Divider } from "@nextui-org/react";
-import Image from "next/image";
 
 function ProgressCard() {
   return (

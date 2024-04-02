@@ -1,11 +1,8 @@
 "use client"
-import React, { useState } from "react";
+import React from "react";
 import Personal from "./Personal";
-import { Flex, Separator, Text } from "@radix-ui/themes";
-import { Divider } from "@nextui-org/react";
+import { Flex} from "@radix-ui/themes";
 import { ScrollShadow } from "@nextui-org/react";
-import BreadCrumbComp from "@/app/components/BreadCrumbComp";
-import ProgressComp from "../components/ProgressComp";
 import { useStore } from "../state/GlobalState";
 function Form() {
 

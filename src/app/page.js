@@ -1,9 +1,5 @@
-import Image from "next/image";
 import { Flex, Text, Button, Heading } from "@radix-ui/themes";
-import { ThemeSwitcher } from "./components/ThemeSwticher";
-import CardComp from "./components/CardComp";
 import Landing from "./Page/Landing";
-import NavBar from "./components/NavBar";
 export default function Home() {
   return (
     <>

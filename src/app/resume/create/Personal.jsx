@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React from "react";
 import { Input ,Textarea} from "@nextui-org/react";
-import { Box, Flex, Heading, Text} from "@radix-ui/themes";
+import {  Heading} from "@radix-ui/themes";
 function Personal({value,setValue}) {
   console.log(value)
   return (

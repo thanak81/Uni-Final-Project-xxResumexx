@@ -1,12 +1,8 @@
 
 import React from "react";
 import Form from "./Form";
-import BreadCrumbComp from "../../components/BreadCrumbComp";
-import { BreadcrumbItem, Breadcrumbs, Divider } from "@nextui-org/react";
+import { Divider } from "@nextui-org/react";
 import ProgressCard from "../components/ProgressCard";
-import ResumeStructure from "../components/templatess/CVTemplate/ParentTemplate/ResumeStructure";
-import ProgressComp from "../components/ProgressComp";
-import { Text } from "@radix-ui/themes";
 import Template1 from "./Template1";
 
 function CreateForm() {
