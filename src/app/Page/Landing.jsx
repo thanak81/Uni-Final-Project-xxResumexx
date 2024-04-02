@@ -3,12 +3,12 @@ import CardComp from "../components/CardComp";
 import { Box, Flex } from "@radix-ui/themes";
 
 async function Landing() {
-  const data = await fetch("http://localhost:3001/cv/getCV");
+  const data = await fetch("http://localhost:3000/api/resume");
   const response = await data.json();
-
+console.log(response.payload)
   return (
     <div className="flex gap-5 flex-wrap">
-      {response.map((data,index) => (
+      {response.payload.map((data,index) => (
         <div className="flex" key={data._id}>
             <CardComp data={data} index={index} />
         </div>
