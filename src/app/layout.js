@@ -4,6 +4,7 @@ import "./globals.css";
 import { Theme } from "@radix-ui/themes";
 import { ThemeProvider } from "next-themes";
 import Provider from "./Provider";
+import NavBar from "./components/NavBar";
 const inter = Inter({ subsets: ["latin"] });
 export const metadata = {
   title: "Create Next App",
@@ -15,7 +16,10 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body className={inter.className}>
         <Provider>
-          <Theme>{children}</Theme>
+          <Theme>
+            <NavBar/>
+            {children}
+            </Theme>
         </Provider>
       </body>
     </html>

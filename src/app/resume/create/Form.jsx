@@ -1,25 +1,28 @@
-import React from "react";
+"use client"
+import React, { useState } from "react";
 import Personal from "./Personal";
 import { Flex, Separator, Text } from "@radix-ui/themes";
-
+import { Divider } from "@nextui-org/react";
+import { ScrollShadow } from "@nextui-org/react";
+import BreadCrumbComp from "@/app/components/BreadCrumbComp";
+import ProgressComp from "../components/ProgressComp";
+import { useStore } from "../state/GlobalState";
 function Form() {
+
+  const value = useStore((state)=> state.value)
+  const setValue = useStore((state)=> state.setValue)
+
   return (
-    <div>
-      <Text size="2">
-        <Flex gap="3" align="center" className="">
-          <div className="w-5/6">
-            <Personal />
-          </div>
-          <Separator orientation="vertical" />
-          <div>
-            magni ad totam cum illo nulla? Mollitia dignissimos, ipsa ex
-            similique quos labore ad doloremque veritatis, deserunt, dolorem
-            pariatur error magni quo est. Officia laborum at laudantium.
-            Molestias labore perspiciatis qui pariatur cum quo nam eveniet?
-          </div>
-          <Separator orientation="vertical" />
-        </Flex>
-      </Text>
+    <div className="overflow-y-hidden">
+      <Flex gap="3" align="center" justify="center" className="">
+        <ScrollShadow
+          hideScrollBar
+          size={200}
+          className="  w-[1095px] flex flex-col gap-2"
+        >
+              <Personal value={value} setValue={setValue}/>
+        </ScrollShadow>
+      </Flex>
     </div>
   );
 }

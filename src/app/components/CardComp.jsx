@@ -1,35 +1,41 @@
-import { Card, CardHeader, CardBody, CardFooter,Divider,Link } from "@nextui-org/react";
+import {
+  Card,
+  CardHeader,
+  CardBody,
+  CardFooter,
+  Divider,
+  Link,
+} from "@nextui-org/react";
 import Image from "next/image";
 
 import React from "react";
+import Separators from "./Separator";
+import { Button } from "@radix-ui/themes";
+import InfoIcon from "./icons/InfoIcon";
+import Dialog from "./Dialog";
 
-function CardComp({data}) {
-    return (
-        <Card className="max-w-[400px]">
-        <CardHeader className="flex gap-3">
-     
-          <div className="flex flex-col">
-            <p className="text-md">{data.basics.name}</p>
-            <p className="text-small text-default-500">{data.basics.email}</p>
-          </div>
-        </CardHeader>
-        <Divider />
-        <CardBody>
-          <p>Make beautiful websites regardless of your design experience.</p>
-        </CardBody>
-        <Divider />
-        <CardFooter>
-          <Link
-            isExternal
-            showAnchorIcon
-            href="https://github.com/nextui-org/nextui"
-          >
-            Visit source code on GitHub.
-          </Link>
-        </CardFooter>
-      </Card>
-    )
-
+function CardComp({ data, index }) {
+  return (
+    <Card radius="sm" className=" " isHoverable>
+      <div className="relative">
+        <div className="absolute bottom-2 right-2 cursor-pointer">
+          {/* <Dialog/> */}
+          <Dialog data={data}/>
+        </div>
+        <Image src="/CV.png" className="object-cover" alt="Resume" width={270} height={200}/>
+      </div>
+      <CardBody className="">
+        <small>Resume {`${index + 1}`}</small>
+        <p>{data.basics.name}</p>
+        <small>{data.basics.summary}</small>
+        <Divider className="my-4" />
+        <div className="flex justify-between items-center">
+          <p>{data.basics.name}</p>
+          <Button color="">Edit</Button>
+        </div>
+      </CardBody>
+    </Card>
+  );
 }
 
 export default CardComp;
