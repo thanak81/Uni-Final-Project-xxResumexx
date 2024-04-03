@@ -7,12 +7,12 @@ function CreateForm() {
   return (
     <>
       <div className="flex gap-3 flex-col justify-center lg:flex-row mt-5 h-screen">
-        <div className="">
+        <div>
           <Form />
         </div>
-            <div className="hidden lg:block">
+            {/* <div className="hidden lg:block">
               <TemplateContainer/>
-            </div>
+            </div> */}
         <div className="self-center lg:self-start mt-5">
           <ProgressCard />
         </div>      
