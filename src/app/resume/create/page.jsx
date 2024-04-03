@@ -1,11 +1,6 @@
-"use client";
 import React from "react";
 import Form from "./Form";
-import { Divider } from "@nextui-org/react";
 import ProgressCard from "../components/ProgressCard";
-import Template1 from "./Template1";
-import TabsComp from "../components/TabsComp";
-import { ScrollArea } from "@radix-ui/react-scroll-area";
 import TemplateContainer from "./TemplateContainer";
 
 function CreateForm() {
