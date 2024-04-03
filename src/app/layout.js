@@ -16,9 +16,11 @@ export default function RootLayout({ children }) {
       <body className={inter.className}>
         <Provider>
           <Theme>
-            <NavBar/>
+            <div className="fixed w-full">
+              <NavBar />
+            </div>
             {children}
-            </Theme>
+          </Theme>
         </Provider>
       </body>
     </html>

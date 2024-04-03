@@ -1,65 +1,77 @@
+import { Heading, Text } from "@radix-ui/themes";
 import React from "react";
-import { Input ,Textarea} from "@nextui-org/react";
-import {  Heading} from "@radix-ui/themes";
-function Personal({value,setValue}) {
-  console.log(value)
+import { Accordion, AccordionItem,Input, Textarea } from "@nextui-org/react";
+
+function Education() {
+    
   return (
-    <div className="py-5 px-8 rounded-xl flex flex-col gap-2 justify-center items-center shadow-2xl border">
-      <Heading className="self-start" as="h3">
-        Personal Data
-      </Heading>
+    <div className="px-8 rounded-xl flex flex-col gap-2 justify-center items-center shadow-2xl">
+            <Accordion>
+        <AccordionItem
+          title={
+            <Heading className="self-start" as="h3">
+              Education
+            </Heading>
+          }
+          subtitle={<small>Education Info Tip</small>}
+        >
+          <Text className="text-sm">
+          Provide much details about yourself as much as possible.
+          </Text>
+     
+        </AccordionItem>
+      </Accordion>
       <div className="w-full">
         <div className="flex gap-2">
           <Input
-          radius="sm"
-          className="rounded"
+            radius="sm"
             key="inside"
             variant="bordered"
             labelPlacement="inside"
-            label="Full Name"
-            placeholder="Enter your Full Name"
-            value={value}
-            onChange={(e)=> setValue(e.target.value)}
+            label="Company"
+            placeholder="Company"
+            // value={value}
+            // onChange={(e) => setValue(e.target.value)}
           />
           <Input
-                    radius="sm"
+            radius="sm"
             key="inside"
             variant="bordered"
             labelPlacement="inside"
-            label="Email"
-            placeholder="Enter your email"
-            value={value}
+            label="Position"
+            placeholder="Position"
+            // value={value}
             // onValueChange={setValue}
           />
         </div>
       </div>
       <div className="w-full">
         <Input
-                  radius="sm"
+          radius="sm"
           key="inside"
           variant="bordered"
           labelPlacement="inside"
           label="Address"
           placeholder="Enter your address"
-          value={value}
+        //   value={value}
           // onValueChange={setValue}
         />
       </div>
       <div className="w-full">
         <Input
-                  radius="sm"
+          radius="sm"
           key="inside"
           variant="bordered"
           labelPlacement="inside"
           label="Phone Number"
           placeholder="Enter your phone number"
-          value={value}
+        //   value={value}
           // onValueChange={setValue}
         />
       </div>
       <div className="w-full">
         <Textarea
-         variant="bordered"
+          variant="bordered"
           label="Description"
           placeholder="Enter your description"
         />
@@ -68,4 +80,4 @@ function Personal({value,setValue}) {
   );
 }
 
-export default Personal;
+export default Education;
