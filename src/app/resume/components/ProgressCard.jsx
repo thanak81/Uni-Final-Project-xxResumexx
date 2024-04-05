@@ -19,7 +19,7 @@ function ProgressCard() {
           Start building your next project in minutes
         </Text>
       </Card>
-      <Button>
+      <Button type="submit">
         <DownloadIcon /> Submit
       </Button>
       <Divider />

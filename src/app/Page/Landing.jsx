@@ -1,10 +1,11 @@
 import React from "react";
 import CardComp from "../components/CardComp";
 import { Box, Flex } from "@radix-ui/themes";
+import { getAllResume } from "../services/resumeService";
 
 async function Landing() {
-  const data = await fetch("http://localhost:3000/api/resume");
-  const response = await data.json();
+  const response = await getAllResume();
+  
 console.log(response.payload)
   return (
     <div className="flex gap-5 flex-wrap">

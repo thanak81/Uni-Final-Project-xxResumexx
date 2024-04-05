@@ -6,8 +6,8 @@ import TemplateContainer from "./TemplateContainer";
 function CreateForm() {
   return (
     <>
-      <div className="flex gap-3 flex-col justify-center lg:flex-row mt-5 h-screen">
-        <div>
+      <div className="flex gap-10 lg:gap-5 flex-col justify-center  lg:flex-row  mt-5 lg:h-screen">
+        <div className="">
           <Form />
         </div>
             {/* <div className="hidden lg:block">

@@ -6,7 +6,7 @@ import Template1 from "./Template1";
 function TemplateContainer() {
   return (
     <Flex gap="3" className="w-full h-full ">
-      <ScrollShadow size={300} isEnabled={false} className="w-full h-[85%] flex flex-col gap-2">
+      <ScrollShadow size={300} isEnabled={false} className="w-full h-[75%] flex flex-col gap-2">
         <Template1 />
       </ScrollShadow>
     </Flex>

@@ -1,14 +1,16 @@
 "use client";
+import * as Form from '@radix-ui/react-form';
 import React, { useState } from "react";
 import Personal from "./ResumeForm/Personal";
 import { Flex } from "@radix-ui/themes";
-import { ScrollShadow } from "@nextui-org/react";
+import { Input, ScrollShadow } from "@nextui-org/react";
 import { useStore } from "../state/GlobalState";
 import Education from "./ResumeForm/Education";
 import Template1 from "./Template1";
 import TemplateContainer from "./TemplateContainer";
 import ArrowIcon from "@/app/components/icons/ArrowIcon";
-function Form() {
+import WorkForm from './ResumeForm/WorkForm';
+function FormComp() {
   const [active, setActive] = useState(false);
   function handleActive() {
     setActive((active) => !active);
@@ -17,19 +19,22 @@ function Form() {
     <Flex gap="3" className="w-full h-full ">
       <ScrollShadow
         size={300}
-        className={`h-[90%] ${
+        className={`h-[70%] ${
           !active ? "w-[100vh]" : ""
         } flex flex-col gap-2 transition-all`}
       >
-        <Personal />
-        <Education />
+          <Personal active={active} />
+          <Education />
+          <WorkForm/>
       </ScrollShadow>
-      <div onClick={handleActive}>
-        <ArrowIcon />
+      <div className="hidden lg:block">
+        <div onClick={handleActive}>
+          <ArrowIcon />
+        </div>
+        {active && <TemplateContainer />}
       </div>
-      <div className="hidden lg:block">{active && <TemplateContainer />}</div>
     </Flex>
   );
 }
 
-export default Form;
+export default FormComp;

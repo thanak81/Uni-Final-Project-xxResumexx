@@ -4,8 +4,8 @@ import BreadCrumbComp from "../components/BreadCrumbComp";
 
 function layout({ children }) {
   return (
-    <div className="p-10 h-screen overflow-y-hidden">
-      <div>
+    <div className="p-10 lg:h-screen lg:overflow-y-hidden">
+      <div className="mt-10">
         <BreadCrumbComp />
       </div>
       {children}
