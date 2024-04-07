@@ -3,7 +3,7 @@ import { Accordion, AccordionItem, Input, Textarea } from "@nextui-org/react";
 import { Heading, Text } from "@radix-ui/themes";
 import { useStore } from "../../state/GlobalState";
 import InputComp from "../../components/InputComp";
-function PersonalForm({ active }) {
+function PersonalForm({ active}) {
   const name = useStore((state) => state.name);
   const setName = useStore((state) => state.setName);
 
@@ -14,7 +14,6 @@ function PersonalForm({ active }) {
   const setEmail = useStore((state) => state.setEmail);
   const number = useStore((state) => state.number);
   const setNumber = useStore((state) => state.setNumber);
-
   return (
     <div className="px-8 rounded-xl flex flex-col gap-2 justify-center items-center shadow-2xl">
       <Accordion>
@@ -36,26 +35,30 @@ function PersonalForm({ active }) {
         <div className="flex gap-2 flex-col w-full">
           <InputComp
             value={name}
-            onChange={(e) => setName(e.target.value)}
+            onValueChange={ setName}
             label={"Full name"}
+            name={"basics.name"}
           />
           <InputComp
             value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            onValueChange={setEmail}
             label={"Email"}
+            name={"basics.email"}
           />
         </div>
       ) : (
         <div className="flex gap-2 w-full">
           <InputComp
             value={name}
-            onChange={(e) => setName(e.target.value)}
+            onValueChange={setName}
             label={"Full name"}
+            name={"basics.name"}
           />
           <InputComp
             value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            onValueChange={setEmail}
             label={"Email"}
+            name={"basics.email"}
           />
         </div>
       )}
@@ -64,6 +67,7 @@ function PersonalForm({ active }) {
           label={"Address"}
           value={address}
           onValueChange={setAddress}
+          name={"basics.address"}
         />
       </div>
       <div className="w-full">
@@ -71,6 +75,7 @@ function PersonalForm({ active }) {
           label={"Phone Number"}
           value={number}
           onValueChange={setNumber}
+          name={"basics.number"}
           // isInvalid = {true}
           // error={"sdsd"}
         />
@@ -79,6 +84,7 @@ function PersonalForm({ active }) {
         <Textarea
           variant="bordered"
           label="Description"
+          name={"basics.description"}
         />
       </div>
     </div>

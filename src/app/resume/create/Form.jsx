@@ -10,11 +10,13 @@ import Template1 from "./Template1";
 import TemplateContainer from "./TemplateContainer";
 import ArrowIcon from "@/app/components/icons/ArrowIcon";
 import WorkForm from './ResumeForm/WorkForm';
-function FormComp() {
+function FormComp({register}) {
   const [active, setActive] = useState(false);
   function handleActive() {
     setActive((active) => !active);
   }
+
+
   return (
     <Flex gap="3" className="w-full h-full ">
       <ScrollShadow
@@ -23,7 +25,7 @@ function FormComp() {
           !active ? "w-[100vh]" : ""
         } flex flex-col gap-2 transition-all`}
       >
-          <Personal active={active} />
+          <Personal active={active} register={register}/>
           <Education />
           <WorkForm/>
       </ScrollShadow>

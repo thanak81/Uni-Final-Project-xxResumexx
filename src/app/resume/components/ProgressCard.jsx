@@ -8,7 +8,7 @@ import {
 import React from "react";
 import { Divider } from "@nextui-org/react";
 
-function ProgressCard() {
+function ProgressCard({onSubmit}) {
   return (
     <Flex direction="column" gap="3" maxWidth="400px">
       <Card variant="surface">
@@ -19,7 +19,7 @@ function ProgressCard() {
           Start building your next project in minutes
         </Text>
       </Card>
-      <Button type="submit">
+      <Button type="submit" onClick={onSubmit}>
         <DownloadIcon /> Submit
       </Button>
       <Divider />
