@@ -5,6 +5,8 @@ import InputComp from "../../components/InputComp";
 import { useFieldArray, useFormContext } from "react-hook-form";
 import { Button } from "@radix-ui/themes";
 import AddIcon from "@/app/components/icons/AddIcon";
+import { Divider } from "@nextui-org/react";
+import RemoveIcon from "@/app/components/icons/RemoveIcon";
 
 function WorkForm() {
   const { control, register } = useFormContext();
@@ -14,11 +16,12 @@ function WorkForm() {
   });
 
   function handleAdd() {
-
-  
     append();
   }
 
+  function handleRemove() {
+    remove();
+  }
 
   return (
     <div className="px-8 rounded-xl flex flex-col gap-2 justify-center items-center shadow-2xl">
@@ -36,19 +39,19 @@ function WorkForm() {
           </Text>
         </AccordionItem>
       </Accordion>
-      <InitialWork/>
+      <InitialWork />
       {fields.map((field, index) => {
         return (
-          (
-            <Fragment key={field.id}>
-              <Work index={index} />
-            </Fragment>
-          )
+          <Fragment key={field.id}>
+            <Work index={index} handleRemove={handleRemove} />
+          </Fragment>
         );
       })}
-      <Button onClick={handleAdd}>
-        <AddIcon /> Add More
-      </Button>
+      <div className="py-5">
+        <Button onClick={handleAdd}>
+          <AddIcon /> Add More
+        </Button>
+      </div>
     </div>
   );
 }
@@ -108,57 +111,65 @@ function InitialWork() {
   );
 }
 
-function Work({index}) {
+function Work({ index , handleRemove}) {
   return (
     <>
-    
-      <div className="w-full">
-      <InputComp
-                name={`work.${index}.company`}
-        label={"Company Name"}
-        // isInvalid = {true}
-        // error={"sdsd"}
-        // placeholder={"University"}
-        //   value={value}
-        // onValueChange={setValue}
-      />
-    </div>
-    <div className="w-full">
-      <InputComp
-                label={"name"}
-        name={`work.${index}.position`}
-        // isInvalid = {true}
-        // error={"sdsd"}
-        // placeholder={"University"}
-        //   value={value}
-        // onValueChange={setValue}
-      />
-    </div> 
-    <div className="w-full">
-      <div className="flex gap-2">
-            <InputComp
-                      label={"name"}
-              name={`work.${index}.startYear`}
-              // value={value}
-              // onChange={(e) => setValue(e.target.value)}
-            />
-            <InputComp
-                      label={"name"}
-              name={`work.${index}.endYear`}
-              // value={value}
-              // onChange={(e) => setValue(e.target.value)}
-            />
-   
-      </div>
-    </div>
+      <Divider className="my-5  bg-blue-500" />
 
-    <div className="w-full">
-          <Textarea
-            variant="bordered"
-            label="Description"
-            placeholder="Enter your description"
+      <div className="w-full flex gap-5 items-center">
+        <InputComp
+          name={`work.${index}.company`}
+          label={"Company Name"}
+          // isInvalid = {true}
+          // error={"sdsd"}
+          // placeholder={"University"}
+          //   value={value}
+          // onValueChange={setValue}
+        />
+        <Button
+          className="p-5 cursor-pointer"
+          color="red"
+          title="Remove"
+          onClick={handleRemove}
+        >
+          <RemoveIcon />
+        </Button>
+      </div>
+      <div className="w-full">
+        <InputComp
+          label={"name"}
+          name={`work.${index}.position`}
+          // isInvalid = {true}
+          // error={"sdsd"}
+          // placeholder={"University"}
+          //   value={value}
+          // onValueChange={setValue}
+        />
+      </div>
+      <div className="w-full">
+        <div className="flex gap-2">
+          <InputComp
+            label={"name"}
+            name={`work.${index}.startYear`}
+            // value={value}
+            // onChange={(e) => setValue(e.target.value)}
           />
-    </div>
+          <InputComp
+            label={"name"}
+            name={`work.${index}.endYear`}
+            // value={value}
+            // onChange={(e) => setValue(e.target.value)}
+          />
+        </div>
+      </div>
+
+      <div className="w-full">
+        <Textarea
+          variant="bordered"
+          label="Description"
+          placeholder="Enter your description"
+        />
+      </div>
     </>
-  )
+  );
 }

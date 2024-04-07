@@ -7,8 +7,9 @@ import {
 } from "@radix-ui/themes";
 import React from "react";
 import { Divider } from "@nextui-org/react";
+import TemplateSwitch from "../ui/TemplateSwitch";
 
-function ProgressCard({onSubmit}) {
+function ProgressCard({onSubmit,data,handleTemplate}) {
   return (
     <Flex direction="column" gap="3" maxWidth="400px">
       <Card variant="surface">
@@ -23,6 +24,19 @@ function ProgressCard({onSubmit}) {
         <DownloadIcon /> Submit
       </Button>
       <Divider />
+      <Card>
+        <Text>Choose Templates</Text>
+      </Card>
+      <Card>
+        <Card>
+          <Text>
+            Template 1
+          </Text>
+          <div>
+            <TemplateSwitch data={data} handleTemplate={handleTemplate}/>
+          </div>
+        </Card>
+      </Card>
       {/* <Heading size="4" mb="2" trim="start">
         Change Template
       </Heading>

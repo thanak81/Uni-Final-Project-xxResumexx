@@ -3,7 +3,7 @@ import ExperienceTemplate from "./ExperienceTemplate";
 import EducationTemplate from "./EducationTemplate";
 import Skeleton from "../../../../Skeleton";
 import SkillTemplate from "./SkillTemplate";
-import BasicsTemplate from "./BasicsTemplate";
+import BasicsTemplate from "./BasicsTemplate2";
 
 function PersonalTemplate({ data, isLoading, error }) {
   // const [datas, setDatas] = useState(data);
@@ -14,10 +14,10 @@ function PersonalTemplate({ data, isLoading, error }) {
     <>
       {isLoading && <Skeleton />}
       <div className="flex flex-col py-5 gap-2">
-        <BasicsTemplate  data={data}/>
-        <ExperienceTemplate  data={data}/>
-        <EducationTemplate  data={data}/>
-        <SkillTemplate data={data}/>
+        <BasicsTemplate data={data} />
+        <ExperienceTemplate data={data} />
+        <EducationTemplate data={data} />
+        <SkillTemplate data={data} />
       </div>
     </>
   );

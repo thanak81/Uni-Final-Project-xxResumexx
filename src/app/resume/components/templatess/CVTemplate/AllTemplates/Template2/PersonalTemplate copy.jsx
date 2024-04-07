@@ -3,7 +3,7 @@ import ExperienceTemplate from "./ExperienceTemplate";
 import EducationTemplate from "./EducationTemplate";
 import Skeleton from "../../../../Skeleton";
 import SkillTemplate from "./SkillTemplate";
-import BasicsTemplate from "./BasicsTemplate";
+import BasicsTemplate from "./BasicsTemplate2";
 
 function PersonalTemplate({ data, isLoading, error }) {
   const [datas, setDatas] = useState(data);

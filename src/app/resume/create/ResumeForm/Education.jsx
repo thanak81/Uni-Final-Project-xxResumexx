@@ -6,6 +6,9 @@ import InputComp from "../../components/InputComp";
 import { useFieldArray, useFormContext } from "react-hook-form";
 import AddIcon from "@/app/components/icons/AddIcon";
 import { Button } from "@radix-ui/themes";
+import { Divider } from "@nextui-org/react";
+import RemoveIcon from "@/app/components/icons/RemoveIcon";
+
 function EducationForm() {
   const { control, register } = useFormContext();
   const { fields, append, remove } = useFieldArray({
@@ -13,7 +16,6 @@ function EducationForm() {
     name: "education",
   });
   function handleAdd() {
-
     const defaultEducation = {
       institution: "",
       studyType: "",
@@ -22,6 +24,10 @@ function EducationForm() {
       endDate: "",
     };
     append();
+  }
+
+  function handleRemove(){
+    remove()
   }
   return (
     <div className="px-8 rounded-xl flex flex-col gap-2 justify-center items-center shadow-2xl">
@@ -39,29 +45,30 @@ function EducationForm() {
           </Text>
         </AccordionItem>
       </Accordion>
-      <InitialEducation/>
+      <InitialEducation />
       {fields.map((field, index) => {
         return (
-          (
-            <Fragment key={field.id}>
-              <Education index={index} />
-            </Fragment>
-          )
+          <Fragment key={field.id}>
+            <Education index={index} handleRemove={handleRemove} />
+          </Fragment>
         );
       })}
-      <Button onClick={handleAdd}>
-        <AddIcon /> Add More
-      </Button>
+      <div className="py-5">
+        <Button onClick={handleAdd} className="cursor-pointer">
+          <AddIcon /> Add More
+        </Button>
+      </div>
     </div>
   );
 }
 
 export default EducationForm;
 
-function Education({ index }) {
+function Education({ index ,  handleRemove}) {
   return (
     <>
-      <div className="w-full">
+      <Divider className="my-5 bg-blue-500" />
+      <div className="w-full flex gap-5 items-center">
         <InputComp
           label={"University or High School"}
           name={`education.${index}.institution`}
@@ -72,6 +79,9 @@ function Education({ index }) {
           //   value={value}
           // onValueChange={setValue}
         />
+        <Button className="p-5 cursor-pointer" color="red" title="Remove" onClick={handleRemove}>
+          <RemoveIcon />
+        </Button>
       </div>
       <div className="w-full">
         <div className="flex gap-2">
