@@ -7,7 +7,6 @@ function ToolBar({ editor }) {
   if (!editor) {
     return null;
   }
-  console.log(editor);
   return (
     <div className="flex gap-1 border border-white my-2 rounded">
       <ToggleComp

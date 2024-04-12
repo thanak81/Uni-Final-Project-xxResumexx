@@ -7,6 +7,7 @@ import { Button } from "@radix-ui/themes";
 import AddIcon from "@/app/components/icons/AddIcon";
 import { Divider } from "@nextui-org/react";
 import RemoveIcon from "@/app/components/icons/RemoveIcon";
+import Tiptap from "../../components/TipTap";
 
 function WorkForm() {
   const { control, register } = useFormContext();
@@ -39,7 +40,7 @@ function WorkForm() {
           </Text>
         </AccordionItem>
       </Accordion>
-      <InitialWork />
+      {/* <InitialWork /> */}
       {fields.map((field, index) => {
         return (
           <Fragment key={field.id}>
@@ -111,11 +112,11 @@ function InitialWork() {
   );
 }
 
-function Work({ index , handleRemove}) {
+function Work({ index, handleRemove }) {
   return (
     <>
-      <Divider className="my-5  bg-blue-500" />
-
+      {index > 0 && <Divider className="my-5 bg-blue-500" />}
+      
       <div className="w-full flex gap-5 items-center">
         <InputComp
           name={`work.${index}.company`}
@@ -137,7 +138,7 @@ function Work({ index , handleRemove}) {
       </div>
       <div className="w-full">
         <InputComp
-          label={"name"}
+          label={"Position"}
           name={`work.${index}.position`}
           // isInvalid = {true}
           // error={"sdsd"}
@@ -149,13 +150,13 @@ function Work({ index , handleRemove}) {
       <div className="w-full">
         <div className="flex gap-2">
           <InputComp
-            label={"name"}
+            label={"Start Year"}
             name={`work.${index}.startYear`}
             // value={value}
             // onChange={(e) => setValue(e.target.value)}
           />
           <InputComp
-            label={"name"}
+            label={"End Year"}
             name={`work.${index}.endYear`}
             // value={value}
             // onChange={(e) => setValue(e.target.value)}
@@ -164,11 +165,7 @@ function Work({ index , handleRemove}) {
       </div>
 
       <div className="w-full">
-        <Textarea
-          variant="bordered"
-          label="Description"
-          placeholder="Enter your description"
-        />
+        <Tiptap value={`work.${index}.summary`} />
       </div>
     </>
   );

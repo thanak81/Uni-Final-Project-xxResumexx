@@ -4,24 +4,28 @@ import { useEditor, EditorContent } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
 import { useStore } from "../state/GlobalState";
 import ToolBar from "./ToolBar";
-
-const Tiptap = () => {
+import { useFormContext } from "react-hook-form";
+// import {z} from "zod"
+const Tiptap = ({value}) => {
+  const {register,setValue} = useFormContext();
   const setSummary = useStore((state) => state.setSummary);
-  const address = useStore((state) => state.address);
+  const summary = useStore((state) => state.summary);
 
   const editor = useEditor({
     extensions: [StarterKit.configure()],
-    content: "<li>Hello World! 🌎️</ul>",
+    content: summary,
     editorProps: {
       attributes: {
         class:
-          "prose rounded-md min-w-full max-w-96 text-white border list-desc  min-h-[150px]  text-white border border-[#71717A] text-sm focus:outline-none focus:border-white",
+        "prose prose-sm prose-zinc min-h-[150px] max-h-[200px] rounded max-w-none border border-[#71717A] overflow-y-scroll dark:prose-invert focus:border-white focus:outline-none [&_*]:my-2"
+          // "prose rounded-md min-w-full max-w-96 text-white border list-desc  min-h-[150px]  text-white border border-[#71717A] text-sm focus:outline-none focus:border-white",
       },
     },
     onUpdate({ editor }) {
       const html = editor.getHTML();
+      
+      setValue(value,editor.getText())
       setSummary(html);
-      console.log(html);
     },
   });
 

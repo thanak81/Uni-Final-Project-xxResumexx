@@ -24,7 +24,23 @@ function CreateForm() {
     setSelectedTemplate(template);
   }
   const [selectedTemplate, setSelectedTemplate] = useState(data[0]);
-  const methods = useForm();
+  const methods = useForm({
+    defaultValues: {
+      basics: {
+        name: "",
+        email: "",
+        phone: "",
+        address: "",
+        summary: "",
+      },
+      work: [{}],
+      education: [{}],
+      skills: {
+        name: "",
+        skill: [],
+      },
+    },
+  });
   const onSubmit = (data) => {
     console.log(data);
   };

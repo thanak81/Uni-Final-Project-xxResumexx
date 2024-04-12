@@ -1,5 +1,7 @@
+"use client";
+
 import { Heading, Text } from "@radix-ui/themes";
-import React, { Fragment } from "react";
+import React, { Fragment, useEffect } from "react";
 import { Accordion, AccordionItem, Input, Textarea } from "@nextui-org/react";
 import { FormControl } from "@radix-ui/react-form";
 import InputComp from "../../components/InputComp";
@@ -12,7 +14,7 @@ import Tiptap from "../../components/TipTap";
 
 function EducationForm() {
   const { control, register } = useFormContext();
-  const { fields, append, remove } = useFieldArray({
+  const { fields, append, remove, prepend } = useFieldArray({
     control,
     name: "education",
   });
@@ -21,12 +23,17 @@ function EducationForm() {
     const defaultEducation = {
       institution: "",
       studyType: "",
-      area: "",
-      startDate: "",
-      endDate: "",
+      level: "",
+      fields: "",
+      startYear: "",
+      endYear: "",
     };
-    append();
+    append(defaultEducation);
   }
+
+  // useEffect(()=> {
+  //   append({})
+  // },[append])
 
   function handleRemove() {
     remove();
@@ -47,7 +54,7 @@ function EducationForm() {
           </Text>
         </AccordionItem>
       </Accordion>
-      <InitialEducation />
+      {/* <InitialEducation /> */}
       {fields.map((field, index) => {
         return (
           <Fragment key={field.id}>
@@ -69,7 +76,9 @@ export default EducationForm;
 function Education({ index, handleRemove }) {
   return (
     <>
-      <Divider className="my-5 bg-blue-500" />
+      {index > 0 && (
+        <Divider className="my-5 bg-blue-500" />
+      )}
       <div className="w-full flex gap-5 items-center">
         <InputComp
           label={"University or High School"}
@@ -127,7 +136,7 @@ function Education({ index, handleRemove }) {
         </div>
       </div>
       <div className="w-full">
-        <Tiptap />
+        <Tiptap value={`education.${index}.summary`} index={index} />
       </div>
     </>
   );
@@ -185,7 +194,7 @@ function InitialEducation() {
         </div>
       </div>
       <div className="w-full">
-        <Tiptap />
+        <Tiptap value={"education.summary"} />
       </div>
       {/* <div className="w-full">
         <Textarea
