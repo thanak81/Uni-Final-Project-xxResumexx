@@ -15,6 +15,7 @@ function EducationForm() {
     control,
     name: "education",
   });
+
   function handleAdd() {
     const defaultEducation = {
       institution: "",
@@ -26,8 +27,8 @@ function EducationForm() {
     append();
   }
 
-  function handleRemove(){
-    remove()
+  function handleRemove() {
+    remove();
   }
   return (
     <div className="px-8 rounded-xl flex flex-col gap-2 justify-center items-center shadow-2xl">
@@ -64,7 +65,7 @@ function EducationForm() {
 
 export default EducationForm;
 
-function Education({ index ,  handleRemove}) {
+function Education({ index, handleRemove }) {
   return (
     <>
       <Divider className="my-5 bg-blue-500" />
@@ -79,7 +80,12 @@ function Education({ index ,  handleRemove}) {
           //   value={value}
           // onValueChange={setValue}
         />
-        <Button className="p-5 cursor-pointer" color="red" title="Remove" onClick={handleRemove}>
+        <Button
+          className="p-5 cursor-pointer"
+          color="red"
+          title="Remove"
+          onClick={handleRemove}
+        >
           <RemoveIcon />
         </Button>
       </div>
@@ -118,14 +124,6 @@ function Education({ index ,  handleRemove}) {
             // onChange={(e) => setValue(e.target.value)}
           />
         </div>
-      </div>
-
-      <div className="w-full">
-        <Textarea
-          variant="bordered"
-          label="Description"
-          placeholder="Enter your description"
-        />
       </div>
     </>
   );
@@ -188,6 +186,7 @@ function InitialEducation() {
           variant="bordered"
           label="Description"
           placeholder="Enter your description"
+          {...register("education.description")}
         />
       </div>
     </>
