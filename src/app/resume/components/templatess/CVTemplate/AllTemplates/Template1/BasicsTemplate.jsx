@@ -1,14 +1,16 @@
 import React from 'react'
 import { useStore } from "../../../../../state/GlobalState";
+import parse from 'html-react-parser';
 function BasicsTemplate() {
   const name = useStore((state)=>state.name)
   const number = useStore((state)=>state.number)
   const email = useStore((state)=>state.email)
   const address= useStore((state)=>state.address)
+  const summary = useStore((state)=>state.summary)
   return (
-    <div className="px-5 pt-5 flex flex-col items-center">
+    <div className="px-5 pt-5 flex flex-col items-center prose max-w-full">
     <div className="text-2xl font-bold ">{name}</div>
-    <div>Student</div>
+    <div>{parse(summary)}</div>
     <div className="flex gap-5">
       <div className="flex gap-2 flex-col items-center px-5 pb-5 text-sm">
         <div className="flex gap-2">

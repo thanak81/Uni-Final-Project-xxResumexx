@@ -7,8 +7,10 @@ import {create} from "zustand"
         email:"",
         address: "",
         number: "",
+        summary: "",
         setName : (newValue) => set({name: newValue}),
         setEmail : (newValue) => set({email: newValue}),
         setAddress : (newValue) => set({address: newValue}),
-        setNumber : (newValue) => set({number: newValue})
+        setNumber : (newValue) => set({number: newValue}),
+        setSummary: (newValue) => set({summary:newValue})
     }))

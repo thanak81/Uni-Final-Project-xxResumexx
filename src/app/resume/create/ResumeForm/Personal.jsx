@@ -15,7 +15,7 @@ function PersonalForm({ active}) {
   const number = useStore((state) => state.number);
   const setNumber = useStore((state) => state.setNumber);
   return (
-    <div className="px-8 rounded-xl flex flex-col gap-2 justify-center items-center shadow-2xl">
+    <div className=" rounded-xl flex flex-col gap-2 justify-center items-center shadow-2xl">
       <Accordion>
         <AccordionItem
           title={

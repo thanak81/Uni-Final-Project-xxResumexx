@@ -26,13 +26,13 @@ function FormComp({ register , selectedTemplate}) {
         isEnabled={false}
         className={`h-[70%] ${
           !active ? "w-[100vh]" : ""
-        } flex flex-col gap-2 transition-all`}
+        } flex flex-col gap-2 transition-all px-5`}
       >
         <Personal active={active} register={register} />
         <Education />
         <WorkForm />
       </ScrollShadow>
-      <div className="hidden lg:block">
+      <div className="hidden md:block">
         <div onClick={handleActive}>
           <ArrowIcon />
         </div>

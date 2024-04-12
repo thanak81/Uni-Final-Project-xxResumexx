@@ -8,6 +8,7 @@ import AddIcon from "@/app/components/icons/AddIcon";
 import { Button } from "@radix-ui/themes";
 import { Divider } from "@nextui-org/react";
 import RemoveIcon from "@/app/components/icons/RemoveIcon";
+import Tiptap from "../../components/TipTap";
 
 function EducationForm() {
   const { control, register } = useFormContext();
@@ -31,11 +32,11 @@ function EducationForm() {
     remove();
   }
   return (
-    <div className="px-8 rounded-xl flex flex-col gap-2 justify-center items-center shadow-2xl">
+    <div className="rounded-xl flex flex-col gap-2 justify-center items-center shadow-2xl">
       <Accordion>
         <AccordionItem
           title={
-            <Heading className="self-start" as="h3">
+            <Heading className="self-start text-white" as="h3">
               Education
             </Heading>
           }
@@ -125,6 +126,9 @@ function Education({ index, handleRemove }) {
           />
         </div>
       </div>
+      <div className="w-full">
+        <Tiptap />
+      </div>
     </>
   );
 }
@@ -180,15 +184,17 @@ function InitialEducation() {
           />
         </div>
       </div>
-
       <div className="w-full">
+        <Tiptap />
+      </div>
+      {/* <div className="w-full">
         <Textarea
           variant="bordered"
           label="Description"
           placeholder="Enter your description"
-          {...register("education.description")}
+          // {...register("education.description")}
         />
-      </div>
+      </div> */}
     </>
   );
 }
