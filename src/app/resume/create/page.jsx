@@ -6,6 +6,8 @@ import TemplateContainer from "./TemplateContainer";
 import { FormProvider, useForm } from "react-hook-form";
 import BasicsTemplate from "../components/templatess/CVTemplate/AllTemplates/Template1/BasicsTemplate";
 import BasicsTemplate2 from "../components/templatess/CVTemplate/AllTemplates/Template2/BasicsTemplate2";
+import { Schema } from "./ResumeForm/Personal";
+import { zodResolver } from "@hookform/resolvers/zod";
 function CreateForm() {
   const data = [
     {
@@ -40,6 +42,7 @@ function CreateForm() {
         skill: [],
       },
     },
+    resolver: zodResolver(Schema)
   });
   const onSubmit = (data) => {
     console.log(data);

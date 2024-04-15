@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import Personal from "./ResumeForm/Personal";
 import { Flex } from "@radix-ui/themes";
 import { Input, ScrollShadow } from "@nextui-org/react";
-import { useStore } from "../state/GlobalState";
+import { useActive, useStore } from "../state/GlobalState";
 import Education from "./ResumeForm/Education";
 import Template1 from "./Template1";
 import TemplateContainer from "./TemplateContainer";
@@ -12,13 +12,16 @@ import ArrowIcon from "@/app/components/icons/ArrowIcon";
 import WorkForm from "./ResumeForm/WorkForm";
 import ProgressCard from "../components/ProgressCard";
 function FormComp({ register , selectedTemplate}) {
-  const [active, setActive] = useState(false);
+  // const [active, setActive] = useState(false);
 
+  const active = useActive((state)=> state.active);
+  const setActive = useActive((state)=> state.setActive)
 
   function handleActive() {
     setActive((active) => !active);
   }
 
+  console.log(active)
   return (
     <Flex gap="3" className="w-full h-full ">
       <ScrollShadow
@@ -33,7 +36,7 @@ function FormComp({ register , selectedTemplate}) {
         <WorkForm />
       </ScrollShadow>
       <div className="hidden md:block">
-        <div onClick={handleActive}>
+        <div onClick={setActive} className="cursor-pointer" title="Preview Resume">
           <ArrowIcon />
         </div>
         {active && <TemplateContainer selectedTemplate={selectedTemplate}/>}

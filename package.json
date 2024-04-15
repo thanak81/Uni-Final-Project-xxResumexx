@@ -17,6 +17,7 @@
     "@radix-ui/react-visually-hidden": "^1.0.3",
     "@radix-ui/themes": "^3.0.2",
     "@tiptap/extension-list-item": "^2.3.0",
+    "@tiptap/extension-placeholder": "^2.3.0",
     "@tiptap/pm": "^2.3.0",
     "@tiptap/react": "^2.3.0",
     "@tiptap/starter-kit": "^2.3.0",
@@ -32,6 +33,7 @@
     "zustand": "^4.5.2"
   },
   "devDependencies": {
+    "@hookform/resolvers": "^3.3.4",
     "@tailwindcss/typography": "^0.5.12",
     "autoprefixer": "^10.0.1",
     "eslint": "^8",

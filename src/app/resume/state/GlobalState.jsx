@@ -14,3 +14,10 @@ import {create} from "zustand"
         setNumber : (newValue) => set({number: newValue}),
         setSummary: (newValue) => set({summary:newValue})
     }))
+
+
+    // Active state to open/close resume on create form
+    export const useActive = create((set)=> ({
+        active : false,
+        setActive : ()=> set((state) => ({active: !state.active}))
+    }))
