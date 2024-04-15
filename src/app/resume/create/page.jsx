@@ -20,6 +20,11 @@ function CreateForm() {
       name: "template2",
       template: <BasicsTemplate2 />,
     },
+    {
+      id: 3,
+      name: "template2",
+      template: <BasicsTemplate2 />,
+    },
   ];
 
   function handleTemplate(template) {
@@ -58,7 +63,7 @@ function CreateForm() {
             </div> */}
           </form>
         </FormProvider>
-        <div className="self-center lg:self-start mt-5">
+        <div className="self-center lg:self-start mt-5 ">
           <ProgressCard onSubmit={methods.handleSubmit(onSubmit)} data={data} handleTemplate={handleTemplate}/>
         </div>
       </div>

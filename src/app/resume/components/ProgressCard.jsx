@@ -1,68 +1,50 @@
 import DownloadIcon from "@/app/components/icons/DownloadIcon";
-import {
-  Button,
-  Card,
-  Flex,
-  Text,
-} from "@radix-ui/themes";
+import { Box, Button, Card, Flex, Text } from "@radix-ui/themes";
 import React from "react";
-import { Divider } from "@nextui-org/react";
+import { Divider, ScrollShadow } from "@nextui-org/react";
 import TemplateSwitch from "../ui/TemplateSwitch";
+import { ScrollArea } from "@radix-ui/react-scroll-area";
 
-function ProgressCard({onSubmit,data,handleTemplate}) {
+function ProgressCard({ onSubmit, data, handleTemplate }) {
   return (
-    <Flex direction="column" gap="3" maxWidth="400px">
-      <Card variant="surface">
-        <Text as="div" size="2" weight="bold">
-          Resume Rating
-        </Text>
-        <Text as="div" color="gray" size="2">
-          Start building your next project in minutes
-        </Text>
-      </Card>
-      <Button type="submit" onClick={onSubmit}>
-        <DownloadIcon /> Submit
-      </Button>
-      <Divider />
-      <Card>
-        <Text>Choose Templates</Text>
-      </Card>
-      <Card>
-        <Card>
-          <Text>
-            Template 1
+    <div className="overflow-y-auto h-full">
+      <Flex direction="column" gap="3" maxWidth="400px" className="h-screen">
+        <Card variant="surface">
+          <Text as="div" size="2" weight="bold">
+            Resume Rating
           </Text>
-          <div>
-            <TemplateSwitch data={data} handleTemplate={handleTemplate}/>
-          </div>
+          <Text as="div" color="gray" size="2">
+            Start building your next project in minutes
+          </Text>
         </Card>
-      </Card>
-      {/* <Heading size="4" mb="2" trim="start">
-        Change Template
-      </Heading>
-      <ScrollArea type="always" scrollbars="horizontal" style={{ height: 300 }}>
-        <Box p="2" pr="8">
-          <Flex direction="row" gap="4">
-            <Card variant="surface">
-              <Text as="div" size="2" weight="bold">
-                Resume Rating
-              </Text>
-              <Text as="div" color="gray" size="2">
-                Start building your next project in minutes
-              </Text>
+        <Button type="submit" onClick={onSubmit}>
+          <DownloadIcon /> Submit
+        </Button>
+        <Divider />
+        <ScrollShadow className="w-full h-[24.5rem] flex flex-col gap-2" size={300} isEnabled={false}>
+          <div className="py-5">
+          <Card>
+            <Text>Choose Templates</Text>
+          </Card>
+          <Card>
+            <Card>
+              <div>
+                <TemplateSwitch data={data} handleTemplate={handleTemplate} />
+              </div>
             </Card>
-            <Card variant="surface">
-              <Text as="div" size="2" weight="bold">
-                Resume Rating
-              </Text>
-              <Text as="div" color="gray" size="2">
-                Start building your next project in minutes
-              </Text>
+          </Card>
+          <Card>
+            <Card>
+              <div>
+                <TemplateSwitch data={data} handleTemplate={handleTemplate} />
+              </div>
             </Card>
-          </Flex>
-        </Box>
-      </ScrollArea> */}
-    </Flex>
+          </Card>
+          </div>
+     
+        </ScrollShadow>
+      </Flex>
+    </div>
   );
 }
 

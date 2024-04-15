@@ -5,7 +5,7 @@ function TemplateSwitch({data,handleTemplate}) {
   return (
     <div>
       <Text>Choose Resume</Text>
-      <div className="flex gap-5">
+      <div className="flex flex-col items-center mt-2 gap-5">
         {data.map((dat) => {
           return (
             <div key={dat.id}>

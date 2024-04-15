@@ -7,11 +7,9 @@ import BasicsTemplate2 from "../components/templatess/CVTemplate/AllTemplates/Te
 function Template1({selectedTemplate}) {
   const name = useStore((state) => state.name);
   return (
-    <div className="w-full p-5">
+    <div className="p-5">
       <ResumeStructure>
-        <div className="flex flex-col py-5 gap-2">
           {selectedTemplate.template}
-        </div>
       </ResumeStructure>
     </div>
   );
