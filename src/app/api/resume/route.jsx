@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 
-export async function GET(){
+async function GET(){
     const apiUrl = process.env.API_URL;
     const data = await fetch(`${apiUrl}`,{
         cache: "no-store"
