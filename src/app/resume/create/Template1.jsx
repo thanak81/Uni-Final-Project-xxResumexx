@@ -4,14 +4,19 @@ import ResumeStructure from "../components/templatess/CVTemplate/ParentTemplate/
 import { ScrollArea, Text } from "@radix-ui/themes";
 import BasicsTemplate from "../components/templatess/CVTemplate/AllTemplates/Template1/BasicsTemplate";
 import BasicsTemplate2 from "../components/templatess/CVTemplate/AllTemplates/Template2/BasicsTemplate2";
-function Template1({selectedTemplate}) {
-  const name = useStore((state) => state.name);
+function Template1({ selectedTemplate }) {
+  // switch(selectedTemplate){
+  //   case ():
+
+  //   break;
+  //   case 2:
+  //     break;
+  // }
+
   return (
-    <div className="p-5">
-      <ResumeStructure>
-          {selectedTemplate.template}
-      </ResumeStructure>
-    </div>
+    <ResumeStructure>
+      <div>{selectedTemplate.template}</div>
+    </ResumeStructure>
   );
 }
 

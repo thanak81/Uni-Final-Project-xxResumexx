@@ -5,7 +5,7 @@ import React, { Fragment, useEffect } from "react";
 import { Accordion, AccordionItem, Input, Textarea } from "@nextui-org/react";
 import { FormControl } from "@radix-ui/react-form";
 import InputComp from "../../components/InputComp";
-import { useFieldArray, useFormContext } from "react-hook-form";
+import { useFieldArray, useFormContext, useWatch } from "react-hook-form";
 import AddIcon from "@/app/components/icons/AddIcon";
 import { Button } from "@radix-ui/themes";
 import { Divider } from "@nextui-org/react";
@@ -19,14 +19,19 @@ function EducationForm() {
     name: "education",
   });
 
+  const watchPresent = useWatch({
+    control,
+  });
+
   function handleAdd() {
     const defaultEducation = {
       institution: "",
       studyType: "",
       level: "",
-      fields: "",
+      area: "",
       startYear: "",
       endYear: "",
+      summary: "",
     };
     append(defaultEducation);
   }
@@ -58,7 +63,12 @@ function EducationForm() {
       {fields.map((field, index) => {
         return (
           <Fragment key={field.id}>
-            <Education index={index} handleRemove={handleRemove} />
+            <Education
+              index={index}
+              handleRemove={handleRemove}
+              register={register}
+              watchPresent={watchPresent}
+            />
           </Fragment>
         );
       })}
@@ -73,17 +83,23 @@ function EducationForm() {
 
 export default EducationForm;
 
-function Education({ index, handleRemove }) {
+function Education({ index, handleRemove, register, watchPresent }) {
+  console.log(watchPresent);
+  let status;
+  const checkPresent = watchPresent.education.map((edu)=> {
+    if(edu.present){
+      status = true;
+    }else{
+      status = false;
+    }
+  })
   return (
     <>
-      {index > 0 && (
-        <Divider className="my-5 bg-blue-500" />
-      )}
+      {index > 0 && <Divider className="my-5 bg-blue-500" />}
       <div className="w-full flex gap-5 items-center">
         <InputComp
           label={"University or High School"}
           name={`education.${index}.institution`}
-
           // isInvalid = {true}
           // error={"sdsd"}
           // placeholder={"University"}
@@ -99,6 +115,7 @@ function Education({ index, handleRemove }) {
           <RemoveIcon />
         </Button>
       </div>
+
       <div className="w-full">
         <div className="flex gap-2">
           <InputComp
@@ -117,22 +134,29 @@ function Education({ index, handleRemove }) {
           />
         </div>
       </div>
+      <div className="w-full flex items-center justify-end gap-2">
+        <input
+          type="checkbox"
+          name="education.present"
+          {...register(`education.${index}.present`)}
+        />
+        <label htmlFor="checkbox">Present?</label>
+      </div>
       <div className="w-full">
         <div className="flex gap-2">
           <InputComp
             label={"Start Year"}
             name={`education.${index}.startYear`}
-
             // value={value}
             // onChange={(e) => setValue(e.target.value)}
           />
-          <InputComp
-            label={"End Year"}
-            name={`education.${index}.endYear`}
-
-            // value={value}
-            // onChange={(e) => setValue(e.target.value)}
-          />
+           <InputComp
+              label={"End Year"}
+              name={`education.${index}.endYear`}
+              disabled={status ? true : false}
+              // value={value}
+              // onChange={(e) => setValue(e.target.value)}
+            />
         </div>
       </div>
       <div className="w-full">

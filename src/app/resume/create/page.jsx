@@ -8,12 +8,13 @@ import BasicsTemplate from "../components/templatess/CVTemplate/AllTemplates/Tem
 import BasicsTemplate2 from "../components/templatess/CVTemplate/AllTemplates/Template2/BasicsTemplate2";
 import { Schema } from "./ResumeForm/Personal";
 import { zodResolver } from "@hookform/resolvers/zod";
+import Template1Main from "../components/templatess/CVTemplate/AllTemplates/Template1/Template1Main";
 function CreateForm() {
   const data = [
     {
       id: 1,
       name: "template1",
-      template: <BasicsTemplate />,
+      template: <Template1Main />,
     },
     {
       id: 2,
@@ -47,7 +48,7 @@ function CreateForm() {
         skill: [],
       },
     },
-    resolver: zodResolver(Schema)
+    // resolver: zodResolver(Schema)
   });
   const onSubmit = (data) => {
     console.log(data);

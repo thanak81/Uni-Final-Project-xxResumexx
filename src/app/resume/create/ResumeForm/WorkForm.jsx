@@ -59,58 +59,6 @@ function WorkForm() {
 
 export default WorkForm;
 
-function InitialWork() {
-  return (
-    <>
-      <div className="w-full">
-        <InputComp
-          name={"name"}
-          label={"Company Name"}
-          // isInvalid = {true}
-          // error={"sdsd"}
-          // placeholder={"University"}
-          //   value={value}
-          // onValueChange={setValue}
-        />
-      </div>
-      <div className="w-full">
-        <InputComp
-          name={"name"}
-          label={"Position"}
-          // isInvalid = {true}
-          // error={"sdsd"}
-          // placeholder={"University"}
-          //   value={value}
-          // onValueChange={setValue}
-        />
-      </div>
-      <div className="w-full">
-        <div className="flex gap-2">
-          <InputComp
-            name={"name"}
-            label={"Start Year"}
-            // value={value}
-            // onChange={(e) => setValue(e.target.value)}
-          />
-          <InputComp
-            name={"name"}
-            label={"End Year"}
-            // value={value}
-            // onChange={(e) => setValue(e.target.value)}
-          />
-        </div>
-      </div>
-
-      <div className="w-full">
-        <Textarea
-          variant="bordered"
-          label="Description"
-          placeholder="Enter your description"
-        />
-      </div>
-    </>
-  );
-}
 
 function Work({ index, handleRemove }) {
   return (

@@ -1,25 +1,53 @@
 import React from "react";
+import parse from "html-react-parser";
 
-function ExperienceTemplate({ data }) {
+function ExperienceTemplate({ resumeData }) {
+  const data = {
+    work: [
+      {
+        id: 1,
+        name: "Heineken",
+        startDate: "2021",
+        endDate: "2023",
+        position: "Intern",
+        summary: "I intern there for 3 months",
+      },
+    ],
+  };
+  let checked = false;
+  if (
+    resumeData.work[0].company !== "" ||
+    resumeData.work[0].position !== "" ||
+    resumeData.work[0].startDate ||
+    resumeData.work[0].endDate ||
+    resumeData.work[0].summary
+  ) {
+    checked = true;
+  } else {
+    checked = false;
+  }
+
   return (
     <>
-      {data?.work?.length > 0 && (
+      {resumeData?.work?.length >= 0 && checked && (
         <div>
           <div className=" font-bold text-[#005685] border-y border-black/25 p-2">
             Experience
           </div>
-          <div className="py-2 px-5 flex flex-col gap-3">
-            {data?.work.map((wo) => (
+          <div className="py-2 px-5 flex flex-col gap-3 text-black">
+            {resumeData.work.map((wo) => (
               <div key={wo.id}>
-                  <div className="flex justify-between">
-                    <div className="font-bold">{wo.name}</div>
-                    <div>
-                      <span>{wo.startDate}</span>-<span>{wo.endDate}</span>
-                    </div>
+                <div className="flex justify-between">
+                  <div className="font-bold w-[40rem]">{wo.company}</div>
+                  <div>
+                    <span>{wo.startYear}</span>-<span>{wo.endYear}</span>
                   </div>
-                  <div className="text-sm flex flex-col gap-2 text-[#56606A]">
-                    <div className="mt-2 font-semibold">{wo.position}</div>
-                    {/* <ul className="list-disc list-inside text-justify">
+                </div>
+                <div className="text-sm flex flex-col gap-2 text-[#56606A]">
+                  <div className="mt-2 font-semibold w-[40rem]">
+                    {wo.position}{" "}
+                  </div>
+                  {/* <ul className="list-disc list-inside text-justify">
                       <li>
                         Lorem ipsum dolor sit amet consectetur adipisicing elit.
                         Minus quos asperiores pariatur illo tempora dolores
@@ -33,10 +61,8 @@ function ExperienceTemplate({ data }) {
                       <li>Create AR Ar Game</li>
                       <li>Create AR Ar Game</li>
                     </ul> */}
-                    <div>
-                      <span className="font-bold text-black">Summary :</span> {wo.summary}
-                    </div>
-                  </div>
+                  <div className="w-[40rem] prose">{parse(wo.summary)}</div>
+                </div>
               </div>
             ))}
           </div>

@@ -33,8 +33,7 @@ const Tiptap = ({ value }) => {
     },
     onUpdate({ editor }) {
       const html = editor.getHTML();
-
-      setValue(value, editor.getText());
+      setValue(value, editor.getHTML());
       setSummary(html);
     },
   });

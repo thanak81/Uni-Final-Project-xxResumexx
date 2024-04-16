@@ -61,14 +61,14 @@ function PersonalForm({ active }) {
           onValueChange={setName}
           label={"Full name"}
           name={"basics.name"}
-          error={errors?.basics?.name?.message}
+          // error={errors?.basics?.name?.message}
         />
         <InputComp
           value={email}
           onValueChange={setEmail}
           label={"Email"}
           name={"basics.email"}
-          error={errors?.basics?.email?.message}
+          // error={errors?.basics?.email?.message}
         />
       </div>
       <div className="w-full">
@@ -77,7 +77,7 @@ function PersonalForm({ active }) {
           value={address}
           onValueChange={setAddress}
           name={"basics.address"}
-          error={errors?.basics?.address?.message}
+          // error={errors?.basics?.address?.message}
         />
       </div>
       <div className="w-full">
@@ -86,7 +86,7 @@ function PersonalForm({ active }) {
           value={number}
           onValueChange={setNumber}
           name={"basics.number"}
-          error={errors?.basics?.number?.message}
+          // error={errors?.basics?.number?.message}
           // isInvalid = {true}
           // error={"sdsd"}
         />

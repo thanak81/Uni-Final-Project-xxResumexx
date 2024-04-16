@@ -7,11 +7,9 @@ function ResumeStructure({ children , bgColor }) {
   //   content: () => printRef.current,
   // });
   return (
-    <div className={`${bgColor} text-black`}>
       <div className={styles.page}>
         <div>{children}</div>
       </div>
-    </div>
   );
 }
 

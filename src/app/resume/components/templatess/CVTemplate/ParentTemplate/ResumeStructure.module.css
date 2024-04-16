@@ -1,23 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Tinos:ital,wght@0,400;0,700;1,400;1,700&display=swap');
 
 .page {
-    /* font-family: "Tinos"; */
     width: 210mm;
     min-height: 297mm;
-    /* min-height: 35.7cm; */
-    /* padding: 2cm; */
-    /* margin: 1cm auto; */
-    /* border-radius: 5px; */
     background: white;
     box-shadow: 0 0 5px rgba(0, 0, 0, 1);
 }
 
-.subpage {
-    /* padding: 1cm; */
-    border: 5px red solid;
-    height: 296.334mm;
-    outline: 2cm #FFEAEA solid;
-}
 @media print {
     .page { 
         height: 0; 
