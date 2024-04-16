@@ -1,7 +1,10 @@
 import { NextResponse } from "next/server";
 
 export async function GET(){
-    const data = await fetch("http://localhost:3001/cv/getCV");
+    const apiUrl = process.env.API_URL;
+    const data = await fetch(`${apiUrl}`,{
+        cache: "no-store"
+    });
     const response = await data.json();
     console.log(response)
     return NextResponse.json({
