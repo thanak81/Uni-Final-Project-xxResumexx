@@ -40,7 +40,12 @@ function ExperienceTemplate({ resumeData }) {
                 <div className="flex justify-between">
                   <div className="font-bold w-[40rem]">{wo.company}</div>
                   <div>
-                    <span>{wo.startYear}</span>-<span>{wo.endYear}</span>
+                    <span>{wo.startYear}</span>-
+                    {wo.present ? (
+                      <span>Present</span>
+                    ) : (
+                      <span>{wo.endYear}</span>
+                    )}
                   </div>
                 </div>
                 <div className="text-sm flex flex-col gap-2 text-[#56606A]">

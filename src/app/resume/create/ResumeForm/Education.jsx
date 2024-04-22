@@ -11,6 +11,7 @@ import { Button } from "@radix-ui/themes";
 import { Divider } from "@nextui-org/react";
 import RemoveIcon from "@/app/components/icons/RemoveIcon";
 import Tiptap from "../../components/TipTap";
+import AddAnimForm from "../../components/AddAnimForm";
 
 function EducationForm() {
   const { control, register } = useFormContext();
@@ -44,7 +45,7 @@ function EducationForm() {
     remove();
   }
   return (
-    <div className="rounded-xl flex flex-col gap-2 justify-center items-center shadow-2xl">
+  <div className="rounded-xl flex flex-col gap-2 justify-center items-center shadow-2xl">
       <Accordion>
         <AccordionItem
           title={
@@ -60,6 +61,7 @@ function EducationForm() {
         </AccordionItem>
       </Accordion>
       {/* <InitialEducation /> */}
+
       {fields.map((field, index) => {
         return (
           <Fragment key={field.id}>
@@ -71,13 +73,14 @@ function EducationForm() {
             />
           </Fragment>
         );
-      })}
+      })} 
       <div className="py-5">
         <Button onClick={handleAdd} className="cursor-pointer">
           <AddIcon /> Add More
         </Button>
       </div>
     </div>
+  
   );
 }
 
@@ -160,7 +163,7 @@ function Education({ index, handleRemove, register, watchPresent }) {
         </div>
       </div>
       <div className="w-full">
-        <Tiptap value={`education.${index}.summary`} index={index} />
+        <Tiptap value={`education.${index}.summary`} />
       </div>
     </>
   );

@@ -3,7 +3,7 @@ import { useFormContext, useWatch } from "react-hook-form";
 function BasicsTemplate({resumeData}) {
 
   return (
-      <div className="text-black pt-10 pb-5">
+      <div className="text-black pt-10 pb-5 h-full">
         <div className="text-2xl font-bold text-center">{resumeData.basics.name? resumeData.basics.name :"Thanak Mech"}</div>
         <div className="text-center">Student</div>
         <div className="gap-5">

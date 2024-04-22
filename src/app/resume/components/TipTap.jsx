@@ -22,7 +22,7 @@ const Tiptap = ({ value }) => {
         placeholder: "Summary",
       }),
     ],
-    content: summary,
+    // content: summary,
     editorProps: {
       attributes: {
         class:

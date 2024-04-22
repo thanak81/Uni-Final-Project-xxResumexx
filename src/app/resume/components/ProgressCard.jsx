@@ -5,7 +5,7 @@ import { Divider, ScrollShadow } from "@nextui-org/react";
 import TemplateSwitch from "../ui/TemplateSwitch";
 import { ScrollArea } from "@radix-ui/react-scroll-area";
 
-function ProgressCard({ onSubmit, data, handleTemplate }) {
+function ProgressCard({ onSubmit, data, handleTemplate}) {
   return (
     <div className="overflow-y-auto h-full">
       <Flex direction="column" gap="3" maxWidth="400px" className="h-screen">
@@ -18,8 +18,9 @@ function ProgressCard({ onSubmit, data, handleTemplate }) {
           </Text>
         </Card>
         <Button type="submit" onClick={onSubmit}>
-          <DownloadIcon /> Submit
+          <DownloadIcon />Download
         </Button>
+        <Divider />
         <Divider />
         <ScrollShadow className="w-full h-[24.5rem] flex flex-col gap-2" size={300} isEnabled={false}>
           <div className="py-5">
@@ -36,7 +37,7 @@ function ProgressCard({ onSubmit, data, handleTemplate }) {
           <Card>
             <Card>
               <div>
-                <TemplateSwitch data={data} handleTemplate={handleTemplate} />
+                <TemplateSwitch  data={data} handleTemplate={handleTemplate} />
               </div>
             </Card>
           </Card>

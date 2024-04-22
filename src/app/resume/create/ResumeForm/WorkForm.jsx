@@ -2,7 +2,7 @@ import { Heading, Text } from "@radix-ui/themes";
 import React, { Fragment } from "react";
 import { Accordion, AccordionItem, Input, Textarea } from "@nextui-org/react";
 import InputComp from "../../components/InputComp";
-import { useFieldArray, useFormContext } from "react-hook-form";
+import { useFieldArray, useFormContext, useWatch } from "react-hook-form";
 import { Button } from "@radix-ui/themes";
 import AddIcon from "@/app/components/icons/AddIcon";
 import { Divider } from "@nextui-org/react";
@@ -15,6 +15,12 @@ function WorkForm() {
     control,
     name: "work",
   });
+
+  const watchPresent = useWatch({
+    control,
+  })
+
+
 
   function handleAdd() {
     append();
@@ -44,7 +50,7 @@ function WorkForm() {
       {fields.map((field, index) => {
         return (
           <Fragment key={field.id}>
-            <Work index={index} handleRemove={handleRemove} />
+            <Work index={index} handleRemove={handleRemove} register={register} watchPresent={watchPresent}/>
           </Fragment>
         );
       })}
@@ -60,7 +66,16 @@ function WorkForm() {
 export default WorkForm;
 
 
-function Work({ index, handleRemove }) {
+function Work({ index, handleRemove ,register,watchPresent}) {
+
+  let status;
+  const checkPresent = watchPresent.education.map((edu)=> {
+    if(edu.present){
+      status = true;
+    }else{
+      status = false;
+    }
+  })
   return (
     <>
       {index > 0 && <Divider className="my-5 bg-blue-500" />}
@@ -95,6 +110,14 @@ function Work({ index, handleRemove }) {
           // onValueChange={setValue}
         />
       </div>
+      <div className="w-full flex items-center justify-end gap-2">
+        <input
+          type="checkbox"
+          name="work.present"
+          {...register(`work.${index}.present`)}
+        />
+        <label htmlFor="checkbox">Present?</label>
+      </div>
       <div className="w-full">
         <div className="flex gap-2">
           <InputComp
@@ -106,6 +129,7 @@ function Work({ index, handleRemove }) {
           <InputComp
             label={"End Year"}
             name={`work.${index}.endYear`}
+            disabled = {status ? true : false}
             // value={value}
             // onChange={(e) => setValue(e.target.value)}
           />
@@ -113,7 +137,7 @@ function Work({ index, handleRemove }) {
       </div>
 
       <div className="w-full">
-        <Tiptap value={`work.${index}.summary`} />
+        <Tiptap value={`work.${index}.summary`}/>
       </div>
     </>
   );
