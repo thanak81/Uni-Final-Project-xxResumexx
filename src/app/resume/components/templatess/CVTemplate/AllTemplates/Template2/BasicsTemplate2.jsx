@@ -1,31 +1,23 @@
-import React from 'react'
-import { useStore } from "../../../../../state/GlobalState";
+import React from "react";
+import { useFormContext, useWatch } from "react-hook-form";
+function BasicsTemplate({resumeData}) {
 
-function BasicsTemplate2() {
-  const name = useStore((state)=>state.name)
-  const number = useStore((state)=>state.number)
-  const email = useStore((state)=>state.email)
-  const address= useStore((state)=>state.address)
   return (
-    <div className="px-5 pt-5 flex flex-col items-center">
-    <div className="text-2xl font-bold "></div>
-    <div>Teacher</div>
-    <div className="flex gap-5">
-      <div className="flex gap-2 flex-col items-center px-5 pb-5 text-sm">
-        <div className="flex gap-2">
-          <div> Thanak </div>
-          <div>thanakmech@gmail.com|081790154</div>
-          <div>{name} </div>
-        </div>
-        <div>
-          <div> {number} </div>
-        </div>
-        <div className="px-5 text-sm text-justify">
-          Hello
+      <div className="text-white pt-10 pb-5">
+        <div className="text-2xl font-bold text-center">{resumeData.basics.name? resumeData.basics.name :"Thanak Mech"}</div>
+        <div className="text-center">Student</div>
+        <div className="gap-5">
+          <div className="text-center px-5 pb-5 text-sm">
+              <span> {resumeData.basics.number? resumeData.basics.number : "081790154"}</span>
+              <span>|</span>
+              <span> {resumeData.basics.email ? resumeData.basics.email : "thanakmech@gmail.com"}</span>
+            <div>
+              <div> {resumeData.basics.email.address}</div>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
-  </div>  )
+  );
 }
 
-export default BasicsTemplate2
+export default BasicsTemplate;

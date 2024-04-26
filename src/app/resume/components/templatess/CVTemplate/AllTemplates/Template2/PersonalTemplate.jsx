@@ -13,7 +13,7 @@ function PersonalTemplate({ data, isLoading, error }) {
   return (
     <>
       {isLoading && <Skeleton />}
-      <div className="flex flex-col py-5 gap-2">
+      <div className="flex flex-col py-5 gap-2 h-full">
         <BasicsTemplate data={data} />
         <ExperienceTemplate data={data} />
         <EducationTemplate data={data} />

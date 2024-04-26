@@ -14,12 +14,6 @@ function BasicsTemplate({resumeData}) {
             <div>
               <div> {resumeData.basics.email.address}</div>
             </div>
-            <div className="text-center text-black">
-              Thanak is a student
-              {/* {data.basics?.summary
-            ? data.basics?.summary
-            : "        Lorem ipsum dolor sit amet, consectetur adipisicing elit.  fugiat blanditiis dicta reiciendis placeat ab praesentium vero doloribus! Eaque quod omnis a dolorem repellat provident ab officiis totam, optio ut."} */}
-            </div>
           </div>
         </div>
       </div>

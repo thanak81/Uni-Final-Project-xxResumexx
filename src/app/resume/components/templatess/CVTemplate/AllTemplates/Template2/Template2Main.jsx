@@ -1,9 +1,8 @@
 import React from "react";
-import ExperienceTemplate from "../Template1/ExperienceTemplate";
-import EducationTemplate from "../Template1/EducationTemplate";
+import ExperienceTemplate from "./ExperienceTemplate";
+import EducationTemplate from "./EducationTemplate";
 import { useFormContext, useWatch } from "react-hook-form";
-import BasicsTemplate from "../Template1/BasicsTemplate";
-
+import BasicsTemplate from "./BasicsTemplate2";
 function Template2Main() {
   const { control } = useFormContext();
   const resumeData = useWatch({
@@ -12,13 +11,21 @@ function Template2Main() {
 
   console.log(resumeData);
   return (
-    <div className="flex">
-      <div className="bg-blue-500">
+    <div className="flex h-full border">
+      <div className=" h-[297mm] w-[30%] bg-blue-500">
         <BasicsTemplate resumeData={resumeData} />
       </div>
       <div>
-        <ExperienceTemplate resumeData={resumeData} />
-        <EducationTemplate resumeData={resumeData} />
+        <div className=" text-black p-5  ">
+          Thanak is a student
+          {/* {data.basics?.summary
+            ? data.basics?.summary
+            : "        Lorem ipsum dolor sit amet, consectetur adipisicing elit.  fugiat blanditiis dicta reiciendis placeat ab praesentium vero doloribus! Eaque quod omnis a dolorem repellat provident ab officiis totam, optio ut."} */}
+        </div>
+        <div className="w-[99%]">
+          <ExperienceTemplate resumeData={resumeData} />
+          <EducationTemplate resumeData={resumeData} />
+        </div>
       </div>
     </div>
   );

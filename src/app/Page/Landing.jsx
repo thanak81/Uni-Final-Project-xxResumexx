@@ -5,8 +5,6 @@ import { getAllResume } from "../services/resumeService";
 
 async function Landing() {
   const response = await getAllResume();
-  
-console.log(response.payload)
   return (
     <div className="flex gap-5 flex-wrap">
       {response.payload.map((data,index) => (

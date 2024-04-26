@@ -4,6 +4,7 @@ import "./globals.css";
 import { Theme } from "@radix-ui/themes";
 import Provider from "./Provider";
 import NavBar from "./components/NavBar";
+import AuthProvider from "./AuthProvider";
 const inter = Inter({ subsets: ["latin"] });
 export const metadata = {
   title: "xxResumexx",
@@ -14,14 +15,17 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={inter.className}>
-        <Provider>
-          <Theme>
-            <div className="fixed w-full top-0 z-[999]">
-              <NavBar />
-            </div>
-            {children}
-          </Theme>
-        </Provider>
+          <Provider>
+            <Theme>
+            <AuthProvider>
+
+              <div className="fixed w-full top-0 z-[999]">
+                <NavBar />
+              </div>
+              {children}
+              </AuthProvider>
+            </Theme>
+          </Provider>
       </body>
     </html>
   );
