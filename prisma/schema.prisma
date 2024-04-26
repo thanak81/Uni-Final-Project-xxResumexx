@@ -86,11 +86,13 @@ model Authenticator {
 
 
 model resume {
-  id         String     @id @default(cuid())
+  id         Int  @id @default(autoincrement())
   title      String
-  slug       String
+  slug       String?
+  descrition String?
   data       Json       @default("{}")
   createdAt  DateTime   @default(now())
   updatedAt  DateTime   @updatedAt 
-  user_id User @relation(fields: [id] , references: [id] , onDelete: Cascade)
+  user_id    String
+  user User @relation(fields: [user_id] , references: [id] , onDelete: Cascade)
 }

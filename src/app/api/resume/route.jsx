@@ -16,8 +16,12 @@ import { NextResponse } from "next/server";
 
 export async function POST(request){
     const resumeData = await request.json();
+    console.log(resumeData)
     const data = await prisma.resume.create({
         data: {
+            title: "Testing",
+            slug: "test",
+            user_id: "clvgq2i140002s0gtgfydhfch",
             data: resumeData
         }
     })
