@@ -1,6 +1,8 @@
 import { PrismaClient } from "@prisma/client";
 import bcrypt from "bcrypt"
 import { NextResponse } from "next/server";
+import { authOptions } from "../auth/[...nextauth]/route";
+import { getServerSession } from "next-auth";
 const prisma = new PrismaClient();
 
 export const POST = async (req)=>{
@@ -37,3 +39,35 @@ export const POST = async (req)=>{
         date : new Date().toISOString()
     })
 }
+
+
+// export const PUT = async (request)=> {
+//     const session = await getServerSession(request);
+//     console.log("session", session)
+//     console.log("request", await request.json())
+//     if(!session){
+//         return NextResponse.json({
+//             message: "You are unauthenticated",
+//             date: new Date().toISOString(),
+//             status: 401
+//           })
+//     }
+//     const email = session.user.payload.email;
+//     const userRequest = await request.json();
+//     const updatedData = await prisma.user.update({
+//       where: {
+//         email : email
+//       },
+//       data: {
+//         name: userRequest.name,
+//         email : userRequest.email
+//       },
+//     })
+
+//     return NextResponse.json({
+//       message: "User updated successfully",
+//       payload: updatedData,
+//       date: new Date().toISOString(),
+//       status: 200
+//     })
+//   }

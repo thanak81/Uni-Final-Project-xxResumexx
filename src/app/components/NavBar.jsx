@@ -49,9 +49,9 @@ function NavBar() {
     },
   ];
 
-  const { status , data: session} = useSession();
+  const { status, data: session } = useSession();
   console.log(status);
-  console.log(session)
+  console.log(session);
   return (
     <Navbar className="" onMenuOpenChange={setIsMenuOpen}>
       <NavbarContent>
@@ -80,10 +80,12 @@ function NavBar() {
       </NavbarContent>
       <NavbarContent justify="end">
         <ThemeSwitcher />
-        {status === "authenticated" ? (<Avatar name={session?.user?.payload.name}/>):(
-          <Link href="/login">
-            Login
+        {status === "authenticated" ? (
+          <Link href="/profile">
+            <Avatar name={session?.user?.payload.name} />
           </Link>
+        ) : (
+          <Link href="/login">Login</Link>
         )}
       </NavbarContent>
       <NavbarMenu>

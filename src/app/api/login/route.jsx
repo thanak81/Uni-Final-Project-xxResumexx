@@ -1,5 +1,7 @@
 import { NextResponse } from "next/server";
 import bcrypt from "bcrypt";
+import { getServerSession } from "next-auth";
+import { authOptions } from "../auth/[...nextauth]/route";
 
 const { PrismaClient } = require("@prisma/client");
 
@@ -52,6 +54,7 @@ export const POST = async (req) => {
     date: new Date().toISOString(),
   });
 };
+
 
 // export const POST = async (req)=> {
 //     const data = await req.json();
