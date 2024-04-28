@@ -13,7 +13,8 @@ import Link from "next/link";
 import DataListDetails from "./DataListDetails";
 import RemoveIcon from "./icons/RemoveIcon";
 
-function Dialogs({ data }) {
+function Dialogs({ data ,mutation}) {
+  console.log(data.id)
   return (
     <Dialog.Root>
       <Dialog.Trigger>
@@ -25,7 +26,7 @@ function Dialogs({ data }) {
       <Dialog.Content maxWidth="450px">
         <Flex justify="between">
           <Dialog.Title>Resume Infomation</Dialog.Title>
-          <Button color="red">
+          <Button color="red" onClick={()=> mutation.mutate(data.id)}>
             <RemoveIcon />
           </Button>
         </Flex>

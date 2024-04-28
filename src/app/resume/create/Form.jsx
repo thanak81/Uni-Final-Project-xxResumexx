@@ -3,15 +3,13 @@ import * as Form from "@radix-ui/react-form";
 import React, { useState } from "react";
 import Personal from "./ResumeForm/Personal";
 import { Flex } from "@radix-ui/themes";
-import { Input, ScrollShadow } from "@nextui-org/react";
-import { useActive, useStore } from "../state/GlobalState";
+import {ScrollShadow } from "@nextui-org/react";
+import { useActive} from "../state/GlobalState";
 import Education from "./ResumeForm/Education";
 import Template1 from "./Template1";
 import TemplateContainer from "./TemplateContainer";
 import ArrowIcon from "@/app/components/icons/ArrowIcon";
 import WorkForm from "./ResumeForm/WorkForm";
-import ProgressCard from "../components/ProgressCard";
-import { useAutoAnimate } from '@formkit/auto-animate/react'
 import Skill from "./ResumeForm/Skill";
 import ResumeHeader from "./ResumeForm/ResumeHeader";
 

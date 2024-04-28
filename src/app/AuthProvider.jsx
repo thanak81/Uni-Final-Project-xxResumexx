@@ -1,14 +1,16 @@
-"use client"
-import { SessionProvider } from 'next-auth/react'
+"use client";
+import { SessionProvider } from "next-auth/react";
 
-import React from 'react'
+import React from "react";
+import { QueryClient, QueryClientProvider } from "react-query";
 
-function AuthProvider({children}) {
+function AuthProvider({ children }) {
+  const queryClient = new QueryClient()
   return (
     <SessionProvider>
-        {children}
+      <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
     </SessionProvider>
-  )
+  );
 }
 
-export default AuthProvider
+export default AuthProvider;

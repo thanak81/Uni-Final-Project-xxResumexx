@@ -2,14 +2,15 @@ import React from "react";
 import { Badge, Code, DataList, Flex } from "@radix-ui/themes";
 import Link from "next/link";
 
-function DataListDetails({ data }) {
+function DataListDetails({ data ,allData}) {
+  console.log(data)
   return (
     <DataList.Root>
       <DataList.Item>
         <DataList.Label minWidth="88px">ID</DataList.Label>
         <DataList.Value>
           <Flex align="center" gap="2">
-            <Code variant="ghost">{data._id}</Code>
+            <Code variant="ghost">{data.id}</Code>
             {/* <IconButton
     size="1"
     aria-label="Copy value"
@@ -23,21 +24,13 @@ function DataListDetails({ data }) {
       </DataList.Item>
       <DataList.Item>
         <DataList.Label minWidth="88px">Name</DataList.Label>
-        <DataList.Value>{data.basics.name}</DataList.Value>
+        <DataList.Value>{data.title}</DataList.Value>
       </DataList.Item>
       <DataList.Item>
-        <DataList.Label minWidth="88px">Email</DataList.Label>
-        <DataList.Value>
-          <Link href={`mailto:${data.basics.email}.com`}>
-            {data.basics.email}
-          </Link>
-        </DataList.Value>
-      </DataList.Item>
-      <DataList.Item>
-        <DataList.Label minWidth="88px">Address</DataList.Label>
+        <DataList.Label minWidth="88px">User ID</DataList.Label>
         <DataList.Value>
           <Link target="_blank" href="https://workos.com">
-            {data.basics.address}
+            {data.user_id}
           </Link>
         </DataList.Value>
       </DataList.Item>

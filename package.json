@@ -34,6 +34,7 @@
     "react": "^18",
     "react-dom": "^18",
     "react-hook-form": "^7.51.2",
+    "react-query": "^3.39.3",
     "react-to-print": "^2.15.1",
     "zod": "^3.22.4",
     "zustand": "^4.5.2"
