@@ -3,6 +3,7 @@ import ExperienceTemplate from "./ExperienceTemplate";
 import EducationTemplate from "./EducationTemplate";
 import { useFormContext, useWatch } from "react-hook-form";
 import BasicsTemplate from "./BasicsTemplate2";
+import SkillTemplate from "./SkillTemplate";
 function Template2Main() {
   const { control } = useFormContext();
   const resumeData = useWatch({
@@ -14,6 +15,7 @@ function Template2Main() {
     <div className="flex h-full border">
       <div className=" h-[297mm] w-[30%] bg-blue-500">
         <BasicsTemplate resumeData={resumeData} />
+        <SkillTemplate resumeData={resumeData}/>
       </div>
       <div>
         <div className=" text-black p-5  ">

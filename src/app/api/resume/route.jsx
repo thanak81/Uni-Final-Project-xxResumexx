@@ -1,6 +1,7 @@
 const prisma = new PrismaClient();
 
 import { PrismaClient } from "@prisma/client";
+import { getSession } from "next-auth/react";
 import { NextResponse } from "next/server";
 
 // export async function GET(){
@@ -14,15 +15,22 @@ import { NextResponse } from "next/server";
 //     })
 // }
 
-export async function POST(request){
+export async function POST(request,res){
+    const session = await getSession({request})
+    // if (!session) {
+    //     return res.status(401).json({ error: 'Not authenticated' });
+    //   }
+
+    console.log(session)
     const resumeData = await request.json();
-    console.log(resumeData)
+    console.log("resume data",resumeData)
+    console.log("resume info",resumeData.resumeInfo)
     const data = await prisma.resume.create({
         data: {
-            title: "Testing",
-            slug: "test",
+            title:resumeData.resumeInfo.title,
+            slug: resumeData.resumeInfo.slug,
             user_id: "clvgq2i140002s0gtgfydhfch",
-            data: resumeData
+            data: resumeData.data
         }
     })
     return NextResponse.json({
@@ -33,11 +41,11 @@ export async function POST(request){
     })
 }
 export async function GET(){
-    const resumeDate = await prisma.resume.findMany();
+    const resumeData = await prisma.resume.findMany();
 
     return NextResponse.json({
         message: "Resume successfully retrieve",
-        payload : resumeDate,
+        payload : resumeData,
         status : 200,
         date: new Date().toISOString()
     })

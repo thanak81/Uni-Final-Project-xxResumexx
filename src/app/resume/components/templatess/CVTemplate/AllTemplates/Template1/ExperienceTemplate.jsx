@@ -2,6 +2,7 @@ import React from "react";
 import parse from "html-react-parser";
 
 function ExperienceTemplate({ resumeData }) {
+  console.log("workdata",resumeData)
   const data = {
     work: [
       {
@@ -16,11 +17,7 @@ function ExperienceTemplate({ resumeData }) {
   };
   let checked = false;
   if (
-    resumeData.work[0].company !== "" ||
-    resumeData.work[0].position !== "" ||
-    resumeData.work[0].startDate ||
-    resumeData.work[0].endDate ||
-    resumeData.work[0].summary
+    resumeData.data.work[0]
   ) {
     checked = true;
   } else {
@@ -29,13 +26,13 @@ function ExperienceTemplate({ resumeData }) {
 
   return (
     <>
-      {resumeData?.work?.length >= 0 && checked && (
+      {resumeData?.data.work?.length >= 0 && checked && (
         <div>
           <div className=" font-bold text-[#005685] border-y border-black/25 p-2">
             Experience
           </div>
           <div className="py-2 px-5 flex flex-col gap-3 text-black">
-            {resumeData.work.map((wo) => (
+            {resumeData.data.work.map((wo) => (
               <div key={wo.id}>
                 <div className="flex justify-between">
                   <div className="font-bold w-[40rem]">{wo.company}</div>
@@ -66,7 +63,9 @@ function ExperienceTemplate({ resumeData }) {
                       <li>Create AR Ar Game</li>
                       <li>Create AR Ar Game</li>
                     </ul> */}
-                  <div className="w-[40rem] prose">{parse(wo.summary)}</div>
+                  <div className="w-[40rem] prose">
+                    {wo?.summary && parse(wo.summary)}
+                  </div>{" "}
                 </div>
               </div>
             ))}

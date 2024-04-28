@@ -12,6 +12,8 @@ import ArrowIcon from "@/app/components/icons/ArrowIcon";
 import WorkForm from "./ResumeForm/WorkForm";
 import ProgressCard from "../components/ProgressCard";
 import { useAutoAnimate } from '@formkit/auto-animate/react'
+import Skill from "./ResumeForm/Skill";
+import ResumeHeader from "./ResumeForm/ResumeHeader";
 
 function FormComp({ register , selectedTemplate , printRef}) {
   // const [active, setActive] = useState(false);
@@ -32,9 +34,11 @@ function FormComp({ register , selectedTemplate , printRef}) {
           !active ? "w-[100vh]" : ""
         } flex flex-col gap-2 transition-all px-5`}
       >
+        <ResumeHeader/>
         <Personal active={active} register={register} />
         <Education />
         <WorkForm />
+        <Skill/>
       </ScrollShadow>
       <div className="hidden md:block">
         <div onClick={setActive} className="cursor-pointer" title="Preview Resume">

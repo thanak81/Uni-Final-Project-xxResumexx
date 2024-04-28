@@ -8,26 +8,26 @@ import AddIcon from "@/app/components/icons/AddIcon";
 import { Divider } from "@nextui-org/react";
 import RemoveIcon from "@/app/components/icons/RemoveIcon";
 import Tiptap from "../../components/TipTap";
+import AddButton from "../components/AddButton";
 
 function WorkForm() {
   const { control, register } = useFormContext();
   const { fields, append, remove } = useFieldArray({
     control,
-    name: "work",
+    name: "data.work",
   });
 
   const watchPresent = useWatch({
     control,
-  })
+  });
 
-
-
-  function handleAdd() {
+  function handleAdd(e) {
+    e.preventDefault();
     append();
   }
 
-  function handleRemove() {
-    remove();
+  function handleRemove(index) {
+    remove(index);
   }
 
   return (
@@ -50,12 +50,17 @@ function WorkForm() {
       {fields.map((field, index) => {
         return (
           <Fragment key={field.id}>
-            <Work index={index} handleRemove={handleRemove} register={register} watchPresent={watchPresent}/>
+            <Work
+              index={index}
+              handleRemove={handleRemove}
+              register={register}
+              watchPresent={watchPresent}
+            />
           </Fragment>
         );
       })}
       <div className="py-5">
-        <Button onClick={handleAdd}>
+        <Button onClick={handleAdd} className="cursor-pointer">
           <AddIcon /> Add More
         </Button>
       </div>
@@ -65,24 +70,22 @@ function WorkForm() {
 
 export default WorkForm;
 
-
-function Work({ index, handleRemove ,register,watchPresent}) {
-
+function Work({ index, handleRemove, register, watchPresent }) {
   let status;
-  const checkPresent = watchPresent.education.map((edu)=> {
-    if(edu.present){
+  const checkPresent = watchPresent.data.work.map((edu) => {
+    if (edu.present) {
       status = true;
-    }else{
+    } else {
       status = false;
     }
-  })
+  });
   return (
     <>
       {index > 0 && <Divider className="my-5 bg-blue-500" />}
-      
+
       <div className="w-full flex gap-5 items-center">
         <InputComp
-          name={`work.${index}.company`}
+          name={`data.work.${index}.company`}
           label={"Company Name"}
           // isInvalid = {true}
           // error={"sdsd"}
@@ -94,7 +97,7 @@ function Work({ index, handleRemove ,register,watchPresent}) {
           className="p-5 cursor-pointer"
           color="red"
           title="Remove"
-          onClick={handleRemove}
+          onClick={() => handleRemove(index)}
         >
           <RemoveIcon />
         </Button>
@@ -102,7 +105,7 @@ function Work({ index, handleRemove ,register,watchPresent}) {
       <div className="w-full">
         <InputComp
           label={"Position"}
-          name={`work.${index}.position`}
+          name={`data.work.${index}.position`}
           // isInvalid = {true}
           // error={"sdsd"}
           // placeholder={"University"}
@@ -114,7 +117,7 @@ function Work({ index, handleRemove ,register,watchPresent}) {
         <input
           type="checkbox"
           name="work.present"
-          {...register(`work.${index}.present`)}
+          {...register(`data.work.${index}.present`)}
         />
         <label htmlFor="checkbox">Present?</label>
       </div>
@@ -122,22 +125,22 @@ function Work({ index, handleRemove ,register,watchPresent}) {
         <div className="flex gap-2">
           <InputComp
             label={"Start Year"}
-            name={`work.${index}.startYear`}
+            name={`data.work.${index}.startYear`}
             // value={value}
             // onChange={(e) => setValue(e.target.value)}
           />
           <InputComp
             label={"End Year"}
-            name={`work.${index}.endYear`}
-            disabled = {status ? true : false}
-            // value={value}
+            name={`data.work.${index}.endYear`}
+            disabled={status ? true : false}
+            // value={status? "" : return}
             // onChange={(e) => setValue(e.target.value)}
           />
         </div>
       </div>
 
       <div className="w-full">
-        <Tiptap value={`work.${index}.summary`}/>
+        <Tiptap value={`data.work.${index}.summary`} />
       </div>
     </>
   );

@@ -17,7 +17,7 @@ function ProgressCard({ onSubmit, data, handleTemplate}) {
             Start building your next project in minutes
           </Text>
         </Card>
-        <Button type="submit" onClick={onSubmit}>
+        <Button onClick={onSubmit}>
           <DownloadIcon />Download
         </Button>
         <Divider />
@@ -31,13 +31,6 @@ function ProgressCard({ onSubmit, data, handleTemplate}) {
             <Card>
               <div>
                 <TemplateSwitch data={data} handleTemplate={handleTemplate} />
-              </div>
-            </Card>
-          </Card>
-          <Card>
-            <Card>
-              <div>
-                <TemplateSwitch  data={data} handleTemplate={handleTemplate} />
               </div>
             </Card>
           </Card>

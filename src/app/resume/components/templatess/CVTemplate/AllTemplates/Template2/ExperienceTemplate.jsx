@@ -16,11 +16,7 @@ function ExperienceTemplate({ resumeData }) {
   };
   let checked = false;
   if (
-    resumeData.work[0].company !== "" ||
-    resumeData.work[0].position !== "" ||
-    resumeData.work[0].startDate ||
-    resumeData.work[0].endDate ||
-    resumeData.work[0].summary
+    resumeData.data.work
   ) {
     checked = true;
   } else {
@@ -49,9 +45,7 @@ function ExperienceTemplate({ resumeData }) {
                   </div>
                 </div>
                 <div className="text-sm flex flex-col gap-2 text-[#56606A]">
-                  <div className="mt-2 font-semibold">
-                    {wo.position}{" "}
-                  </div>
+                  <div className="mt-2 font-semibold">{wo.position} </div>
                   {/* <ul className="list-disc list-inside text-justify">
                       <li>
                         Lorem ipsum dolor sit amet consectetur adipisicing elit.
@@ -66,7 +60,10 @@ function ExperienceTemplate({ resumeData }) {
                       <li>Create AR Ar Game</li>
                       <li>Create AR Ar Game</li>
                     </ul> */}
-                  <div className="prose">{parse(wo?.summary)}</div>
+                  <div className="prose">
+                    {" "}
+                    {wo?.summary && parse(wo.summary)}
+                  </div>
                 </div>
               </div>
             ))}

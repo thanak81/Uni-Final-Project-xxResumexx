@@ -17,14 +17,15 @@ function EducationForm() {
   const { control, register } = useFormContext();
   const { fields, append, remove, prepend } = useFieldArray({
     control,
-    name: "education",
+    name: "data.education",
   });
 
   const watchPresent = useWatch({
     control,
   });
 
-  function handleAdd() {
+  function handleAdd(e) {
+    e.preventDefault();
     const defaultEducation = {
       institution: "",
       studyType: "",
@@ -41,8 +42,8 @@ function EducationForm() {
   //   append({})
   // },[append])
 
-  function handleRemove() {
-    remove();
+  function handleRemove(index) {
+    remove(index);
   }
   return (
   <div className="rounded-xl flex flex-col gap-2 justify-center items-center shadow-2xl">
@@ -89,7 +90,7 @@ export default EducationForm;
 function Education({ index, handleRemove, register, watchPresent }) {
   console.log(watchPresent);
   let status;
-  const checkPresent = watchPresent.education.map((edu)=> {
+  const checkPresent = watchPresent.data.education.map((edu)=> {
     if(edu.present){
       status = true;
     }else{
@@ -102,7 +103,7 @@ function Education({ index, handleRemove, register, watchPresent }) {
       <div className="w-full flex gap-5 items-center">
         <InputComp
           label={"University or High School"}
-          name={`education.${index}.institution`}
+          name={`data.education.${index}.institution`}
           // isInvalid = {true}
           // error={"sdsd"}
           // placeholder={"University"}
@@ -113,7 +114,7 @@ function Education({ index, handleRemove, register, watchPresent }) {
           className="p-5 cursor-pointer"
           color="red"
           title="Remove"
-          onClick={handleRemove}
+          onClick={()=> handleRemove(index)}
         >
           <RemoveIcon />
         </Button>
@@ -123,14 +124,14 @@ function Education({ index, handleRemove, register, watchPresent }) {
         <div className="flex gap-2">
           <InputComp
             label={"Level"}
-            name={`education.${index}.level`}
+            name={`data.education.${index}.level`}
 
             //   value={value}
             // onValueChange={setValue}
           />
           <InputComp
             label={"Fields"}
-            name={`education.${index}.fields`}
+            name={`data.education.${index}.area`}
 
             // value={value}
             // onValueChange={setValue}
@@ -141,7 +142,7 @@ function Education({ index, handleRemove, register, watchPresent }) {
         <input
           type="checkbox"
           name="education.present"
-          {...register(`education.${index}.present`)}
+          {...register(`data.education.${index}.present`)}
         />
         <label htmlFor="checkbox">Present?</label>
       </div>
@@ -149,13 +150,13 @@ function Education({ index, handleRemove, register, watchPresent }) {
         <div className="flex gap-2">
           <InputComp
             label={"Start Year"}
-            name={`education.${index}.startYear`}
+            name={`data.education.${index}.startYear`}
             // value={value}
             // onChange={(e) => setValue(e.target.value)}
           />
            <InputComp
               label={"End Year"}
-              name={`education.${index}.endYear`}
+              name={`data.education.${index}.endYear`}
               disabled={status ? true : false}
               // value={value}
               // onChange={(e) => setValue(e.target.value)}
@@ -163,7 +164,7 @@ function Education({ index, handleRemove, register, watchPresent }) {
         </div>
       </div>
       <div className="w-full">
-        <Tiptap value={`education.${index}.summary`} />
+        <Tiptap value={`data.education.${index}.summary`} />
       </div>
     </>
   );
