@@ -2,26 +2,32 @@ import { Heading, Text } from "@radix-ui/themes";
 import React, { Fragment } from "react";
 import { Accordion, AccordionItem, Input, Textarea } from "@nextui-org/react";
 import InputComp from "../../components/InputComp";
-import { useFieldArray, useFormContext } from "react-hook-form";
+import { useFieldArray, useFormContext, useWatch } from "react-hook-form";
 import { Button } from "@radix-ui/themes";
 import AddIcon from "@/app/components/icons/AddIcon";
 import { Divider } from "@nextui-org/react";
 import RemoveIcon from "@/app/components/icons/RemoveIcon";
 import Tiptap from "../../components/TipTap";
+import AddButton from "../components/AddButton";
 
 function WorkForm() {
   const { control, register } = useFormContext();
   const { fields, append, remove } = useFieldArray({
     control,
-    name: "work",
+    name: "data.work",
   });
 
-  function handleAdd() {
+  const watchPresent = useWatch({
+    control,
+  });
+
+  function handleAdd(e) {
+    e.preventDefault();
     append();
   }
 
-  function handleRemove() {
-    remove();
+  function handleRemove(index) {
+    remove(index);
   }
 
   return (
@@ -44,12 +50,17 @@ function WorkForm() {
       {fields.map((field, index) => {
         return (
           <Fragment key={field.id}>
-            <Work index={index} handleRemove={handleRemove} />
+            <Work
+              index={index}
+              handleRemove={handleRemove}
+              register={register}
+              watchPresent={watchPresent}
+            />
           </Fragment>
         );
       })}
       <div className="py-5">
-        <Button onClick={handleAdd}>
+        <Button onClick={handleAdd} className="cursor-pointer">
           <AddIcon /> Add More
         </Button>
       </div>
@@ -59,15 +70,22 @@ function WorkForm() {
 
 export default WorkForm;
 
-
-function Work({ index, handleRemove }) {
+function Work({ index, handleRemove, register, watchPresent }) {
+  let status;
+  const checkPresent = watchPresent.data.work.map((edu) => {
+    if (edu.present) {
+      status = true;
+    } else {
+      status = false;
+    }
+  });
   return (
     <>
       {index > 0 && <Divider className="my-5 bg-blue-500" />}
-      
+
       <div className="w-full flex gap-5 items-center">
         <InputComp
-          name={`work.${index}.company`}
+          name={`data.work.${index}.company`}
           label={"Company Name"}
           // isInvalid = {true}
           // error={"sdsd"}
@@ -79,7 +97,7 @@ function Work({ index, handleRemove }) {
           className="p-5 cursor-pointer"
           color="red"
           title="Remove"
-          onClick={handleRemove}
+          onClick={() => handleRemove(index)}
         >
           <RemoveIcon />
         </Button>
@@ -87,7 +105,7 @@ function Work({ index, handleRemove }) {
       <div className="w-full">
         <InputComp
           label={"Position"}
-          name={`work.${index}.position`}
+          name={`data.work.${index}.position`}
           // isInvalid = {true}
           // error={"sdsd"}
           // placeholder={"University"}
@@ -95,25 +113,34 @@ function Work({ index, handleRemove }) {
           // onValueChange={setValue}
         />
       </div>
+      <div className="w-full flex items-center justify-end gap-2">
+        <input
+          type="checkbox"
+          name="work.present"
+          {...register(`data.work.${index}.present`)}
+        />
+        <label htmlFor="checkbox">Present?</label>
+      </div>
       <div className="w-full">
         <div className="flex gap-2">
           <InputComp
             label={"Start Year"}
-            name={`work.${index}.startYear`}
+            name={`data.work.${index}.startYear`}
             // value={value}
             // onChange={(e) => setValue(e.target.value)}
           />
           <InputComp
             label={"End Year"}
-            name={`work.${index}.endYear`}
-            // value={value}
+            name={`data.work.${index}.endYear`}
+            disabled={status ? true : false}
+            // value={status? "" : return}
             // onChange={(e) => setValue(e.target.value)}
           />
         </div>
       </div>
 
       <div className="w-full">
-        <Tiptap value={`work.${index}.summary`} />
+        <Tiptap value={`data.work.${index}.summary`} />
       </div>
     </>
   );

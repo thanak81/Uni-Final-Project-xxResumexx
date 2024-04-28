@@ -10,7 +10,9 @@
 @media print {
     .page { 
         height: 0; 
-        page-break-before: always; 
+        page-break-before: always;
+         /* Dont know what it does but testing  */
+        page-break-inside: avoid;
         margin: 0; 
         border-top: none; 
     }

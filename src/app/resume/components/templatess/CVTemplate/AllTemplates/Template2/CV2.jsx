@@ -22,7 +22,7 @@ function CV2() {
   return (
     <CreateCV>
         <MainForm />
-      <div className=" lg:flex mt-[-30px]">
+      <div className=" lg:flex mt-[-30px] h-full">
         <ResumeStructure>
           <PersonalTemplate data={data} />
         </ResumeStructure>

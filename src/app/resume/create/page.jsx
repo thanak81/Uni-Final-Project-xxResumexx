@@ -1,5 +1,5 @@
-"use client"
-import React, { useState } from "react";
+"use client";
+import React, { useEffect, useRef, useState } from "react";
 import Form from "./Form";
 import ProgressCard from "../components/ProgressCard";
 import TemplateContainer from "./TemplateContainer";
@@ -9,63 +9,101 @@ import BasicsTemplate2 from "../components/templatess/CVTemplate/AllTemplates/Te
 import { Schema } from "./ResumeForm/Personal";
 import { zodResolver } from "@hookform/resolvers/zod";
 import Template1Main from "../components/templatess/CVTemplate/AllTemplates/Template1/Template1Main";
+import { useAutoAnimate } from "@formkit/auto-animate/react";
+import { useReactToPrint } from "react-to-print";
+import { useActive } from "../state/GlobalState";
+import Template2Main from "../components/templatess/CVTemplate/AllTemplates/Template2/Template2Main";
+import { createResume } from "@/app/services/resumeService";
+import ResumeHeader from "./ResumeForm/ResumeHeader";
+import { getSession, useSession } from "next-auth/react";
+
 function CreateForm() {
+  const printRef = useRef();
+  const handlePrint = useReactToPrint({
+    content: () => printRef.current,
+    documentTitle: "Resume",
+  });
   const data = [
     {
       id: 1,
-      name: "template1",
+      name: "Template1",
       template: <Template1Main />,
     },
     {
       id: 2,
-      name: "template2",
-      template: <BasicsTemplate2 />,
+      name: "Template2",
+      template: <Template2Main />,
     },
-    {
-      id: 3,
-      name: "template2",
-      template: <BasicsTemplate2 />,
-    },
+    // {
+    //   id: 3,
+    //   name: "Template2",
+    //   template: <BasicsTemplate2 />,
+    // },
   ];
 
   function handleTemplate(template) {
     setSelectedTemplate(template);
   }
   const [selectedTemplate, setSelectedTemplate] = useState(data[0]);
+  // const [session , setSession]= useState()
+  // console.log(session)
+  // useEffect(()=> {
+  //   const getSessionData = async ()=> {
+  //     const sessionData = await getSession()
+  //     setSession(sessionData)
+  //     console.log(sessionData.user.payload.id);
+  //   }
+
+  //   getSessionData();
+  // },[session])
   const methods = useForm({
     defaultValues: {
-      basics: {
-        name: "",
-        email: "",
-        phone: "",
-        address: "",
-        summary: "",
+      resumeInfo: {
+        title: "Resume",
+        slug: "For work",
+        // user_id: session?.user.payload.id,
       },
-      work: [{}],
-      education: [{}],
-      skills: {
-        name: "",
-        skill: [],
+      data: {
+        basics: {
+          name: "",
+          email: "",
+          phone: "",
+          address: "",
+          summary: "",
+        },
+        work: [{}],
+        education: [{}],
+        skills: [{}],
       },
     },
     // resolver: zodResolver(Schema)
   });
-  const onSubmit = (data) => {
-    console.log(data);
+  const active = useActive((state) => state.active);
+
+  const onSubmit = async (data) => {
+    if (active) {
+      handlePrint();
+    }
+
+   await createResume(data);
   };
   return (
     <>
       <div className="flex gap-10 lg:gap-5 flex-col justify-center  lg:flex-row  mt-5 lg:h-screen">
         <FormProvider {...methods}>
           <form onSubmit={methods.handleSubmit(onSubmit)}>
-            <Form selectedTemplate={selectedTemplate}/>
+            <Form selectedTemplate={selectedTemplate} printRef={printRef} />
             {/* <div className="hidden lg:block">
               <TemplateContainer/>
             </div> */}
           </form>
         </FormProvider>
         <div className="self-center lg:self-start mt-5 ">
-          <ProgressCard onSubmit={methods.handleSubmit(onSubmit)} data={data} handleTemplate={handleTemplate}/>
+          <ProgressCard
+            onSubmit={methods.handleSubmit(onSubmit)}
+            data={data}
+            handleTemplate={handleTemplate}
+          />
         </div>
       </div>
     </>

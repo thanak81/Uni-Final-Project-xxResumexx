@@ -15,6 +15,7 @@ import InfoIcon from "./icons/InfoIcon";
 import Dialog from "./Dialog";
 
 function CardComp({ data, index }) {
+  console.log("cardCompss",data)
   return (
     <Card radius="sm" className=" " isHoverable>
       <div className="relative">
@@ -26,11 +27,11 @@ function CardComp({ data, index }) {
       </div>
       <CardBody className="">
         <small>Resume {`${index + 1}`}</small>
-        <p>{data.basics.name}</p>
-        <small>{data.basics.summary}</small>
+        <p>{data?.data?.basics?.name}</p>
+        <small>{data?.data?.basics?.summary}</small>
         <Divider className="my-4" />
         <div className="flex justify-between items-center">
-          <p>{data.basics.name}</p>
+          <p>{data?.data?.basics?.name}</p>
           <Button color="">Edit</Button>
         </div>
       </CardBody>

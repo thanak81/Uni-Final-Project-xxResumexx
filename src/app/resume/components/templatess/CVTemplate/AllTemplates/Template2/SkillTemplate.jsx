@@ -1,34 +1,40 @@
-import React from "react";
+import React, { Fragment } from "react";
 
-function SkillTemplate({ data }) {
+function SkillTemplate({ resumeData }) {
+
+  let checked = false;
+  if (
+    resumeData.data.skills[0].name
+  ) {
+    checked = true;
+  } else {
+    checked = false;
+  }
+
   return (
     <>
-      {" "}
-      <div>
-        <div className=" font-bold text-[#005685] border-y border-black p-2">Skills</div>
-        <div className="p-5">
-        <div className="flex flex-col gap-5">
+      {resumeData?.data.skills?.length > 0 && checked && (
+        <div>
+          <div className=" font-bold text-white border-y border-white p-2">
+            Skills
+          </div>
+          <div className="p-5">
+            <div className="flex flex-col gap-5">
               <div className="flex flex-col gap-5 px-5 pb-5 text-sm">
-                <ul className="flex flex-col gap-5 list-disc">
-                  {data?.skills?.map((skill) => {
+                <ul className="flex flex-col  list-disc text-black">
+                  {resumeData.data.skills?.map((skill) => {
                     return (
-                      <li key={skill.name}>
-                        <div className="font-bold">{skill.name ? skill.name : "Skill Name"}</div>
-                        {skill.skill?.length > 0 && (
-                          <ul className="list-disc pl-5">
-                            {skill.skill?.map((skill_list) => {
-                              return <li key={skill_list}>{skill_list}</li>;
-                            })}
-                          </ul>
-                        )}
-                      </li>
+                      <Fragment key={skill.name}>
+                        <li>{skill.name}</li>;
+                      </Fragment>
                     );
                   })}
                 </ul>
               </div>
             </div>
+          </div>
         </div>
-      </div>
+      )}
     </>
   );
 }

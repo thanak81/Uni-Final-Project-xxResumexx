@@ -1,14 +1,10 @@
-import React from "react";
+import React, { useRef } from "react";
 import styles from "./ResumeStructure.module.css";
 
-function ResumeStructure({ children , bgColor }) {
-  // const printRef = useRef();
-  // const handlePrint = useReactToPrint({
-  //   content: () => printRef.current,
-  // });
+function ResumeStructure({ template, bgColor , printRef }) {
   return (
       <div className={styles.page}>
-        <div>{children}</div>
+        <div ref={printRef}>{template}</div>
       </div>
   );
 }

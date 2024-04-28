@@ -60,14 +60,14 @@ function PersonalForm({ active }) {
           value={name}
           onValueChange={setName}
           label={"Full name"}
-          name={"basics.name"}
+          name={"data.basics.name"}
           // error={errors?.basics?.name?.message}
         />
         <InputComp
           value={email}
           onValueChange={setEmail}
           label={"Email"}
-          name={"basics.email"}
+          name={"data.basics.email"}
           // error={errors?.basics?.email?.message}
         />
       </div>
@@ -76,7 +76,7 @@ function PersonalForm({ active }) {
           label={"Address"}
           value={address}
           onValueChange={setAddress}
-          name={"basics.address"}
+          name={"data.basics.address"}
           // error={errors?.basics?.address?.message}
         />
       </div>
@@ -85,7 +85,7 @@ function PersonalForm({ active }) {
           label={"Phone Number"}
           value={number}
           onValueChange={setNumber}
-          name={"basics.number"}
+          name={"data.basics.phone"}
           // error={errors?.basics?.number?.message}
           // isInvalid = {true}
           // error={"sdsd"}
@@ -95,7 +95,7 @@ function PersonalForm({ active }) {
         <Textarea
           variant="bordered"
           label="Description"
-          name={"basics.description"}
+          {...register("data.basics.summary")}
         />
       </div>
     </div>

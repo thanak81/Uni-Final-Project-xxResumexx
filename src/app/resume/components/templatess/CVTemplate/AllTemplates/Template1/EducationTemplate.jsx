@@ -18,12 +18,7 @@ function EducationTemplate({ resumeData }) {
   };
   let checked = false;
   if (
-    resumeData.education[0].institution ||
-    resumeData.education[0].level ||
-    resumeData.education[0].startDate  ||
-    resumeData.education[0].endDate  ||
-    resumeData.education[0].summary ||
-    resumeData.education[0].area 
+    resumeData.data.education
   ) {
     checked = true;
   } else {
@@ -31,13 +26,13 @@ function EducationTemplate({ resumeData }) {
   }
   return (
     <>
-      {resumeData?.education?.length > 0 && checked && (
+      {resumeData?.data.education?.length > 0 && checked && (
         <div>
           <div className=" font-bold text-[#005685] border-y border-black/25 p-2">
             Education
           </div>
           <div className="p-5 flex flex-col gap-5 text-black">
-            {resumeData?.education.map((edu) => (
+            {resumeData?.data.education.map((edu) => (
               <div key={edu.id} className="">
                 <div className="flex justify-between">
                   <div className="font-bold w-[40rem]">{edu.institution}</div>
@@ -54,7 +49,10 @@ function EducationTemplate({ resumeData }) {
                   <div className="mt-2 font-semibold w-[40rem]">
                     {edu.level}, {edu.area}
                   </div>
-                  <div className="w-[40rem] prose">{parse(edu.summary)}</div>
+                  <div className="w-[40rem] prose">
+                    {" "}
+                    {edu?.summary && parse(edu.summary)}
+                  </div>
                 </div>
               </div>
             ))}

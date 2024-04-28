@@ -11,19 +11,22 @@ import TemplateContainer from "./TemplateContainer";
 import ArrowIcon from "@/app/components/icons/ArrowIcon";
 import WorkForm from "./ResumeForm/WorkForm";
 import ProgressCard from "../components/ProgressCard";
-function FormComp({ register , selectedTemplate}) {
+import { useAutoAnimate } from '@formkit/auto-animate/react'
+import Skill from "./ResumeForm/Skill";
+import ResumeHeader from "./ResumeForm/ResumeHeader";
+
+function FormComp({ register , selectedTemplate , printRef}) {
   // const [active, setActive] = useState(false);
 
   const active = useActive((state)=> state.active);
   const setActive = useActive((state)=> state.setActive)
-
   function handleActive() {
     setActive((active) => !active);
   }
 
   console.log(active)
   return (
-    <Flex gap="3" className="w-full h-full ">
+    <Flex gap="3" className="w-full h-full " >
       <ScrollShadow
         size={300}
         isEnabled={false}
@@ -31,15 +34,17 @@ function FormComp({ register , selectedTemplate}) {
           !active ? "w-[100vh]" : ""
         } flex flex-col gap-2 transition-all px-5`}
       >
+        <ResumeHeader/>
         <Personal active={active} register={register} />
         <Education />
         <WorkForm />
+        <Skill/>
       </ScrollShadow>
       <div className="hidden md:block">
         <div onClick={setActive} className="cursor-pointer" title="Preview Resume">
           <ArrowIcon />
         </div>
-        {active && <TemplateContainer selectedTemplate={selectedTemplate}/>}
+        {active && <TemplateContainer printRef={printRef} selectedTemplate={selectedTemplate}/>}
       </div>
     </Flex>
   );
