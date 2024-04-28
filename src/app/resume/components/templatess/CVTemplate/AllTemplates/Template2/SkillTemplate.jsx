@@ -4,7 +4,7 @@ function SkillTemplate({ resumeData }) {
 
   let checked = false;
   if (
-    resumeData.data.skills[0].name
+    resumeData.data.skills
   ) {
     checked = true;
   } else {
