@@ -4,16 +4,17 @@ import React, { useState } from "react";
 import Personal from "./ResumeForm/Personal";
 import { Flex } from "@radix-ui/themes";
 import {ScrollShadow } from "@nextui-org/react";
-import { useActive} from "../state/GlobalState";
+import { useActive} from "../../state/GlobalState";
 import Education from "./ResumeForm/Education";
-import Template1 from "./Template1";
-import TemplateContainer from "./TemplateContainer";
+// import Template1 from "./Template1";
+// import TemplateContainer from "./TemplateContainer";
+import TemplateContainer from "../../create/TemplateContainer";
 import ArrowIcon from "@/app/components/icons/ArrowIcon";
 import WorkForm from "./ResumeForm/WorkForm";
 import Skill from "./ResumeForm/Skill";
 import ResumeHeader from "./ResumeForm/ResumeHeader";
 
-function FormComp({ register , selectedTemplate , printRef}) {
+function FormComp({ register , selectedTemplate , printRef , data}) {
   // const [active, setActive] = useState(false);
 
   const active = useActive((state)=> state.active);
@@ -33,10 +34,10 @@ function FormComp({ register , selectedTemplate , printRef}) {
         } flex flex-col gap-2 transition-all px-5`}
       >
         <ResumeHeader/>
-        <Personal active={active} register={register} />
-        <Education />
-        <WorkForm />
-        <Skill/>
+        <Personal data={data} active={active} register={register} />
+        <Education data={data}/>
+        <WorkForm data={data}/>
+        <Skill data={data}/>
       </ScrollShadow>
       <div className="hidden md:block">
         <div onClick={setActive} className="cursor-pointer" title="Preview Resume">

@@ -15,17 +15,16 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={inter.className}>
-          <Provider>
-            <Theme>
+        <Provider>
+          <Theme>
             <AuthProvider>
-
               <div className="fixed w-full top-0 z-[999]">
                 <NavBar />
               </div>
-              {children}
-              </AuthProvider>
-            </Theme>
-          </Provider>
+            {children}
+            </AuthProvider>
+          </Theme>
+        </Provider>
       </body>
     </html>
   );

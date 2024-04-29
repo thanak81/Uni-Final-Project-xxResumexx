@@ -62,7 +62,7 @@ function NavBar() {
         <NavbarBrand>
           {/* <AcmeLogo /> */}
           <Link href="/">
-          <p className="font-bold text-inherit">xxResumexx</p>
+            <p className="font-bold text-inherit">XXResumeXX</p>
           </Link>
         </NavbarBrand>
       </NavbarContent>

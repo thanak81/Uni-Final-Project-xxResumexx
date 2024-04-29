@@ -7,7 +7,7 @@ import ToolBar from "./ToolBar";
 import { useFormContext } from "react-hook-form";
 import Placeholder from "@tiptap/extension-placeholder";
 // import {z} from "zod"
-const Tiptap = ({ value }) => {
+const Tiptap = ({index, value,data }) => {
   const active = useActive((state) => state.active);
   const setActive = useActive((state) => state.setActive);
   console.log(active);
@@ -22,7 +22,7 @@ const Tiptap = ({ value }) => {
         placeholder: "Summary",
       }),
     ],
-    content: "text",
+    content: data ,
     editorProps: {
       attributes: {
         class:
