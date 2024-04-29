@@ -99,6 +99,9 @@ export const DELETE = async (request,{params})=> {
         date: new Date().toISOString(),
         status: 200,
         payload: data
+      
     })
 
 }
+
+

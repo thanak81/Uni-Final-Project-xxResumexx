@@ -1,5 +1,6 @@
 import React from "react";
-import InputComp from "../../components/InputComp";
+// import InputComp from "../../components/InputComp";
+import InputComp from "@/app/resume/components/InputComp";
 import { Accordion, AccordionItem, Input } from "@nextui-org/react";
 import { HeadingIcon } from "@radix-ui/react-icons";
 import { Heading, Text } from "@radix-ui/themes";

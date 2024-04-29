@@ -3,11 +3,13 @@ import { Accordion, AccordionItem, Divider } from '@nextui-org/react'
 import { Button, Heading, Text } from '@radix-ui/themes'
 import React, { Fragment } from 'react'
 import { useFieldArray, useFormContext, useWatch } from 'react-hook-form'
-import InputComp from '../../components/InputComp'
+// import InputComp from '../../components/InputComp'
+import InputComp from '@/app/resume/components/InputComp'
 import RemoveIcon from '@/app/components/icons/RemoveIcon'
-import AddButton from '../components/AddButton'
+// import AddButton from '../components/AddButton'
+import AddButton from '@/app/resume/create/components/AddButton'
 
-function Skill() {
+function Skill({data}) {
   const {register, control} = useFormContext()
   const {fields,append, remove} = useFieldArray({
     control,
@@ -46,7 +48,7 @@ function handleRemove(index) {
     {fields.map((field, index) => {
       return (
         <Fragment key={field.id}>
-          <SkillComp index={index} handleRemove={handleRemove}/>
+          <SkillComp index={index} data={data} handleRemove={handleRemove}/>
           {/* <Work index={index} handleRemove={handleRemove} register={register} watchPresent={watchPresent}/> */}
         </Fragment>
       );
@@ -61,7 +63,7 @@ function handleRemove(index) {
 export default Skill
 
 
-function SkillComp({index, handleRemove}){
+function SkillComp({index, handleRemove,data}){
   return (
     <>
       {index > 0 && <Divider className="my-5 bg-blue-500" />}
@@ -71,6 +73,7 @@ function SkillComp({index, handleRemove}){
           name={`data.skills.${index}.name`}
           label={`Skills ${index+1}`}
           // isInvalid = {true}
+          defaultValue={data?.payload?.data?.skills[index]?.name?data.payload.data.skills[index].name: ""}
           // error={"sdsd"}
           // placeholder={"University"}
           //   value={value}

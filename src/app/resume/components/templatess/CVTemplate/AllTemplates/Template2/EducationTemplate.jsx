@@ -35,7 +35,7 @@ function EducationTemplate({ resumeData }) {
             {resumeData?.data.education.map((edu) => (
               <div key={edu.id} className="">
                 <div className="flex justify-between">
-                  <div className="font-bold w-[30rem]">{edu.institution}</div>
+                  <div className="font-bold">{edu.institution}</div>
                   <div>
                     <span>{edu.startYear}</span> -{" "}
                     {edu.present ? (

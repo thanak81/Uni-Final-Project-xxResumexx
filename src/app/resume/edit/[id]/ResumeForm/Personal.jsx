@@ -1,8 +1,10 @@
 import React from "react";
 import { Accordion, AccordionItem, Input, Textarea } from "@nextui-org/react";
 import { Heading, Text } from "@radix-ui/themes";
-import { useStore } from "../../state/GlobalState";
-import InputComp from "../../components/InputComp";
+// import { useStore } from "../../state/GlobalState";
+import { useStore } from "@/app/resume/state/GlobalState";
+// import InputComp from "../../components/InputComp";
+import InputComp from "@/app/resume/components/InputComp";
 import { z, ZodType } from "zod"; // Add new import
 import { useFormContext } from "react-hook-form";
 
@@ -15,16 +17,16 @@ export const Schema = z.object({
     number: z
       .string()
       .refine((value) => value !== "", { message: "Phone number is required" }),
-      // .refine((value) => phoneNumberRegex.test(value), {
-      //   message: "Invalid phone number format.",
-      // }),
+    // .refine((value) => phoneNumberRegex.test(value), {
+    //   message: "Invalid phone number format.",
+    // }),
     address: z
       .string()
       .min(3, { message: "Address must be at least 3 characters long" }),
   }),
 });
 
-function PersonalForm({ active }) {
+function PersonalForm({ active, data }) {
   const name = useStore((state) => state.name);
   const setName = useStore((state) => state.setName);
 
@@ -36,7 +38,10 @@ function PersonalForm({ active }) {
   const number = useStore((state) => state.number);
   const setNumber = useStore((state) => state.setNumber);
 
-  const { register,formState: {errors} } = useFormContext();
+  const {
+    register,
+    formState: { errors },
+  } = useFormContext();
 
   return (
     <div className=" rounded-xl flex flex-col gap-2 justify-center items-center shadow-2xl">
@@ -57,35 +62,37 @@ function PersonalForm({ active }) {
 
       <div className={`flex ${active ? "flex-col" : ""} gap-2 w-full`}>
         <InputComp
-          value={name}
-          onValueChange={setName}
+          // value={name}
+          // onValueChange={setName}
           label={"Full name"}
           name={"data.basics.name"}
+          defaultValue = {data.payload.data.basics.name}
           // error={errors?.basics?.name?.message}
         />
         <InputComp
-          value={email}
-          onValueChange={setEmail}
           label={"Email"}
           name={"data.basics.email"}
+          defaultValue = {data.payload.data.basics.email}
           // error={errors?.basics?.email?.message}
         />
       </div>
       <div className="w-full">
         <InputComp
           label={"Address"}
-          value={address}
-          onValueChange={setAddress}
           name={"data.basics.address"}
+          defaultValue = {data.payload.data.basics.address}
+
           // error={errors?.basics?.address?.message}
         />
       </div>
       <div className="w-full">
         <InputComp
           label={"Phone Number"}
-          value={number}
-          onValueChange={setNumber}
+          // value={number}
+          // onValueChange={setNumber}
           name={"data.basics.phone"}
+          defaultValue = {data.payload.data.basics.phone}
+
           // error={errors?.basics?.number?.message}
           // isInvalid = {true}
           // error={"sdsd"}
@@ -95,6 +102,7 @@ function PersonalForm({ active }) {
         <Textarea
           variant="bordered"
           label="Description"
+          defaultValue={data.payload.data.basics.summary}
           {...register("data.basics.summary")}
         />
       </div>

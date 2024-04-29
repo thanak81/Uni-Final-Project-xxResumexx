@@ -1,16 +1,19 @@
 import { Heading, Text } from "@radix-ui/themes";
 import React, { Fragment } from "react";
 import { Accordion, AccordionItem, Input, Textarea } from "@nextui-org/react";
-import InputComp from "../../components/InputComp";
+// import InputComp from "../../components/InputComp";
+import InputComp from "@/app/resume/components/InputComp";
 import { useFieldArray, useFormContext, useWatch } from "react-hook-form";
 import { Button } from "@radix-ui/themes";
 import AddIcon from "@/app/components/icons/AddIcon";
 import { Divider } from "@nextui-org/react";
 import RemoveIcon from "@/app/components/icons/RemoveIcon";
-import Tiptap from "../../components/TipTap";
-import AddButton from "../components/AddButton";
+// import Tiptap from "../../components/TipTap";
+import Tiptap from "@/app/resume/components/TipTap";
+// import AddButton from "../components/AddButton";
+import AddButton from "@/app/resume/create/components/AddButton";
 
-function WorkForm() {
+function WorkForm({ data }) {
   const { control, register } = useFormContext();
   const { fields, append, remove } = useFieldArray({
     control,
@@ -51,6 +54,7 @@ function WorkForm() {
         return (
           <Fragment key={field.id}>
             <Work
+              data={data}
               index={index}
               handleRemove={handleRemove}
               register={register}
@@ -70,7 +74,7 @@ function WorkForm() {
 
 export default WorkForm;
 
-function Work({ index, handleRemove, register, watchPresent }) {
+function Work({ data, index, handleRemove, register, watchPresent }) {
   let status;
   const checkPresent = watchPresent.data.work.map((edu) => {
     if (edu.present) {
@@ -87,6 +91,11 @@ function Work({ index, handleRemove, register, watchPresent }) {
         <InputComp
           name={`data.work.${index}.company`}
           label={"Company Name"}
+          defaultValue={
+            data?.payload?.data?.work[index]?.company
+              ? data.payload.data.work[index].company
+              : ""
+          }
           // isInvalid = {true}
           // error={"sdsd"}
           // placeholder={"University"}
@@ -106,6 +115,12 @@ function Work({ index, handleRemove, register, watchPresent }) {
         <InputComp
           label={"Position"}
           name={`data.work.${index}.position`}
+          defaultValue={
+            data?.payload?.data?.work[index]?.position
+              ? data.payload.data.work[index].position
+              : ""
+          }
+
           // isInvalid = {true}
           // error={"sdsd"}
           // placeholder={"University"}
@@ -117,6 +132,11 @@ function Work({ index, handleRemove, register, watchPresent }) {
         <input
           type="checkbox"
           name="work.present"
+          defaultValue={
+            data?.payload?.data?.work[index]?.present
+              ? data.payload.data.work[index].present
+              : ""
+          }
           {...register(`data.work.${index}.present`)}
         />
         <label htmlFor="checkbox">Present?</label>
@@ -126,6 +146,12 @@ function Work({ index, handleRemove, register, watchPresent }) {
           <InputComp
             label={"Start Year"}
             name={`data.work.${index}.startYear`}
+            defaultValue={
+              data?.payload?.data?.work[index]?.startYear
+                ? data.payload.data.work[index].startYear
+                : ""
+            }
+
             // value={value}
             // onChange={(e) => setValue(e.target.value)}
           />
@@ -133,6 +159,12 @@ function Work({ index, handleRemove, register, watchPresent }) {
             label={"End Year"}
             name={`data.work.${index}.endYear`}
             disabled={status ? true : false}
+            defaultValue={
+              data?.payload?.data?.work[index]?.endYear
+                ? data.payload.data.work[index].endYear
+                : ""
+            }
+
             // value={status? "" : return}
             // onChange={(e) => setValue(e.target.value)}
           />
@@ -140,7 +172,14 @@ function Work({ index, handleRemove, register, watchPresent }) {
       </div>
 
       <div className="w-full">
-        <Tiptap value={`data.work.${index}.summary`} />
+        <Tiptap
+          value={`data.work.${index}.summary`}
+          data={
+            data?.payload?.data?.work[index]?.summary
+              ? data.payload.data.work[index].summary
+              : ""
+          }
+        />
       </div>
     </>
   );

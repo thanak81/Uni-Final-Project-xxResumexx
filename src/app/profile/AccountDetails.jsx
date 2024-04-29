@@ -3,7 +3,7 @@ import { Button } from "@radix-ui/themes";
 import Link from "next/link";
 import React from "react";
 
-function AccountDetails({ profile,update }) {
+function AccountDetails({ profile, update }) {
   return (
     <>
       <div className="text-3xl font-bold">Account Details</div>
@@ -49,10 +49,10 @@ function AccountDetails({ profile,update }) {
       </div>
       <div className="flex justify-between w-full">
         <Button color="red" className="cursor-pointer">
-          Log out
+          <Link href="/api/auth/signout">Log out</Link>
         </Button>
         <Button color="blue" className="cursor-pointer">
-            Update Profile
+          Update Profile
         </Button>
       </div>
     </>

@@ -1,7 +1,10 @@
-export const getAllResume = async () => {
+
+
+export const getAllResume = async (req) => {
   const data = await fetch("http://localhost:3000/api/resume");
   const response = await data.json();
-  return response;
+  console.log("all resume",  response.payload.resume)
+  return response.payload.resume;
 };
 
 export const createResume = async (data) => {
@@ -52,6 +55,7 @@ export const updateResume = async (request, id) => {
       body: JSON.stringify(request),
     });
     const updatedData = await response.json();
+    console.log("updatedDate", updatedData);
     return updatedData;
   } catch (error) {
     console.error("Error creating resume:", error);
