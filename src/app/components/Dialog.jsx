@@ -12,13 +12,18 @@ import InfoIcon from "./icons/InfoIcon";
 import Link from "next/link";
 import DataListDetails from "./DataListDetails";
 import RemoveIcon from "./icons/RemoveIcon";
+import DeleteResumeButton from "./DeleteResumeButton";
 
-function Dialogs({ data ,mutation}) {
-  console.log(data.id)
+function Dialogs({ data, mutation }) {
+  console.log(data.id);
   return (
     <Dialog.Root>
       <Dialog.Trigger>
-        <Button color="yellow">
+        <Button
+          color="yellow"
+          className="cursor-pointer"
+          title="Resume details"
+        >
           <InfoIcon />
         </Button>
       </Dialog.Trigger>
@@ -26,9 +31,7 @@ function Dialogs({ data ,mutation}) {
       <Dialog.Content maxWidth="450px">
         <Flex justify="between">
           <Dialog.Title>Resume Infomation</Dialog.Title>
-          <Button color="red" onClick={()=> mutation.mutate(data.id)}>
-            <RemoveIcon />
-          </Button>
+          <DeleteResumeButton mutation={mutation} data={data} />
         </Flex>
         <Dialog.Description size="2" mb="4">
           Created Date : 05/12/2024
@@ -42,7 +45,7 @@ function Dialogs({ data ,mutation}) {
               Cancel
             </Button>
           </Dialog.Close>
-          <Button>Edit</Button>
+          <Button title="Edit">Edit</Button>
         </Flex>
       </Dialog.Content>
     </Dialog.Root>
