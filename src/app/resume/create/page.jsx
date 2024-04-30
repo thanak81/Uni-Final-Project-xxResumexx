@@ -77,10 +77,12 @@ function CreateForm() {
   // const notify = () => toast("Resume created successfully");
   // console.log("notify",notify)
   const active = useActive((state) => state.active);
-  const onSubmit = async (data) => {
+  const printResume = () => {
     if (active) {
       handlePrint();
     }
+  };
+  const onSubmit = async (data) => {
     toast.success("Resume created successfully", {
       position: "top-right",
       autoClose: 5000,
@@ -91,7 +93,7 @@ function CreateForm() {
       progress: undefined,
       theme: "dark",
       // transition: Bounce,
-      });
+    });
     await createResume(data);
     router.push("/");
     router.refresh();
@@ -109,6 +111,7 @@ function CreateForm() {
         </FormProvider>
         <div className="self-center lg:self-start mt-5 ">
           <ProgressCard
+            printResume={printResume}
             onSubmit={methods.handleSubmit(onSubmit)}
             data={data}
             handleTemplate={handleTemplate}

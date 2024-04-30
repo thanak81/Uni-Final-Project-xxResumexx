@@ -2,8 +2,9 @@ import React from "react";
 import FormComp from "./Form";
 import { FormProvider, useForm } from "react-hook-form";
 import ProgressCard from "../../components/ProgressCard";
+import { useActive } from "../../state/GlobalState";
 
-function FormProviderComp({id,mutation , data,handleTemplate, selectedTemplate, resumeDataById, printRef }) {
+function FormProviderComp({id,mutation , data,handleTemplate, selectedTemplate, resumeDataById, printRef , printResume }) {
   const methods = useForm({
     defaultValues: {
       resumeInfo: {
@@ -20,15 +21,12 @@ function FormProviderComp({id,mutation , data,handleTemplate, selectedTemplate, 
     // resolver: zodResolver(Schema)
   });
 
+
   const onSubmit = async (data) => {
     console.log("yoo id is",id)
-    // if (active) {
-    //   handlePrint();
-    // }
     await mutation.mutate(data,id)
-    // await createResume(data);
   };
-
+  
   return (
     <>
       <FormProvider {...methods}>
@@ -45,6 +43,7 @@ function FormProviderComp({id,mutation , data,handleTemplate, selectedTemplate, 
       </FormProvider>
       <div className="self-center lg:self-start mt-5 ">
         <ProgressCard
+          printResume={printResume}
           onSubmit={methods.handleSubmit(onSubmit)}
           data={data}
           handleTemplate={handleTemplate}

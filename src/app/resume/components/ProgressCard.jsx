@@ -4,8 +4,9 @@ import React from "react";
 import { Divider, ScrollShadow } from "@nextui-org/react";
 import TemplateSwitch from "../ui/TemplateSwitch";
 import { ScrollArea } from "@radix-ui/react-scroll-area";
+import SubmitDialogComp from "./SubmitDialogComp";
 
-function ProgressCard({ onSubmit, data, handleTemplate}) {
+function ProgressCard({ onSubmit, data, handleTemplate,printResume}) {
   return (
     <div className="overflow-y-auto h-full">
       <Flex direction="column" gap="3" maxWidth="400px" className="h-screen">
@@ -17,9 +18,10 @@ function ProgressCard({ onSubmit, data, handleTemplate}) {
             Start building your next project in minutes
           </Text>
         </Card>
-        <Button onClick={onSubmit}>
+        {/* <Button onClick={onSubmit}>
           <DownloadIcon /> Submit Resume
-        </Button>
+        </Button> */}
+        <SubmitDialogComp onSubmit={onSubmit} printResume={printResume}/>
         <Divider />
         <Divider />
         <ScrollShadow className="w-full h-[24.5rem] flex flex-col gap-2" size={300} isEnabled={false}>

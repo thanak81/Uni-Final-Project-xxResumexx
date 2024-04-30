@@ -48,10 +48,20 @@ function EditResume({ params }) {
 
   // console.log(data)
   const printRef = useRef();
+  
   const handlePrint = useReactToPrint({
     content: () => printRef.current,
     documentTitle: "Resume",
   });
+
+  const active = useActive((state)=> state.active);
+
+  const printResume = () => {
+    if (active) {
+      handlePrint();
+    }
+  };
+
   const data = [
     {
       id: 1,
@@ -86,7 +96,6 @@ function EditResume({ params }) {
   //   getSessionData();
   // },[session])
 
-  const active = useActive((state) => state.active);
 
   if (isLoading) {
     return (
@@ -116,7 +125,8 @@ function EditResume({ params }) {
             handleTemplate={handleTemplate}
             selectedTemplate={selectedTemplate}
             resumeDataById={resumeDataById}
-            printRe={printRef}
+            printResume={printResume}
+            printRef={printRef}
           />
         ) : (
           <div className="flex flex-col items-center gap-5">

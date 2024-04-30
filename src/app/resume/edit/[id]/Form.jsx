@@ -15,7 +15,6 @@ import Skill from "./ResumeForm/Skill";
 import ResumeHeader from "./ResumeForm/ResumeHeader";
 
 function FormComp({ register , selectedTemplate , printRef , data}) {
-  // const [active, setActive] = useState(false);
 
   const active = useActive((state)=> state.active);
   const setActive = useActive((state)=> state.setActive)

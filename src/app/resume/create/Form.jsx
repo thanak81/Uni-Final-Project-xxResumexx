@@ -18,9 +18,7 @@ function FormComp({ register , selectedTemplate , printRef}) {
 
   const active = useActive((state)=> state.active);
   const setActive = useActive((state)=> state.setActive)
-  function handleActive() {
-    setActive((active) => !active);
-  }
+
 
   console.log(active)
   return (
