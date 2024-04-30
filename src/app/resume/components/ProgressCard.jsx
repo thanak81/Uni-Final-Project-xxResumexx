@@ -18,7 +18,7 @@ function ProgressCard({ onSubmit, data, handleTemplate}) {
           </Text>
         </Card>
         <Button onClick={onSubmit}>
-          <DownloadIcon /> Update Resume
+          <DownloadIcon /> Submit Resume
         </Button>
         <Divider />
         <Divider />

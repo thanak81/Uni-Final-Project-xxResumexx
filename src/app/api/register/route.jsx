@@ -20,7 +20,7 @@ export const POST = async (req)=>{
     })
 
     if(exist){
-        return new NextResponse("User already exist",{status: 400})
+        return NextResponse.json({message:"User already exist",status: 400},{status: 400})
     }
 
     const hashedPassword = await bcrypt.hash(password,10)

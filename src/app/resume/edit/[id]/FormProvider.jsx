@@ -12,7 +12,7 @@ function FormProviderComp({id,mutation , data,handleTemplate, selectedTemplate, 
         // user_id: session?.user.payload.id,
       },
 
-      data: resumeDataById.payload.data ,
+      data: resumeDataById.payload? resumeDataById.payload.data : "",
     //   data: {
     //     education: resumeDataById.payload.data.education,
     //   },

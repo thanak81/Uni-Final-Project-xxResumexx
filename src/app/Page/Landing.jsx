@@ -3,28 +3,54 @@ import React from "react";
 import CardComp from "../components/CardComp";
 import { Box, Button, Flex, Heading } from "@radix-ui/themes";
 import { deleteResume, getAllResume } from "../services/resumeService";
-import { useMutation, useQuery } from "react-query";
+import { useMutation, useQuery, useQueryClient } from "react-query";
 import { Skeleton } from "@nextui-org/react";
 import Link from "next/link";
+import { redirect } from "next/navigation";
+import { toast } from "react-toastify";
 
 function Landing() {
+  const queryClient = useQueryClient();
   // const response = await getAllResume();
   // get all resume
-  const { isLoading, data, error, isError } = useQuery("resume", getAllResume);
+  const { isLoading, data, error, isError } = useQuery(
+    ["resume"],
+    getAllResume
+  );
   // delete resume
   const mutation = useMutation({
+    onMutate: async (id) => {
+      await queryClient.cancelMutations({ queryKey: ["resume"] });
+
+      const previousResume = queryClient.getQueryData(["resume"]);
+      queryClient.setQueryData(["resume"], (old) => [...old, id]);
+
+      return { previousResume };
+    },
+    onError: (err, newTodo, context) => {
+      queryClient.setQueryData(["resume"], context.previousResume);
+    },
     mutationFn: (id) => deleteResume(id),
-    onSuccess: () => {
+    onSettled: () => {
       queryClient.invalidateQueries({ queryKey: ["resume"] });
     },
+    onSuccess: () => {
+      toast.success("Resume successfully removed", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+        // transition: Bounce,
+      });
+    },
   });
-  console.log(data);
+
   if (isLoading) {
-    return (
-      <span>
-        Loading......
-      </span>
-    );
+    return <span>Loading......</span>;
   }
 
   if (isError) {
@@ -48,7 +74,7 @@ function Landing() {
       ))} */}
         {data?.map((dat, index) => (
           <div className="flex" key={dat.id}>
-            <CardComp data={dat} index={index}  mutation={mutation} />
+            <CardComp data={dat} index={index} mutation={mutation} />
           </div>
         ))}
       </div>

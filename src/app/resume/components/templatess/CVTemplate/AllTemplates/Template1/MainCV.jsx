@@ -1,7 +1,6 @@
 import React from "react";
 import { useQuery } from "@tanstack/react-query";
 import Tabs from "../../../../TabsComp";
-import axios from "axios";
 import { ResumeAPI } from "../../../../../api/ResumeAPI";
 
 function MainCV() {

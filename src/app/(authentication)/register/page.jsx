@@ -11,6 +11,7 @@ import { useForm } from "react-hook-form";
 import { Input } from "@nextui-org/react";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { toast } from "react-toastify";
 // import { Input } from "@nextui-org/react";
 
 function RegisterPage() {
@@ -33,7 +34,6 @@ function RegisterPage() {
     });
 
   const router = useRouter();
-
   const {
     register,
     handleSubmit,
@@ -46,7 +46,6 @@ function RegisterPage() {
     },
     resolver: zodResolver(Schema),
   });
-
   console.log(errors);
 
   async function onSubmit(credentials) {
@@ -56,33 +55,46 @@ function RegisterPage() {
         name: credentials.name,
         email: credentials.email,
         password: credentials.password,
+        // confirm_password: credentials.confirm_password
       }),
       headers: {
         "Content-Type": "application/json",
       },
     });
     const data = await response.json();
-    if (response.status === 200) {
-      router.push("/login");
-      router.refresh();
-      // if (!data.token) {
-      //   return;
-      // } else {
-      //   return data;
-      // }
+    console.log("register data", data);
 
-      //   toast({
-      //     className: "bg-green-500 font-bold text-white text-2xl",
-      //     description: "Login Success!",
-      //     description: "Welcome to TO-DO Lists",
-      //   });
-      // } else {
-      //   toast({
-      //     variant: "destructive",
-      //     title: "Uh oh! Wrong credential",
-      //     description: "Please make sure you type in correct email or password",
-      //   });
+    switch (data.message) {
+      case "User already exist":
+        toast.error("User already exist", {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "dark",
+          // transition: Bounce,
+        });
+        break;
+      case "User successfully register":
+        toast.success("Register successfully", {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "dark",
+          // transition: Bounce,
+        });
+        router.push("/login");
+        router.refresh();
+        break;
     }
+
   }
 
   return (
@@ -159,7 +171,10 @@ function RegisterPage() {
               />
             </div>
 
-            <Button type="submit" className="text-white w-full  cursor-pointer bg-blue-500">
+            <Button
+              type="submit"
+              className="text-white w-full  cursor-pointer bg-blue-500"
+            >
               Sign up
             </Button>
 

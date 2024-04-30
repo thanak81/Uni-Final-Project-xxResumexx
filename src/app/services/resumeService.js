@@ -3,7 +3,6 @@
 export const getAllResume = async (req) => {
   const data = await fetch("http://localhost:3000/api/resume");
   const response = await data.json();
-  console.log("all resume",  response.payload.resume)
   return response.payload.resume;
 };
 
@@ -63,3 +62,4 @@ export const updateResume = async (request, id) => {
     throw error;
   }
 };
+

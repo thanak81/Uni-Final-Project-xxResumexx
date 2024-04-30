@@ -5,6 +5,7 @@ import { Theme } from "@radix-ui/themes";
 import Provider from "./Provider";
 import NavBar from "./components/NavBar";
 import AuthProvider from "./AuthProvider";
+import ToastContainerWrapper from "./components/ToastComp";
 const inter = Inter({ subsets: ["latin"] });
 export const metadata = {
   title: "xxResumexx",
@@ -22,6 +23,7 @@ export default function RootLayout({ children }) {
                 <NavBar />
               </div>
             {children}
+            <ToastContainerWrapper/>
             </AuthProvider>
           </Theme>
         </Provider>

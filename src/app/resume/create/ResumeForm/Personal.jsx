@@ -15,9 +15,9 @@ export const Schema = z.object({
     number: z
       .string()
       .refine((value) => value !== "", { message: "Phone number is required" }),
-      // .refine((value) => phoneNumberRegex.test(value), {
-      //   message: "Invalid phone number format.",
-      // }),
+    // .refine((value) => phoneNumberRegex.test(value), {
+    //   message: "Invalid phone number format.",
+    // }),
     address: z
       .string()
       .min(3, { message: "Address must be at least 3 characters long" }),
@@ -36,7 +36,10 @@ function PersonalForm({ active }) {
   const number = useStore((state) => state.number);
   const setNumber = useStore((state) => state.setNumber);
 
-  const { register,formState: {errors} } = useFormContext();
+  const {
+    register,
+    formState: { errors },
+  } = useFormContext();
 
   return (
     <div className=" rounded-xl flex flex-col gap-2 justify-center items-center shadow-2xl">
@@ -56,39 +59,49 @@ function PersonalForm({ active }) {
       </Accordion>
 
       <div className={`flex ${active ? "flex-col" : ""} gap-2 w-full`}>
-        <InputComp
-          value={name}
-          onValueChange={setName}
-          label={"Full name"}
-          name={"data.basics.name"}
-          // error={errors?.basics?.name?.message}
+        <Input
+          label="Full name"
+          radius="sm"
+          key="inside"
+          variant="bordered"
+          labelPlacement="inside"
+          // isInvalid= {error ?  true : false}
+          //   errorMessage={Object.keys(errors).length ===0 ?"" : error }
+          {...register("data.basics.name")}
         />
-        <InputComp
-          value={email}
-          onValueChange={setEmail}
-          label={"Email"}
-          name={"data.basics.email"}
-          // error={errors?.basics?.email?.message}
-        />
-      </div>
-      <div className="w-full">
-        <InputComp
-          label={"Address"}
-          value={address}
-          onValueChange={setAddress}
-          name={"data.basics.address"}
-          // error={errors?.basics?.address?.message}
+        <Input
+          label="Email"
+          radius="sm"
+          key="inside"
+          variant="bordered"
+          labelPlacement="inside"
+          // isInvalid= {error ?  true : false}
+          //   errorMessage={Object.keys(errors).length ===0 ?"" : error }
+          {...register("data.basics.email")}
         />
       </div>
       <div className="w-full">
-        <InputComp
-          label={"Phone Number"}
-          value={number}
-          onValueChange={setNumber}
-          name={"data.basics.phone"}
-          // error={errors?.basics?.number?.message}
-          // isInvalid = {true}
-          // error={"sdsd"}
+        <Input
+          label="Address"
+          radius="sm"
+          key="inside"
+          variant="bordered"
+          labelPlacement="inside"
+          // isInvalid= {error ?  true : false}
+          //   errorMessage={Object.keys(errors).length ===0 ?"" : error }
+          {...register("data.basics.address")}
+        />
+      </div>
+      <div className="w-full">
+        <Input
+          label="Phone Number"
+          radius="sm"
+          key="inside"
+          variant="bordered"
+          labelPlacement="inside"
+          // isInvalid= {error ?  true : false}
+          //   errorMessage={Object.keys(errors).length ===0 ?"" : error }
+          {...register("data.basics.phone")}
         />
       </div>
       <div className="w-full">

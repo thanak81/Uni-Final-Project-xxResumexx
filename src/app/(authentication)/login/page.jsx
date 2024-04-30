@@ -9,7 +9,7 @@ import { useForm } from "react-hook-form";
 import { Input } from "@nextui-org/react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
-import AuthToast from "../components/AuthToast";
+import { toast } from "react-toastify";
 function LoginPage() {
   const Schema = z.object({
     email: z.string().min(1, { message: "Email is required" }).email({
@@ -42,9 +42,33 @@ function LoginPage() {
       password: data?.password,
       redirect: false,
     });
+
     if (response.status === 200) {
+      toast.success("You are logged in!", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+        // transition: Bounce,
+        });
       router.push("/");
       router.refresh();
+    }else{
+      toast.error("Invalid user details. Check your email and password", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+        // transition: Bounce,
+        });
     }
   }
 

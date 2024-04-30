@@ -1,23 +1,18 @@
 "use client";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useRef, useState } from "react";
 import Form from "./Form";
 import ProgressCard from "../components/ProgressCard";
-import TemplateContainer from "./TemplateContainer";
 import { FormProvider, useForm } from "react-hook-form";
-import BasicsTemplate from "../components/templatess/CVTemplate/AllTemplates/Template1/BasicsTemplate";
-import BasicsTemplate2 from "../components/templatess/CVTemplate/AllTemplates/Template2/BasicsTemplate2";
-import { Schema } from "./ResumeForm/Personal";
-import { zodResolver } from "@hookform/resolvers/zod";
 import Template1Main from "../components/templatess/CVTemplate/AllTemplates/Template1/Template1Main";
-import { useAutoAnimate } from "@formkit/auto-animate/react";
 import { useReactToPrint } from "react-to-print";
 import { useActive } from "../state/GlobalState";
 import Template2Main from "../components/templatess/CVTemplate/AllTemplates/Template2/Template2Main";
 import { createResume } from "@/app/services/resumeService";
-import ResumeHeader from "./ResumeForm/ResumeHeader";
-import { getSession, useSession } from "next-auth/react";
+import { useRouter } from "next/navigation";
+import { toast } from "react-toastify";
 
 function CreateForm() {
+  const router = useRouter();
   const printRef = useRef();
   const handlePrint = useReactToPrint({
     content: () => printRef.current,
@@ -78,14 +73,28 @@ function CreateForm() {
     },
     // resolver: zodResolver(Schema)
   });
-  const active = useActive((state) => state.active);
 
+  // const notify = () => toast("Resume created successfully");
+  // console.log("notify",notify)
+  const active = useActive((state) => state.active);
   const onSubmit = async (data) => {
     if (active) {
       handlePrint();
     }
-
-   await createResume(data);
+    toast.success("Resume created successfully", {
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "dark",
+      // transition: Bounce,
+      });
+    await createResume(data);
+    router.push("/");
+    router.refresh();
   };
   return (
     <>
