@@ -63,7 +63,7 @@ function ExperienceTemplate({ resumeData }) {
                       <li>Create AR Ar Game</li>
                       <li>Create AR Ar Game</li>
                     </ul> */}
-                  <div className="w-[40rem] prose">
+                  <div className="w-[40rem] prose text-black">
                     {wo?.summary && parse(wo.summary)}
                   </div>{" "}
                 </div>

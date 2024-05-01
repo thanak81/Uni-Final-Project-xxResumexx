@@ -61,7 +61,7 @@ export const PUT = async (request, { params }) => {
 
   const updateResume = await prisma.resume.update({
     where: {
-      id: 105,
+      id: id,
     },
     data: {
         title: "resume1",

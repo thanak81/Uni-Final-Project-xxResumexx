@@ -24,13 +24,13 @@ function ExperienceTemplate({ resumeData }) {
   }
 
   return (
-    <div>
+    <div className="">
       {resumeData?.work?.length >= 0 && checked && (
         <div>
           <div className=" font-bold text-[#005685] border-y border-black/25 p-2">
             Experience
           </div>
-          <div className="py-2 px-5 flex flex-col gap-3 text-black">
+          <div className=" py-2 px-5 flex flex-col gap-3 text-black h-screen bg-red-500">
             {resumeData.work.map((wo) => (
               <div key={wo.id}>
                 <div className="flex justify-between">

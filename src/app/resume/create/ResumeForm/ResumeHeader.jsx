@@ -45,6 +45,7 @@ function ResumeHeader() {
           </div>
         </AccordionItem>
       </Accordion>
+    
     </div>
   );
 }

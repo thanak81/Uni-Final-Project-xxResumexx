@@ -25,7 +25,7 @@ function SkillTemplate({ resumeData }) {
                   {resumeData.data.skills?.map((skill) => {
                     return (
                       <Fragment key={skill.name}>
-                        <li>{skill.name}</li>;
+                        <li>{skill.name}</li>
                       </Fragment>
                     );
                   })}

@@ -1,16 +1,18 @@
-import React from "react";
+"use client"
+import React, { useRef } from "react";
 import BasicsTemplate from "./BasicsTemplate";
 import ExperienceTemplate from "./ExperienceTemplate";
 import EducationTemplate from "./EducationTemplate";
 import { useFormContext, useWatch } from "react-hook-form";
 import SkillTemplate from "./SkillTemplate";
+import { useReactToPrint } from "react-to-print";
 
-function Template1Main() {
+function Template1Main({}) {
   const { control } = useFormContext();
   const resumeData = useWatch({
     control,
   });
-  
+
   console.log(resumeData)
   return (
     <div>

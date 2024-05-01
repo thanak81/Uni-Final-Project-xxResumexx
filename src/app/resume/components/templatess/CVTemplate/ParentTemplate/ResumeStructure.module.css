@@ -1,19 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Tinos:ital,wght@0,400;0,700;1,400;1,700&display=swap');
 
 .page {
+    font-family: Arial, Helvetica, sans-serif;
     width: 210mm;
-    min-height: 297mm;
-    background: white;
+    /* min-height: 297mm; */
+    /* max-height:max-content; */
+    background-color: white;
     box-shadow: 0 0 5px rgba(0, 0, 0, 1);
 }
 
-@media print {
-    .page { 
-        height: 0; 
-        page-break-before: always;
-         /* Dont know what it does but testing  */
-        page-break-inside: avoid;
-        margin: 0; 
-        border-top: none; 
-    }
-}
+

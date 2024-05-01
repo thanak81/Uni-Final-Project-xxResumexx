@@ -15,17 +15,17 @@ function Template2Main() {
     <div className="flex h-full border">
       <div className=" h-[297mm] w-[30%] bg-blue-500">
         <BasicsTemplate resumeData={resumeData} />
-        <SkillTemplate resumeData={resumeData}/>
+        <SkillTemplate resumeData={resumeData} />
       </div>
-      <div>
-        <div className=" text-black p-5  ">
-          Thanak is a student
+      <div className="w-[35rem]">
+        <div className=" text-black p-5 w-full ">
+          {resumeData.data.basics.summary}
           {/* {data.basics?.summary
             ? data.basics?.summary
             : "        Lorem ipsum dolor sit amet, consectetur adipisicing elit.  fugiat blanditiis dicta reiciendis placeat ab praesentium vero doloribus! Eaque quod omnis a dolorem repellat provident ab officiis totam, optio ut."} */}
         </div>
-        <div className="w-[99%]">
-          <ExperienceTemplate resumeData={resumeData} />
+        <div className="">
+            <ExperienceTemplate resumeData={resumeData} />
           <EducationTemplate resumeData={resumeData} />
         </div>
       </div>

@@ -22,7 +22,7 @@ function CreateForm() {
     {
       id: 1,
       name: "Template1",
-      template: <Template1Main />,
+      template: <Template1Main/>,
     },
     {
       id: 2,
