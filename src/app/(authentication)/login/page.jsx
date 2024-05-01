@@ -10,6 +10,7 @@ import { Input } from "@nextui-org/react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { toast } from "react-toastify";
+import OauthComp from "../components/OauthComp";
 function LoginPage() {
   const Schema = z.object({
     email: z.string().min(1, { message: "Email is required" }).email({
@@ -54,10 +55,10 @@ function LoginPage() {
         progress: undefined,
         theme: "dark",
         // transition: Bounce,
-        });
+      });
       router.push("/");
       router.refresh();
-    }else{
+    } else {
       toast.error("Invalid user details. Check your email and password", {
         position: "top-right",
         autoClose: 5000,
@@ -68,7 +69,7 @@ function LoginPage() {
         progress: undefined,
         theme: "dark",
         // transition: Bounce,
-        });
+      });
     }
   }
 
@@ -125,9 +126,10 @@ function LoginPage() {
                 </span>
               </div>
             </div>
-            <div className="text-sm">
-              ---------------- Continue with -------------
+            <div className="text-sm font-bold">
+              ------------------------ Or Continue with ----------------------
             </div>
+            {/* <OauthComp /> */}
           </div>
         </div>
       </form>

@@ -84,7 +84,7 @@ function NavBar() {
         <ThemeSwitcher />
         {status === "authenticated" ? (
           <Link href="/profile">
-            <Avatar name={session?.user?.payload.name} />
+            <Avatar name={session?.user?.payload?.name ? session?.user.payload.name : session?.user.name} />
           </Link>
         ) : (
           <Link href="/login">Login</Link>

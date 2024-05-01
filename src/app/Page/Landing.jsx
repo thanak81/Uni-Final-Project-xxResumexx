@@ -4,7 +4,7 @@ import CardComp from "../components/CardComp";
 import { Box, Button, Flex, Heading } from "@radix-ui/themes";
 import { deleteResume, getAllResume } from "../services/resumeService";
 import { useMutation, useQuery, useQueryClient } from "react-query";
-import { Skeleton } from "@nextui-org/react";
+import { Skeleton, Spinner } from "@nextui-org/react";
 import Link from "next/link";
 import { redirect } from "next/navigation";
 import { toast } from "react-toastify";
@@ -17,6 +17,9 @@ function Landing() {
     ["resume"],
     getAllResume
   );
+
+  console.log("data",data)
+
   // delete resume
   const mutation = useMutation({
     onMutate: async (id) => {
@@ -50,7 +53,7 @@ function Landing() {
   });
 
   if (isLoading) {
-    return <span>Loading......</span>;
+    return <Spinner />
   }
 
   if (isError) {
@@ -58,7 +61,7 @@ function Landing() {
   }
   return (
     <>
-      {data.length <= 0 && (
+      {data.length<= 0 && (
         <>
           <Heading color="green">No recent resume. Go create one!</Heading>
           <Button>

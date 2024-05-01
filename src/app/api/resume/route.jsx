@@ -20,12 +20,15 @@ import { authOptions } from "../auth/[...nextauth]/route";
 export async function POST(request, res) {
   const session = await getServerSession(authOptions);
   if (!session) {
-      return res.status(401).json({ error: 'Not authenticated' });
-    }
+  return NextResponse.json({
+      message: "You are unauthorize",
+      status: 401,
+      date: new Date().toISOString(),
+    });  }
 
-  const user_id = session.user.payload.id
+  const user_id = session.user.payload.id;
 
-  console.log("resumepostsession",session);
+  console.log("resumepostsession", session);
   const resumeData = await request.json();
   const data = await prisma.resume.create({
     data: {
@@ -58,17 +61,21 @@ export async function POST(request, res) {
 
 export async function GET() {
 
-    const session = await getServerSession(authOptions);
-    if (!session) {
-        return res.status(401).json({ error: 'Not authenticated' });
-      }
-  
-    const user_id = session.user.payload.id
+  const session = await getServerSession(authOptions);
+  if (!session) {
+    return NextResponse.json({
+      message: "You are unauthorize",
+      status: 401,
+      date: new Date().toISOString(),
+    });
+  }
+
+  const user_id = session.user.payload.id;
 
   const getResume = await prisma.user.findUnique({
     where: {
-        //need to make this dynamic 
-      id: user_id,
+      //need to make this dynamic
+      id: user_id ,
     },
     include: {
       Resume: true,

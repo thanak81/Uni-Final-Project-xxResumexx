@@ -12,6 +12,9 @@ import ArrowIcon from "@/app/components/icons/ArrowIcon";
 import WorkForm from "./ResumeForm/WorkForm";
 import Skill from "./ResumeForm/Skill";
 import ResumeHeader from "./ResumeForm/ResumeHeader";
+import VolunteerForm from "./ResumeForm/VolunteerForm";
+import LanguageForm from "./ResumeForm/LanguageForm";
+import ReferenceForm from "./ResumeForm/ReferenceForm";
 
 function FormComp({ register , selectedTemplate , printRef}) {
   // const [active, setActive] = useState(false);
@@ -35,6 +38,9 @@ function FormComp({ register , selectedTemplate , printRef}) {
         <Education />
         <WorkForm />
         <Skill/>
+        <VolunteerForm/>
+        <LanguageForm/>
+        <ReferenceForm/>
       </ScrollShadow>
       <div className="hidden md:block">
         <div onClick={setActive} className="cursor-pointer" title="Preview Resume">

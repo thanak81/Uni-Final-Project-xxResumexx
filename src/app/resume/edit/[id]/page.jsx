@@ -25,6 +25,7 @@ import FormComp from "./Form";
 import FormProviderComp from "./FormProvider";
 import Link from "next/link";
 import { Button, Heading } from "@radix-ui/themes";
+import { Spinner } from "@nextui-org/react";
 
 function EditResume({ params }) {
   const id = params.id;
@@ -48,13 +49,13 @@ function EditResume({ params }) {
 
   // console.log(data)
   const printRef = useRef();
-  
+
   const handlePrint = useReactToPrint({
     content: () => printRef.current,
     documentTitle: "Resume",
   });
 
-  const active = useActive((state)=> state.active);
+  const active = useActive((state) => state.active);
 
   const printResume = () => {
     if (active) {
@@ -96,12 +97,11 @@ function EditResume({ params }) {
   //   getSessionData();
   // },[session])
 
-
   if (isLoading) {
     return (
-      <span>
-        <p>Loading.....</p>
-      </span>
+      <div className="h-screen flex items-center justify-center">
+        <Spinner />
+      </div>
     );
   }
 
