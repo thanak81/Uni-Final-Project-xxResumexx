@@ -40,7 +40,7 @@ function EditResume({ params }) {
   console.log(resumeDataById);
 
   const mutation = useMutation({
-    mutationFn: (request, id) => updateResume(request, id),
+    mutationFn: (request) => updateResume(request, id),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["resume"] });
     },

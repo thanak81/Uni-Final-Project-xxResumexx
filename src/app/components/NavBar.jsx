@@ -41,12 +41,12 @@ function NavBar() {
       nav_link: "/resume/create",
       is_active: false,
     },
-    {
-      id: 2,
-      title: "Get Template",
-      nav_link: "/template",
-      is_active: false,
-    },
+    // {
+    //   id: 2,
+    //   title: "Get Template",
+    //   nav_link: "/template",
+    //   is_active: false,
+    // },
   ];
 
   const { status, data: session } = useSession();
