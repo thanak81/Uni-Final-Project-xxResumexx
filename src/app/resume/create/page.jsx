@@ -69,6 +69,7 @@ function CreateForm() {
         work: [{}],
         education: [{}],
         skills: [{}],
+        language: [{}]
       },
     },
     // resolver: zodResolver(Schema)

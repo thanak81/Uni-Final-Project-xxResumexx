@@ -6,6 +6,7 @@ import EducationTemplate from "./EducationTemplate";
 import { useFormContext, useWatch } from "react-hook-form";
 import SkillTemplate from "./SkillTemplate";
 import { useReactToPrint } from "react-to-print";
+import LanguageTemplate from "./LanguageTemplate";
 
 function Template1Main({}) {
   const { control } = useFormContext();
@@ -20,6 +21,7 @@ function Template1Main({}) {
       <ExperienceTemplate resumeData={resumeData}/>
       <EducationTemplate resumeData={resumeData}/>
       <SkillTemplate resumeData={resumeData}/>
+      <LanguageTemplate resumeData={resumeData}/>
     </div>
   );
 }

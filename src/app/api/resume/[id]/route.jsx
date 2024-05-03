@@ -11,10 +11,22 @@ const prisma = new PrismaClient();
 // }
 
 export const GET = async (request, { params }) => {
+  const session = await getServerSession(authOptions);
+  if (!session) {
+    return NextResponse.json({
+      message: "You are unauthorize",
+      status: 401,
+      date: new Date().toISOString(),
+    });
+  }
+
+  const user_id = session.user.payload.id;
+
   const id = parseInt(params.id);
   const getResumeById = await prisma.resume.findUnique({
     where: {
       id: id,
+      user_id: user_id
     },
   });
 

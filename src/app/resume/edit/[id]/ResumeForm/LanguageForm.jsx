@@ -3,10 +3,9 @@ import { Accordion, AccordionItem, Divider } from '@nextui-org/react'
 import { Button, Heading, Text } from '@radix-ui/themes'
 import React, { Fragment } from 'react'
 import { useFieldArray, useFormContext, useWatch } from 'react-hook-form'
-import InputComp from '../../components/InputComp'
 import RemoveIcon from '@/app/components/icons/RemoveIcon'
-import AddButton from '../components/AddButton'
-
+import InputComp from '@/app/resume/components/InputComp'
+import AddButton from '@/app/resume/create/components/AddButton'
 function LanguageForm({data}) {
   const {register, control} = useFormContext()
   const {fields,append, remove} = useFieldArray({
@@ -62,6 +61,7 @@ export default LanguageForm
 
 
 function Language({data,index, handleRemove}){
+  console.log("language",data)
   return (
     <>
       {index > 0 && <Divider className="my-5 bg-blue-500" />}
@@ -72,7 +72,7 @@ function Language({data,index, handleRemove}){
           label={`Language ${index+1}`}
           defaultValue={
             data?.payload?.data?.language[index]?.name
-              ? data.payload.data.language[index].name
+              ? data?.payload?.data?.language[index].name
               : ""
           }
           // isInvalid = {true}

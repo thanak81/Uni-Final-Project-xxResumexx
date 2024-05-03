@@ -118,7 +118,7 @@ function LoginPage() {
             </Button>
             <div className="self-start">
               <div className="flex gap-2">
-                Don't have an account?
+                Dont have an account?
                 <span className="text-blue-500">
                   <Link className="cursor-pointer" href="/register">
                     Register

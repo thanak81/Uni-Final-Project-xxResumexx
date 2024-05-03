@@ -1,11 +1,8 @@
 import React, { Fragment } from "react";
 
-function SkillTemplate({ resumeData }) {
-
+function LanguageTemplate({ resumeData }) {
   let checked = false;
-  if (
-    resumeData.data.skills
-  ) {
+  if (resumeData.data.language) {
     checked = true;
   } else {
     checked = false;
@@ -13,19 +10,22 @@ function SkillTemplate({ resumeData }) {
 
   return (
     <>
-      {resumeData?.data.skills?.length > 0 && checked && (
+      {resumeData?.data.language?.length > 0 && checked && (
         <div>
           <div className=" font-bold text-blue-500 border-y border-white p-2">
-            Skills
+            Languages
           </div>
           <div className="p-5">
             <div className="flex flex-col gap-5">
-              <div className="flex flex-col gap-5 px-5 pb-5 text-sm">
+              <div className="flex flex-col gap-5 px-2 pb-5 text-sm">
                 <ul className="flex flex-col gap-5 list-disc text-white">
-                  {resumeData.data.skills?.map((skill) => {
+                  {resumeData.data.language?.map((lan) => {
                     return (
-                      <Fragment key={skill.name}>
-                        <li>{skill.name}</li>
+                      <Fragment key={lan.name}>
+                        <li className="flex justify-between">
+                          <span> {lan.name} </span>
+                          <span> {lan.fluency}</span>
+                        </li>
                       </Fragment>
                     );
                   })}
@@ -39,4 +39,4 @@ function SkillTemplate({ resumeData }) {
   );
 }
 
-export default SkillTemplate;
+export default LanguageTemplate;

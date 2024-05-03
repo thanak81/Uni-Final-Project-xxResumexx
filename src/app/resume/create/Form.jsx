@@ -13,6 +13,7 @@ import WorkForm from "./ResumeForm/WorkForm";
 import Skill from "./ResumeForm/Skill";
 import ResumeHeader from "./ResumeForm/ResumeHeader";
 import AdditionalForm from "./ResumeForm/AdditionalForm";
+import LanguageForm from "./ResumeForm/LanguageForm";
 
 function FormComp({ register, selectedTemplate, printRef }) {
   // const [active, setActive] = useState(false);
@@ -35,7 +36,8 @@ function FormComp({ register, selectedTemplate, printRef }) {
         <Education />
         <WorkForm />
         <Skill />
-        <AdditionalForm />
+        <LanguageForm/>
+        {/* <AdditionalForm /> */}
       </ScrollShadow>
       <div className="hidden md:block">
         <div

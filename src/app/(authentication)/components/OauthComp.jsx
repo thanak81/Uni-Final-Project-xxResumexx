@@ -3,7 +3,6 @@
 import Image from "next/image";
 import React from "react";
 import { signIn, useSession } from "next-auth/react";
-import { Button } from "@radix-ui/themes";
 import { useRouter } from "next/navigation";
 
 function OauthComp() {

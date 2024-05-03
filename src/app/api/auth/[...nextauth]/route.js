@@ -53,7 +53,6 @@ export const authOptions = {
           if (user) {
             token.user = user;
           }
-
           return token;
         },
       },

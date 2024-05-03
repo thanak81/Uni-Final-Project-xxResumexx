@@ -13,6 +13,7 @@ import ArrowIcon from "@/app/components/icons/ArrowIcon";
 import WorkForm from "./ResumeForm/WorkForm";
 import Skill from "./ResumeForm/Skill";
 import ResumeHeader from "./ResumeForm/ResumeHeader";
+import LanguageForm from "./ResumeForm/LanguageForm";
 
 function FormComp({ register , selectedTemplate , printRef , data}) {
 
@@ -37,6 +38,7 @@ function FormComp({ register , selectedTemplate , printRef , data}) {
         <Education data={data}/>
         <WorkForm data={data}/>
         <Skill data={data}/>
+        <LanguageForm data={data}/>
       </ScrollShadow>
       <div className="hidden md:block">
         <div onClick={setActive} className="cursor-pointer" title="Preview Resume">
