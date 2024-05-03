@@ -14,7 +14,7 @@ import DataListDetails from "./DataListDetails";
 import RemoveIcon from "./icons/RemoveIcon";
 import DeleteResumeButton from "./DeleteResumeButton";
 
-function Dialogs({ data, mutation }) {
+function Dialogs({ data, mutation, formattedDate }) {
   console.log(data.id);
   return (
     <Dialog.Root>
@@ -34,7 +34,7 @@ function Dialogs({ data, mutation }) {
           <DeleteResumeButton mutation={mutation} data={data} />
         </Flex>
         <Dialog.Description size="2" mb="4">
-          Created Date : 05/12/2024
+          Created Date : {formattedDate}
         </Dialog.Description>
 
         <DataListDetails data={data} />

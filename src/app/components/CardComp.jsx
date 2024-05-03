@@ -15,13 +15,17 @@ import InfoIcon from "./icons/InfoIcon";
 import Dialog from "./Dialog";
 
 function CardComp({ data, index, mutation }) {
+  const date = new Date(data.createdAt)
+
+const formattedDate = date.toLocaleString('en-US', { month: 'long', day: 'numeric', year: 'numeric', hour: 'numeric', minute: 'numeric', second: 'numeric', hour12: true });
+
   console.log("cardCompss", data);
   return (
     <Card radius="sm" className=" " isHoverable>
       <div className="relative">
         <div className="absolute bottom-2 right-2 cursor-pointer">
           {/* <Dialog/> */}
-          <Dialog data={data} mutation={mutation} />
+          <Dialog formattedDate={formattedDate} data={data} mutation={mutation} />
         </div>
         <Image
           src="/CV.png"
@@ -32,10 +36,10 @@ function CardComp({ data, index, mutation }) {
         />
       </div>
       <CardBody className="">
-        <small>Resume {`${index + 1}`}</small>
+        <small>Resume {data.id}</small>
         <p>Title: {data.title}</p>
-        {/* <small>{data.createdAt}</small>
-        <small>{data.updatedAt}</small> */}
+         <small>{formattedDate}</small>
+        {/* <small>{data.updatedAt}</small>  */}
         <Divider className="my-4" />
         <div className="flex justify-between items-center">
           <p>{data.slug}</p>
