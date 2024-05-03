@@ -40,7 +40,7 @@ function CardComp({ data, index, mutation }) {
         <div className="flex justify-between items-center">
           <p>{data.slug}</p>
           <Button color="">
-            <Link href={`/resume/edit/${data.id}`}  className="text-white text-sm">Edit</Link>
+            <Link href={`/main/resume/edit/${data.id}`}  className="text-white text-sm">Edit</Link>
           </Button>
         </div>
       </CardBody>

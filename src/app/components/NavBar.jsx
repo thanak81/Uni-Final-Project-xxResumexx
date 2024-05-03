@@ -38,15 +38,15 @@ function NavBar() {
       id: 1,
       title: "Create Resume",
       nav_item: <NavbarItem />,
-      nav_link: "/resume/create",
+      nav_link: "/main/resume/create",
       is_active: false,
     },
-    // {
-    //   id: 2,
-    //   title: "Get Template",
-    //   nav_link: "/template",
-    //   is_active: false,
-    // },
+    {
+      id: 2,
+      title: "Create Cover Letter",
+      nav_link: "/main/cover-letter/create",
+      is_active: false,
+    },
   ];
 
   const { status, data: session } = useSession();
