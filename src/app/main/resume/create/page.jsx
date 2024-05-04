@@ -23,7 +23,7 @@ function CreateForm() {
     {
       id: 1,
       name: "Template1",
-      template: <Template1Main/>,
+      template: <Template1Main />,
     },
     {
       id: 2,
@@ -41,18 +41,13 @@ function CreateForm() {
     setSelectedTemplate(template);
   }
   const [selectedTemplate, setSelectedTemplate] = useState(data[0]);
-  // const [session , setSession]= useState()
-  // console.log(session)
-  // useEffect(()=> {
-  //   const getSessionData = async ()=> {
-  //     const sessionData = await getSession()
-  //     setSession(sessionData)
-  //     console.log(sessionData.user.payload.id);
-  //   }
 
-  //   getSessionData();
-  // },[session])
-  const autoSaveData = JSON.parse(localStorage.getItem("autoSavedResumeData"))
+  let autoSaveData
+  if (typeof window !== "undefined") {
+    autoSaveData = JSON.parse(
+      localStorage.getItem("autoSavedResumeData")
+    );
+  }
   // console.log("saveDATA",autoSaveData.data)
   const methods = useForm({
     defaultValues: {
@@ -61,19 +56,21 @@ function CreateForm() {
         slug: "For work",
         // user_id: session?.user.payload.id,
       },
-      data: autoSaveData ? autoSaveData.data :  {
-        basics: {
-          name: "",
-          email: "",
-          phone: "",
-          address: "",
-          summary: "",
-        },
-        work: [{}],
-        education: [{}],
-        skills: [{}],
-        language: [{}]
-      },
+      data: autoSaveData
+        ? autoSaveData.data
+        : {
+            basics: {
+              name: "",
+              email: "",
+              phone: "",
+              address: "",
+              summary: "",
+            },
+            work: [{}],
+            education: [{}],
+            skills: [{}],
+            language: [{}],
+          },
     },
     // resolver: zodResolver(Schema)
   });
@@ -98,7 +95,7 @@ function CreateForm() {
       // transition: Bounce,
     });
     await createResume(data);
-    localStorage.removeItem("autoSavedResumeData")
+    localStorage.removeItem("autoSavedResumeData");
     router.push("/");
     router.refresh();
   };
@@ -107,7 +104,11 @@ function CreateForm() {
       <div className="flex gap-10 lg:gap-5 flex-col justify-center  lg:flex-row  mt-5 lg:h-screen">
         <FormProvider {...methods}>
           <form onSubmit={methods.handleSubmit(onSubmit)}>
-            <Form  autoSaveData={autoSaveData} selectedTemplate={selectedTemplate} printRef={printRef} />
+            <Form
+              autoSaveData={autoSaveData}
+              selectedTemplate={selectedTemplate}
+              printRef={printRef}
+            />
             {/* <div className="hidden lg:block">
               <TemplateContainer/>
             </div> */}

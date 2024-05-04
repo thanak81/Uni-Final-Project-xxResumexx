@@ -19,7 +19,6 @@ function CardComp({ data, index, mutation }) {
 
 const formattedDate = date.toLocaleString('en-US', { month: 'long', day: 'numeric', year: 'numeric', hour: 'numeric', minute: 'numeric', second: 'numeric', hour12: true });
 
-  console.log("cardCompss", data);
   return (
     <Card radius="sm" className=" " isHoverable>
       <div className="relative">

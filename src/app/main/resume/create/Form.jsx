@@ -26,9 +26,7 @@ function FormComp({ register, selectedTemplate, printRef , autoSaveData }) {
   const autoSavedResumeData = useWatch({
     control
   });
-  console.log("autosaved", autoSavedResumeData);
   const pathName = usePathname();
-  console.log("pName", pathName);
 
   useEffect(() => {
     if (pathName === "/main/resume/create") {

@@ -130,9 +130,9 @@ function EditResume({ params }) {
           />
         ) : (
           <div className="flex flex-col items-center gap-5">
-            <Heading>Resume not found 😥</Heading>
+            <Heading>Resume not found 😥! Create one for free 😀!</Heading>
             <Button>
-              <Link href="/">Go back</Link>
+              <Link href="/main/resume/create">Create Resume</Link>
             </Button>
           </div>
         )}

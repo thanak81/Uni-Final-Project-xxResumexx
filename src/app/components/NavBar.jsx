@@ -16,6 +16,7 @@ import {
 import { ThemeSwitcher } from "./ThemeSwticher";
 import { usePathname, useRouter } from "next/navigation";
 import { useSession } from "next-auth/react";
+import HoverCardComp from "./HoverCard";
 function NavBar() {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
   const pathName = usePathname();
@@ -83,9 +84,27 @@ function NavBar() {
       <NavbarContent justify="end">
         <ThemeSwitcher />
         {status === "authenticated" ? (
-          <Link href="/profile">
-            <Avatar name={session?.user?.payload?.name ? session?.user.payload.name : session?.user.name} />
-          </Link>
+          <HoverCardComp
+            avatar={
+              <Link href="/profile">
+                <Avatar
+                  name={
+                    session?.user?.payload?.name
+                      ? session?.user.payload.name
+                      : session?.user.name
+                  }
+                />
+              </Link>
+            }
+            name={
+              session?.user?.payload?.name
+                ? session?.user.payload.name
+                : session?.user.name
+            }
+            email={ session?.user?.payload?.email
+              ? session?.user.payload.email
+              : session?.user.email}
+          />
         ) : (
           <Link href="/login">Login</Link>
         )}

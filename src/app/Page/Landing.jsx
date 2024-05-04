@@ -18,8 +18,6 @@ function Landing() {
     getAllResume
   );
 
-  console.log("data",data)
-
   // delete resume
   const mutation = useMutation({
     onMutate: async (id) => {
@@ -65,7 +63,7 @@ function Landing() {
         <>
           <Heading color="green">No recent resume. Go create one!</Heading>
           <Button>
-            <Link href="/resume/create">Lets go</Link>
+            <Link href="/main/resume/create">Lets go</Link>
           </Button>
         </>
       )}
