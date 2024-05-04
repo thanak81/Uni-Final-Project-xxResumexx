@@ -3,11 +3,8 @@ import Landing from "./Page/Landing";
 export default function Home() {
   return (
     <>
-      <main className="flex min-h-screen  flex-col items-center justify-between p-24">
-        <Flex direction="column"  align={"center"} gap="5">
-          <Heading>Recent Resume</Heading>
+      <main className="flex h-full flex-col  w-full p-24">
           <Landing />
-        </Flex>
       </main>
     </>
   );

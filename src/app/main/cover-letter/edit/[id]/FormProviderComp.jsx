@@ -1,38 +1,45 @@
 "use client"
-import React from "react";
-import FormComp from "./Form";
+import React, { useState } from "react";
 import { FormProvider, useForm } from "react-hook-form";
-import ProgressCard from "../../components/ProgressCard";
-import { useActive, useActiveRight } from "../../state/GlobalState";
+import ProgressCard from "../../../resume/components/ProgressCard";
+import { useActive, useActiveRight } from "../../../resume/state/GlobalState";
 import { toast } from "react-toastify";
 import { useRouter } from "next/navigation";
 import EyeIcon from "@/app/components/icons/EyeIcon";
 import EyeCloseIcon from "@/app/components/icons/EyeCloseIcon";
+import FormComp from "./Form";
+import Template1Main from "../../components/templatess/CVTemplate/AllTemplates/Template1/Template1Main";
 
-function FormProviderComp({id,mutation ,active, data,handleTemplate, selectedTemplate, resumeDataById, printRef , printResume }) {
+function FormProviderComp({id,mutation ,active,  coverLetterById, printRef , printCoverLetter }) {
   const router = useRouter();
+  const data = [
+    {
+      id: 1,
+      name: "Template1",
+      template: <Template1Main coverLetterById={coverLetterById}/>,
+    },
+  ];
+
+  function handleTemplate(template) {
+    setSelectedTemplate(template);
+  }
+  const [selectedTemplate, setSelectedTemplate] = useState(data[0]);
 
   const methods = useForm({
     defaultValues: {
       resumeInfo: {
-        title: "Resume",
+        title: "Cover Letter",
         slug: "For work",
         // user_id: session?.user.payload.id,
       },
+      data: coverLetterById.payload? coverLetterById.payload.data : "",
 
-      data: resumeDataById.payload? resumeDataById.payload.data : "",
-    //   data: {
-    //     education: resumeDataById.payload.data.education,
-    //   },
     },
     // resolver: zodResolver(Schema)
   });
 
-  const activeRight = useActiveRight((state)=> state.activeRight)
-  const setActiveRight = useActiveRight((state)=> state.setActiveRight)
-
   const onSubmit = async (data) => {
-    toast.success("Resume updated successfully", {
+    toast.success("Cover letter updated successfully", {
       position: "top-right",
       autoClose: 5000,
       hideProgressBar: false,
@@ -43,18 +50,21 @@ function FormProviderComp({id,mutation ,active, data,handleTemplate, selectedTem
       theme: "dark",
       // transition: Bounce,
     });
+    // await createCoverLetter(data);
     await mutation.mutate(data,id)
-    // router.push(`/resume/edit/${id}`);
-    // router.refresh();
+    router.push("/");
+    router.refresh();
   };
-  
+  const activeRight = useActiveRight((state) => state.activeRight);
+  const setActiveRight = useActiveRight((state) => state.setActiveRight);
+
   return (
     <>
       <FormProvider {...methods}>
         <form onSubmit={methods.handleSubmit(onSubmit)} className="w-full">
           <FormComp
             selectedTemplate={selectedTemplate}
-            data={resumeDataById}
+            data={coverLetterById}
             printRef={printRef}
             activeRight={activeRight}
 
@@ -75,7 +85,7 @@ function FormProviderComp({id,mutation ,active, data,handleTemplate, selectedTem
           </div>
           {activeRight && (
               <ProgressCard
-            printResume={printResume}
+            printResume={printCoverLetter}
             onSubmit={methods.handleSubmit(onSubmit)}
             data={data}
             handleTemplate={handleTemplate}

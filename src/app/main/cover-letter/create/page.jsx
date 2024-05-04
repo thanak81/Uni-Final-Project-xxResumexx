@@ -4,8 +4,6 @@ import Form from "./Form";
 import ProgressCard from "../../resume/components/ProgressCard";
 import { FormProvider, useForm, useWatch } from "react-hook-form";
 // import Template1Main from "../components/templatess/CVTemplate/AllTemplates/Template1/Template1Main";
-import Template1Main from "../../resume/components/templatess/CVTemplate/AllTemplates/Template1/Template1Main";
-import Template2Main from "../../resume/components/templatess/CVTemplate/AllTemplates/Template2/Template2Main";
 import { useReactToPrint } from "react-to-print";
 import { useActive, useActiveRight } from "../../resume/state/GlobalState";
 import { createResume } from "@/app/services/resumeService";
@@ -14,6 +12,9 @@ import { toast } from "react-toastify";
 import RightSidebar from "@/app/main-feature/RightSidebar";
 import EyeIcon from "@/app/components/icons/EyeIcon";
 import EyeCloseIcon from "@/app/components/icons/EyeCloseIcon";
+import { createCoverLetter } from "@/app/services/coverLetterService";
+import Template1Main from "../components/templatess/CVTemplate/AllTemplates/Template1/Template1Main";
+import Template2Main from "../components/templatess/CVTemplate/AllTemplates/Template2/Template2Main";
 
 function CreateCoverLetter() {
   const router = useRouter();
@@ -49,34 +50,23 @@ function CreateCoverLetter() {
   if (typeof window !== "undefined") {
     autoSaveData = JSON.parse(localStorage.getItem("autoSavedCoverLetterData"));
   }
-  // console.log("saveDATA",autoSaveData.data)
   const methods = useForm({
     defaultValues: {
       resumeInfo: {
-        title: "Resume",
+        title: "Cover Letter",
         slug: "For work",
         // user_id: session?.user.payload.id,
       },
       data: autoSaveData
         ? autoSaveData.data
         : {
-            basics: {
-              name: "",
-              email: "",
-              phone: "",
-              address: "",
-              summary: "",
-            },
-            work: [{}],
-            education: [{}],
-            skills: [{}],
-            language: [{}],
+            profile: {},
+            letter: {},
+            employee: {}
           },
     },
     // resolver: zodResolver(Schema)
   });
-  // const notify = () => toast("Resume created successfully");
-  // console.log("notify",notify)
   const active = useActive((state) => state.active);
   const printResume = () => {
     if (active) {
@@ -84,7 +74,7 @@ function CreateCoverLetter() {
     }
   };
   const onSubmit = async (data) => {
-    toast.success("Resume created successfully", {
+    toast.success("Cover letter created successfully", {
       position: "top-right",
       autoClose: 5000,
       hideProgressBar: false,
@@ -96,10 +86,11 @@ function CreateCoverLetter() {
       // transition: Bounce,
     });
     // await createResume(data);
-    console.log("cover-letter", data)
+    await createCoverLetter(data);
+    console.log("cover-letter", data);
     localStorage.removeItem("autoSavedCoverLetterData");
-    // router.push("/");
-    // router.refresh();
+    router.push("/");
+    router.refresh();
   };
   const activeRight = useActiveRight((state) => state.activeRight);
   const setActiveRight = useActiveRight((state) => state.setActiveRight);
@@ -109,7 +100,7 @@ function CreateCoverLetter() {
         <FormProvider {...methods}>
           <form onSubmit={methods.handleSubmit(onSubmit)} className="w-full">
             <Form
-            activeRight={activeRight}
+              activeRight={activeRight}
               autoSaveData={autoSaveData}
               selectedTemplate={selectedTemplate}
               printRef={printRef}
@@ -129,12 +120,12 @@ function CreateCoverLetter() {
             {!activeRight ? <EyeIcon /> : <EyeCloseIcon />}
           </div>
           {activeRight && (
-              <ProgressCard
-            printResume={printResume}
-            onSubmit={methods.handleSubmit(onSubmit)}
-            data={data}
-            handleTemplate={handleTemplate}
-          />
+            <ProgressCard
+              printResume={printResume}
+              onSubmit={methods.handleSubmit(onSubmit)}
+              data={data}
+              handleTemplate={handleTemplate}
+            />
           )}
         </div>
       </div>

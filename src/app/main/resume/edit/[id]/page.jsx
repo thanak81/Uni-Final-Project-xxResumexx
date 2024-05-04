@@ -38,7 +38,6 @@ function EditResume({ params }) {
   } = useQuery("resume", () => getResumeById(id));
   // const { isLoading, data, error, isError } = useQuery("resume", getAllResume);
 
-  console.log(resumeDataById);
 
   const mutation = useMutation({
     mutationFn: (request) => updateResume(request, id),
@@ -74,28 +73,12 @@ function EditResume({ params }) {
       name: "Template2",
       template: <Template2Main />,
     },
-    // {
-    //   id: 3,
-    //   name: "Template2",
-    //   template: <BasicsTemplate2 />,
-    // },
   ];
 
   function handleTemplate(template) {
     setSelectedTemplate(template);
   }
   const [selectedTemplate, setSelectedTemplate] = useState(data[0]);
-  // const [session , setSession]= useState()
-  // console.log(session)
-  // useEffect(()=> {
-  //   const getSessionData = async ()=> {
-  //     const sessionData = await getSession()
-  //     setSession(sessionData)
-  //     console.log(sessionData.user.payload.id);
-  //   }
-
-  //   getSessionData();
-  // },[session])
 
   if (isLoading) {
     return (
@@ -112,11 +95,6 @@ function EditResume({ params }) {
   return (
     <>
       <div className="flex gap-10 lg:gap-5 flex-col justify-center  lg:flex-row  mt-5 lg:h-screen">
-        {/* <FormProvider {...methods}>
-          <form onSubmit={methods.handleSubmit(onSubmit)}>
-            <FormComp selectedTemplate={selectedTemplate} data={resumeDataById} printRef={printRef} />
-          </form>
-        </FormProvider> */}
         {resumeDataById.payload ? (
           <FormProviderComp
             id={id}

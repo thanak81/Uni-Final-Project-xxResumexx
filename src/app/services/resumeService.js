@@ -30,7 +30,7 @@ export const deleteResume = async (id) => {
     });
     const response = await data.json();
   } catch (error) {
-    console.error("Error creating resume:", error);
+    console.error("Error deleting resume:", error);
     throw error;
   }
 };

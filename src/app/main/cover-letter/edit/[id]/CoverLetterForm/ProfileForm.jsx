@@ -22,7 +22,7 @@ export const Schema = z.object({
   }),
 });
 
-function ProfileForm({ active, autoSaveData }) {
+function ProfileForm({active,data}) {
   const {
     register,
     formState: { errors },
@@ -54,8 +54,8 @@ function ProfileForm({ active, autoSaveData }) {
           // isInvalid= {error ?  true : false}
           //   errorMessage={Object.keys(errors).length ===0 ?"" : error }
           defaultValue={
-            autoSaveData?.data.profile.job
-              ? autoSaveData?.data.profile.job
+            data?.payload.data.profile.job
+              ? data?.payload.data.profile.job
               : ""
           }
           {...register("data.profile.job")}
@@ -69,7 +69,9 @@ function ProfileForm({ active, autoSaveData }) {
           variant="bordered"
           labelPlacement="inside"
           defaultValue={
-            autoSaveData?.data.profile.name ? autoSaveData.data.profile.name : ""
+            data?.payload.data.profile.name
+              ? data?.payload.data.profile.name
+              : ""
           }
           // isInvalid= {error ?  true : false}
           //   errorMessage={Object.keys(errors).length ===0 ?"" : error }
@@ -82,8 +84,8 @@ function ProfileForm({ active, autoSaveData }) {
           variant="bordered"
           labelPlacement="inside"
           defaultValue={
-            autoSaveData?.data.profile.email
-              ? autoSaveData.data.profile.email
+            data?.payload.data.profile.email
+              ? data?.payload.data.profile.email
               : ""
           }
           // isInvalid= {error ?  true : false}
@@ -99,8 +101,8 @@ function ProfileForm({ active, autoSaveData }) {
           variant="bordered"
           labelPlacement="inside"
           defaultValue={
-            autoSaveData?.data.profile.address
-              ? autoSaveData.data.profile.address
+            data?.payload.data.profile.address
+              ? data?.payload.data.profile.address
               : ""
           }
           // isInvalid= {error ?  true : false}
@@ -118,8 +120,8 @@ function ProfileForm({ active, autoSaveData }) {
           // isInvalid= {error ?  true : false}
           //   errorMessage={Object.keys(errors).length ===0 ?"" : error }
           defaultValue={
-            autoSaveData?.data.profile.phone
-              ? autoSaveData.data.profile.phone
+            data?.payload.data.profile.phone
+              ? data?.payload.data.profile.phone
               : ""
           }
           {...register("data.profile.phone")}
@@ -135,8 +137,8 @@ function ProfileForm({ active, autoSaveData }) {
           // isInvalid= {error ?  true : false}
           //   errorMessage={Object.keys(errors).length ===0 ?"" : error }
           defaultValue={
-            autoSaveData?.data.profile.date
-              ? autoSaveData.data.profile.date
+            data?.payload.data.profile.date
+              ? data?.payload.data.profile.date
               : ""
           }
           {...register("data.profile.date")}

@@ -22,7 +22,7 @@ function Dialogs({ data, mutation, formattedDate }) {
         <Button
           color="yellow"
           className="cursor-pointer"
-          title="Resume details"
+          title={data.title}
         >
           <InfoIcon />
         </Button>
@@ -30,7 +30,7 @@ function Dialogs({ data, mutation, formattedDate }) {
 
       <Dialog.Content maxWidth="450px">
         <Flex justify="between">
-          <Dialog.Title>Resume Infomation</Dialog.Title>
+          <Dialog.Title>{data.title} Info</Dialog.Title>
           <DeleteResumeButton mutation={mutation} data={data} />
         </Flex>
         <Dialog.Description size="2" mb="4">

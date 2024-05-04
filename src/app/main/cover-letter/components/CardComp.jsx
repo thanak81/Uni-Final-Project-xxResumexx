@@ -9,13 +9,11 @@ import {
 import Image from "next/image";
 
 import React from "react";
-import Separators from "./Separator";
 import { Button } from "@radix-ui/themes";
-import InfoIcon from "./icons/InfoIcon";
-import Dialog from "./Dialog";
+import Dialog from "@/app/components/Dialog";
 
-function CardComp({ data, index, mutation }) {
-  const date = new Date(data.createdAt)
+function CardCompCover({ data, index, mutation }) {
+  const date = new Date(data.createAt)
 const formattedDate = date.toLocaleString('en-US', { month: 'long', day: 'numeric', year: 'numeric', hour: 'numeric', minute: 'numeric', second: 'numeric', hour12: true });
 
   return (
@@ -34,15 +32,15 @@ const formattedDate = date.toLocaleString('en-US', { month: 'long', day: 'numeri
         />
       </div>
       <CardBody className="">
-        <small>Resume {data.id}</small>
+        <small>Cover Letter {data.id}</small>
         <p>Title: {data.title}</p>
          <small>{formattedDate}</small>
         {/* <small>{data.updatedAt}</small>  */}
         <Divider className="my-4" />
         <div className="flex justify-between items-center">
-          <p>{data.slug}</p>
+          <small className="w-[10rem]">{data.slug}</small>
           <Button color="">
-            <Link href={`/main/resume/edit/${data.id}`}  className="text-white text-sm">Edit</Link>
+            <Link href={`/main/cover-letter/edit/${data.id}`}  className="text-white text-sm">Edit</Link>
           </Button>
         </div>
       </CardBody>
@@ -50,4 +48,4 @@ const formattedDate = date.toLocaleString('en-US', { month: 'long', day: 'numeri
   );
 }
 
-export default CardComp;
+export default CardCompCover;

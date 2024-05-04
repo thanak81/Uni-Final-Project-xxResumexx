@@ -47,9 +47,7 @@ export const GET = async (request, { params }) => {
 };
 
 export const PUT = async (request, { params }) => {
-    console.log("params", params)
   const id = parseInt(params.id);
-  console.log("routeId", params.id)
   const data = await request.json();
 
   const getResumeById = await prisma.resume.findUnique({
@@ -57,7 +55,6 @@ export const PUT = async (request, { params }) => {
       id: id
     },
   });
-  console.log("updated data json", data)
   if (getResumeById === null) {
     return NextResponse.json({
       message: "ID NOT FOUND",
