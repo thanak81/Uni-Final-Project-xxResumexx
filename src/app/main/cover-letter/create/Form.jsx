@@ -1,19 +1,17 @@
 "use client";
+import * as Form from "@radix-ui/react-form";
 import React, { useEffect, useState } from "react";
 import { Flex } from "@radix-ui/themes";
 import { ScrollShadow } from "@nextui-org/react";
-import { useActive } from "../state/GlobalState";
-import TemplateContainer from "./TemplateContainer";
+// import { useActive } from "../state/GlobalState";
+import { useActive } from "../../resume/state/GlobalState";
+// import TemplateContainer from "./TemplateContainer";
 import { usePathname } from "next/navigation";
 import { useFormContext, useWatch } from "react-hook-form";
 import EyeIcon from "@/app/components/icons/EyeIcon";
 import EyeCloseIcon from "@/app/components/icons/EyeCloseIcon";
-import PersonalForm from "./ResumeForm/Personal";
-import EducationForm from "./ResumeForm/Education";
-import WorkForm from "./ResumeForm/WorkForm";
-import Skill from "./ResumeForm/Skill";
-import LanguageForm from "./ResumeForm/LanguageForm";
-import ResumeHeader from "./ResumeForm/ResumeHeader";
+import TemplateContainer from "../../resume/create/TemplateContainer";
+import ProfileForm from "./CoverLetterForm/ProfileForm";
 
 function FormComp({ register, selectedTemplate, printRef , autoSaveData }) {
   // const [active, setActive] = useState(false);
@@ -46,13 +44,14 @@ function FormComp({ register, selectedTemplate, printRef , autoSaveData }) {
           !active ? "w-[100vh]" : ""
         } flex flex-col gap-2 transition-all px-5`}
       >
-        <ResumeHeader />
-        <PersonalForm active={active} register={register} autoSaveData={autoSaveData}/>
-        <EducationForm autoSaveData={autoSaveData}/>
+        <ProfileForm/>
+        {/* <ResumeHeader />
+        <Personal active={active} register={register} autoSaveData={autoSaveData}/>
+        <Education autoSaveData={autoSaveData}/>
         <WorkForm autoSaveData={autoSaveData}/>
         <Skill autoSaveData={autoSaveData}/>
-        <LanguageForm autoSaveData={autoSaveData}/> 
-        {/* <AdditionalForm />*/}
+        <LanguageForm autoSaveData={autoSaveData}/> */}
+        {/* <AdditionalForm /> */}
       </ScrollShadow>
       <div className="hidden md:block">
         <div
@@ -60,6 +59,7 @@ function FormComp({ register, selectedTemplate, printRef , autoSaveData }) {
           className="cursor-pointer"
           title={!active?"Preview Resume": "Close Preview"}
         >
+          {/* <ArrowIcon /> */}
           {!active? <EyeIcon/> : <EyeCloseIcon/>}
         </div>
         {active && (
