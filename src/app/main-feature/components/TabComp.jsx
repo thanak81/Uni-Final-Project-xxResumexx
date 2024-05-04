@@ -10,7 +10,7 @@ function TabComp() {
 
   return (
     <div>
-        <Tabs aria-label='Options' color='primary' selectedKey={usePathName}>
+        <Tabs size='sm' aria-label='Options' color='primary' selectedKey={usePathName}>
             <Tab key="/main/resume/create" title={<Link href={"/main/resume/create"}>Resume</Link>}></Tab>
             <Tab key="/main/cover-letter/create" title={<Link href={"/main/cover-letter/create"}>Cover Letter</Link>}></Tab>
         </Tabs>

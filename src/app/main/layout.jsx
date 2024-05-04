@@ -8,7 +8,6 @@ function layout({ children }) {
     <div className="p-10 lg:h-screen lg:overflow-y-hidden w-full">
       <div className="mt-10 flex  items-center w-full justify-between">
         <BreadCrumbComp />
-        <TabComp />
       </div>
       {children}
     </div>

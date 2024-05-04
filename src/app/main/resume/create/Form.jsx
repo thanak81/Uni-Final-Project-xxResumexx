@@ -16,6 +16,8 @@ import AdditionalForm from "./ResumeForm/AdditionalForm";
 import LanguageForm from "./ResumeForm/LanguageForm";
 import { usePathname } from "next/navigation";
 import { useFormContext, useWatch } from "react-hook-form";
+import EyeIcon from "@/app/components/icons/EyeIcon";
+import EyeCloseIcon from "@/app/components/icons/EyeCloseIcon";
 
 function FormComp({ register, selectedTemplate, printRef , autoSaveData }) {
   // const [active, setActive] = useState(false);
@@ -44,7 +46,7 @@ function FormComp({ register, selectedTemplate, printRef , autoSaveData }) {
       <ScrollShadow
         size={300}
         isEnabled={false}
-        className={`h-[70%] ${
+        className={`h-[75%] ${
           !active ? "w-[100vh]" : ""
         } flex flex-col gap-2 transition-all px-5`}
       >
@@ -60,9 +62,10 @@ function FormComp({ register, selectedTemplate, printRef , autoSaveData }) {
         <div
           onClick={setActive}
           className="cursor-pointer"
-          title="Preview Resume"
+          title={!active?"Preview Resume": "Close Preview"}
         >
-          <ArrowIcon />
+          {/* <ArrowIcon /> */}
+          {!active? <EyeIcon/> : <EyeCloseIcon/>}
         </div>
         {active && (
           <TemplateContainer
