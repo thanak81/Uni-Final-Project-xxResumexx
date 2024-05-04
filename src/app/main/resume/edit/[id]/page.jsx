@@ -127,6 +127,7 @@ function EditResume({ params }) {
             resumeDataById={resumeDataById}
             printResume={printResume}
             printRef={printRef}
+            active={active}
           />
         ) : (
           <div className="flex flex-col items-center gap-5">

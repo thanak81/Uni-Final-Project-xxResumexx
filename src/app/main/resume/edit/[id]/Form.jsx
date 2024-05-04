@@ -17,7 +17,7 @@ import LanguageForm from "./ResumeForm/LanguageForm";
 import EyeIcon from "@/app/components/icons/EyeIcon";
 import EyeCloseIcon from "@/app/components/icons/EyeCloseIcon";
 
-function FormComp({ register , selectedTemplate , printRef , data}) {
+function FormComp({ register , selectedTemplate , printRef , data,activeRight}) {
 
   const active = useActive((state)=> state.active);
   const setActive = useActive((state)=> state.setActive)
@@ -25,15 +25,15 @@ function FormComp({ register , selectedTemplate , printRef , data}) {
     setActive((active) => !active);
   }
 
-  console.log(active)
   return (
     <Flex gap="3" className="w-full h-full " >
-      <ScrollShadow
+        <ScrollShadow
         size={300}
         isEnabled={false}
-        className={`h-[78%] ${
-          !active ? "w-[100vh]" : ""
-        } flex flex-col gap-2 transition-all px-5`}
+        className={`h-[75%] 
+        ${active && activeRight ? "w-[100%]" : "w-[90vh]"}
+        
+        flex flex-col gap-2 transition-all px-5 w-full`}
       >
         <ResumeHeader/>
         <Personal data={data} active={active} register={register} />

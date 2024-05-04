@@ -12,39 +12,51 @@ import EyeIcon from "@/app/components/icons/EyeIcon";
 import EyeCloseIcon from "@/app/components/icons/EyeCloseIcon";
 import TemplateContainer from "../../resume/create/TemplateContainer";
 import ProfileForm from "./CoverLetterForm/ProfileForm";
+import EmployeeForm from "./CoverLetterForm/EmployeeForm";
+import LetterDetailForm from "./CoverLetterForm/LetterDetailsForm";
+import ProgressCard from "../../resume/components/ProgressCard";
 
-function FormComp({ register, selectedTemplate, printRef , autoSaveData }) {
+function FormComp({
+  register,
+  selectedTemplate,
+  printRef,
+  autoSaveData,
+  activeRight,
+}) {
   // const [active, setActive] = useState(false);
 
   const active = useActive((state) => state.active);
   const setActive = useActive((state) => state.setActive);
-  const {control} = useFormContext()
-  const autoSavedResumeData = useWatch({
-    control
+  const { control } = useFormContext();
+  const autoSavedCoverLetterData = useWatch({
+    control,
   });
   const pathName = usePathname();
 
   useEffect(() => {
-    if (pathName === "/main/resume/create") {
+    if (pathName === "/main/cover-letter/create") {
       // Check if autoSavedResumeData is not empty
-      if (Object.keys(autoSavedResumeData).length !== 0) {
+      if (Object.keys(autoSavedCoverLetterData).length !== 0) {
         // Serialize the object before storing it in localStorage
-        const serializedData = JSON.stringify(autoSavedResumeData);
-        localStorage.setItem("autoSavedResumeData", serializedData);
+        const serializedData = JSON.stringify(autoSavedCoverLetterData);
+        localStorage.setItem("autoSavedCoverLetterData", serializedData);
       }
     }
-  }, [pathName, autoSavedResumeData]);
+  }, [pathName, autoSavedCoverLetterData]);
 
   return (
-    <Flex gap="3" className="w-full h-full ">
+    <Flex gap="3" className="w-full h-full transition-all">
       <ScrollShadow
         size={300}
         isEnabled={false}
-        className={`h-[75%] ${
-          !active ? "w-[100vh]" : ""
-        } flex flex-col gap-2 transition-all px-5`}
+        className={`h-[75%] 
+        ${active && activeRight ? "w-[100%]" : "w-[90vh]"}
+        
+        flex flex-col gap-2 transition-all px-5 w-full`}
       >
-        <ProfileForm/>
+        <ProfileForm autoSaveData={autoSaveData}/>
+        <EmployeeForm autoSaveData={autoSaveData}/>
+        <LetterDetailForm autoSaveData={autoSaveData}/>
         {/* <ResumeHeader />
         <Personal active={active} register={register} autoSaveData={autoSaveData}/>
         <Education autoSaveData={autoSaveData}/>
@@ -57,10 +69,10 @@ function FormComp({ register, selectedTemplate, printRef , autoSaveData }) {
         <div
           onClick={setActive}
           className="cursor-pointer"
-          title={!active?"Preview Resume": "Close Preview"}
+          title={!active ? "Preview Resume" : "Close Preview"}
         >
           {/* <ArrowIcon /> */}
-          {!active? <EyeIcon/> : <EyeCloseIcon/>}
+          {!active ? <EyeIcon /> : <EyeCloseIcon />}
         </div>
         {active && (
           <TemplateContainer
@@ -69,6 +81,7 @@ function FormComp({ register, selectedTemplate, printRef , autoSaveData }) {
           />
         )}
       </div>
+      <div className="self-center lg:self-start mt-5 "></div>
     </Flex>
   );
 }

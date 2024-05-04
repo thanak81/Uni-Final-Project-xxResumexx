@@ -26,6 +26,7 @@ model User {
   // Optional for WebAuthn support
   Authenticator Authenticator[]
  Resume resume[]
+  CoverLetter coverLetter[]
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
@@ -89,10 +90,20 @@ model resume {
   id         Int  @id @default(autoincrement())
   title      String
   slug       String?
-  descrition String?
   data       Json       @default("{}")
   createdAt  DateTime   @default(now())
   updatedAt  DateTime   @updatedAt 
   user_id    String
+  user User @relation(fields: [user_id] , references: [id] , onDelete: Cascade)
+}
+
+model coverLetter{
+  id Int @id @default(autoincrement())
+  title String 
+  slug String
+  data Json @default("{}")
+  createAt DateTime @default(now())
+  updatedAt  DateTime   @updatedAt 
+  user_id String 
   user User @relation(fields: [user_id] , references: [id] , onDelete: Cascade)
 }

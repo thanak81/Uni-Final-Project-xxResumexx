@@ -7,7 +7,7 @@ import ToolBar from "./ToolBar";
 import { useFormContext } from "react-hook-form";
 import Placeholder from "@tiptap/extension-placeholder";
 // import {z} from "zod"
-const Tiptap = ({index, value,data }) => {
+const Tiptap = ({ index, value, data }) => {
   const active = useActive((state) => state.active);
   const setActive = useActive((state) => state.setActive);
   console.log(active);
@@ -22,12 +22,12 @@ const Tiptap = ({index, value,data }) => {
         placeholder: "Summary",
       }),
     ],
-    content: data ,
+    content: data,
     editorProps: {
       attributes: {
-        class:
-          //Width size is fixed becouse the default width is too big
-          `prose px-5 prose-sm prose-zinc min-h-[150px] max-h-[300px] rounded w-[330px] border border-[#71717A] overflow-y-scroll dark:prose-invert focus:border-white focus:outline-none [&_*]:my-2`,
+        class: `prose px-5 prose-sm prose-zinc min-h-[150px]  max-w-[100rem] rounded  border border-[#71717A] overflow-y-scroll dark:prose-invert focus:border-white focus:outline-none [&_*]:my-2`,
+        //Width size is fixed becouse the default width is too big
+        // `prose px-5 prose-sm prose-zinc min-h-[150px] max-h-[300px] rounded w-[330px] border border-[#71717A] overflow-y-scroll dark:prose-invert focus:border-white focus:outline-none [&_*]:my-2`,
         // "prose rounded-md min-w-full max-w-96 text-white border list-desc  min-h-[150px]  text-white border border-[#71717A] text-sm focus:outline-none focus:border-white",
       },
     },

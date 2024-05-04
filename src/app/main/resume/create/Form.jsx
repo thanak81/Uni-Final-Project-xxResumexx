@@ -15,7 +15,7 @@ import Skill from "./ResumeForm/Skill";
 import LanguageForm from "./ResumeForm/LanguageForm";
 import ResumeHeader from "./ResumeForm/ResumeHeader";
 
-function FormComp({ register, selectedTemplate, printRef , autoSaveData }) {
+function FormComp({ register, selectedTemplate, printRef , autoSaveData ,  activeRight }) {
   // const [active, setActive] = useState(false);
 
   const active = useActive((state) => state.active);
@@ -42,9 +42,10 @@ function FormComp({ register, selectedTemplate, printRef , autoSaveData }) {
       <ScrollShadow
         size={300}
         isEnabled={false}
-        className={`h-[75%] ${
-          !active ? "w-[100vh]" : ""
-        } flex flex-col gap-2 transition-all px-5`}
+        className={`h-[75%] 
+        ${active && activeRight ? "w-[100%]" : "w-[90vh]"}
+        
+        flex flex-col gap-2 transition-all px-5 w-full`}
       >
         <ResumeHeader />
         <PersonalForm active={active} register={register} autoSaveData={autoSaveData}/>

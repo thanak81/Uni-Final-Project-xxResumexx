@@ -22,4 +22,9 @@ import {create} from "zustand"
         setActive : ()=> set((state) => ({active: !state.active}))
     }))
 
+    export const useActiveRight = create((set)=> ({
+        activeRight : false,
+        setActiveRight : ()=> set((state) => ({activeRight: !state.activeRight}))
+    }))
+
 

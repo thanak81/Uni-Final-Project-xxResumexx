@@ -5,12 +5,14 @@ import ProgressCard from "../components/ProgressCard";
 import { FormProvider, useForm, useWatch } from "react-hook-form";
 import Template1Main from "../components/templatess/CVTemplate/AllTemplates/Template1/Template1Main";
 import { useReactToPrint } from "react-to-print";
-import { useActive } from "../state/GlobalState";
+import { useActive, useActiveRight } from "../state/GlobalState";
 import Template2Main from "../components/templatess/CVTemplate/AllTemplates/Template2/Template2Main";
 import { createResume } from "@/app/services/resumeService";
 import { usePathname, useRouter } from "next/navigation";
 import { toast } from "react-toastify";
 import TabComp from "@/app/main-feature/components/TabComp";
+import EyeIcon from "@/app/components/icons/EyeIcon";
+import EyeCloseIcon from "@/app/components/icons/EyeCloseIcon";
 
 function CreateForm() {
   const router = useRouter();
@@ -99,12 +101,16 @@ function CreateForm() {
     router.push("/");
     router.refresh();
   };
+
+  const activeRight = useActiveRight((state)=> state.activeRight)
+  const setActiveRight = useActiveRight((state)=> state.setActiveRight)
   return (
     <>
       <div className="flex gap-10 lg:gap-5 flex-col justify-center  lg:flex-row  mt-5 lg:h-screen">
         <FormProvider {...methods}>
-          <form onSubmit={methods.handleSubmit(onSubmit)}>
+          <form onSubmit={methods.handleSubmit(onSubmit)} className="w-full">
             <Form
+            activeRight={activeRight}
               autoSaveData={autoSaveData}
               selectedTemplate={selectedTemplate}
               printRef={printRef}
@@ -114,13 +120,23 @@ function CreateForm() {
             </div> */}
           </form>
         </FormProvider>
-        <div className="self-center lg:self-start mt-5 ">
-          <ProgressCard
+        <div className="self-center lg:self-start  ">
+          <div
+            onClick={setActiveRight}
+            className="cursor-pointer"
+            title={!active ? "Preview Resume" : "Close Preview"}
+          >
+            {/* <ArrowIcon /> */}
+            {!activeRight ? <EyeIcon /> : <EyeCloseIcon />}
+          </div>
+          {activeRight && (
+              <ProgressCard
             printResume={printResume}
             onSubmit={methods.handleSubmit(onSubmit)}
             data={data}
             handleTemplate={handleTemplate}
           />
+          )}
         </div>
       </div>
     </>

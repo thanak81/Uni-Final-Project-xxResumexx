@@ -3,11 +3,13 @@ import React from "react";
 import FormComp from "./Form";
 import { FormProvider, useForm } from "react-hook-form";
 import ProgressCard from "../../components/ProgressCard";
-import { useActive } from "../../state/GlobalState";
+import { useActive, useActiveRight } from "../../state/GlobalState";
 import { toast } from "react-toastify";
 import { useRouter } from "next/navigation";
+import EyeIcon from "@/app/components/icons/EyeIcon";
+import EyeCloseIcon from "@/app/components/icons/EyeCloseIcon";
 
-function FormProviderComp({id,mutation , data,handleTemplate, selectedTemplate, resumeDataById, printRef , printResume }) {
+function FormProviderComp({id,mutation ,active, data,handleTemplate, selectedTemplate, resumeDataById, printRef , printResume }) {
   const router = useRouter();
 
   const methods = useForm({
@@ -26,6 +28,8 @@ function FormProviderComp({id,mutation , data,handleTemplate, selectedTemplate, 
     // resolver: zodResolver(Schema)
   });
 
+  const activeRight = useActiveRight((state)=> state.activeRight)
+  const setActiveRight = useActiveRight((state)=> state.setActiveRight)
 
   const onSubmit = async (data) => {
     console.log("yoo id is",id)
@@ -48,25 +52,37 @@ function FormProviderComp({id,mutation , data,handleTemplate, selectedTemplate, 
   return (
     <>
       <FormProvider {...methods}>
-        <form onSubmit={methods.handleSubmit(onSubmit)}>
+        <form onSubmit={methods.handleSubmit(onSubmit)} className="w-full">
           <FormComp
             selectedTemplate={selectedTemplate}
             data={resumeDataById}
             printRef={printRef}
+            activeRight={activeRight}
+
           />
           {/* <div className="hidden lg:block">
         <TemplateContainer/>
       </div> */}
         </form>
       </FormProvider>
-      <div className="self-center lg:self-start mt-5 ">
-        <ProgressCard
-          printResume={printResume}
-          onSubmit={methods.handleSubmit(onSubmit)}
-          data={data}
-          handleTemplate={handleTemplate}
-        />
-      </div>
+      <div className="self-center lg:self-start  ">
+          <div
+            onClick={setActiveRight}
+            className="cursor-pointer"
+            title={!active ? "Preview Resume" : "Close Preview"}
+          >
+            {/* <ArrowIcon /> */}
+            {!activeRight ? <EyeIcon /> : <EyeCloseIcon />}
+          </div>
+          {activeRight && (
+              <ProgressCard
+            printResume={printResume}
+            onSubmit={methods.handleSubmit(onSubmit)}
+            data={data}
+            handleTemplate={handleTemplate}
+          />
+          )}
+        </div>
     </>
   );
 }

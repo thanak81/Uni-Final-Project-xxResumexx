@@ -23,6 +23,11 @@ function ToolBar({ editor }) {
         onPressedChange={() => editor.chain().focus().toggleBulletList().run()}
         icon={<ListBulletIcon />}
       />
+      <ToggleComp
+        pressed={editor.isActive("orderedList") ? "is-active" : ""}
+        onPressedChange={() => editor.chain().focus().toggleOrderedList().run()}
+        icon={<ListBulletIcon />}
+      />
     </div>
   );
 }

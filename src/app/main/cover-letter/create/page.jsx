@@ -7,12 +7,15 @@ import { FormProvider, useForm, useWatch } from "react-hook-form";
 import Template1Main from "../../resume/components/templatess/CVTemplate/AllTemplates/Template1/Template1Main";
 import Template2Main from "../../resume/components/templatess/CVTemplate/AllTemplates/Template2/Template2Main";
 import { useReactToPrint } from "react-to-print";
-import { useActive } from "../../resume/state/GlobalState";
+import { useActive, useActiveRight } from "../../resume/state/GlobalState";
 import { createResume } from "@/app/services/resumeService";
 import { usePathname, useRouter } from "next/navigation";
 import { toast } from "react-toastify";
+import RightSidebar from "@/app/main-feature/RightSidebar";
+import EyeIcon from "@/app/components/icons/EyeIcon";
+import EyeCloseIcon from "@/app/components/icons/EyeCloseIcon";
 
-function  CreateCoverLetter() {
+function CreateCoverLetter() {
   const router = useRouter();
   const printRef = useRef();
   const handlePrint = useReactToPrint({
@@ -42,11 +45,9 @@ function  CreateCoverLetter() {
   }
   const [selectedTemplate, setSelectedTemplate] = useState(data[0]);
 
-  let autoSaveData
+  let autoSaveData;
   if (typeof window !== "undefined") {
-    autoSaveData = JSON.parse(
-      localStorage.getItem("autoSavedResumeData")
-    );
+    autoSaveData = JSON.parse(localStorage.getItem("autoSavedCoverLetterData"));
   }
   // console.log("saveDATA",autoSaveData.data)
   const methods = useForm({
@@ -94,17 +95,21 @@ function  CreateCoverLetter() {
       theme: "dark",
       // transition: Bounce,
     });
-    await createResume(data);
-    localStorage.removeItem("autoSavedResumeData");
-    router.push("/");
-    router.refresh();
+    // await createResume(data);
+    console.log("cover-letter", data)
+    localStorage.removeItem("autoSavedCoverLetterData");
+    // router.push("/");
+    // router.refresh();
   };
+  const activeRight = useActiveRight((state) => state.activeRight);
+  const setActiveRight = useActiveRight((state) => state.setActiveRight);
   return (
     <>
-      <div className="flex gap-10 lg:gap-5 flex-col justify-center  lg:flex-row  mt-5 lg:h-screen">
+      <div className="flex  gap-10 lg:gap-5 flex-col justify-center  lg:flex-row  mt-5 lg:h-screen">
         <FormProvider {...methods}>
-          <form onSubmit={methods.handleSubmit(onSubmit)}>
+          <form onSubmit={methods.handleSubmit(onSubmit)} className="w-full">
             <Form
+            activeRight={activeRight}
               autoSaveData={autoSaveData}
               selectedTemplate={selectedTemplate}
               printRef={printRef}
@@ -114,13 +119,23 @@ function  CreateCoverLetter() {
             </div> */}
           </form>
         </FormProvider>
-        <div className="self-center lg:self-start mt-5 ">
-          <ProgressCard
+        <div className="self-center lg:self-start  ">
+          <div
+            onClick={setActiveRight}
+            className="cursor-pointer"
+            title={!active ? "Preview Resume" : "Close Preview"}
+          >
+            {/* <ArrowIcon /> */}
+            {!activeRight ? <EyeIcon /> : <EyeCloseIcon />}
+          </div>
+          {activeRight && (
+              <ProgressCard
             printResume={printResume}
             onSubmit={methods.handleSubmit(onSubmit)}
             data={data}
             handleTemplate={handleTemplate}
           />
+          )}
         </div>
       </div>
     </>
