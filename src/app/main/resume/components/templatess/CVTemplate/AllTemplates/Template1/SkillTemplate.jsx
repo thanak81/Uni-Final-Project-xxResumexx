@@ -18,7 +18,7 @@ function SkillTemplate({ resumeData }) {
           <div className="p-5">
             <div className="flex flex-col gap-5">
               <div className="flex flex-col gap-5 px-5 pb-5 text-sm">
-                <ul className="flex flex-col  list-disc text-black">
+                <ul className="flex flex-col gap-5  list-disc text-black">
                   {resumeData.data.skills?.map((skill) => {
                     return (
                       <Fragment key={skill.name}>
