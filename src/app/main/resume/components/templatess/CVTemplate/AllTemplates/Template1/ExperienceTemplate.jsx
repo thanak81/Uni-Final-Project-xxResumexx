@@ -33,7 +33,7 @@ function ExperienceTemplate({ resumeData }) {
             {resumeData.data.work.map((wo) => (
               <div key={wo.id}>
                 <div className="flex justify-between">
-                  <div className="font-bold w-[40rem]">{wo.company}</div>
+                  <div className="font-bold w-[35rem]">{wo.company}</div>
                   <div>
                     <span>{wo.startYear}</span>-
                     {wo.present ? (

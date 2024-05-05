@@ -68,6 +68,7 @@ function CreateForm() {
               address: "",
               summary: "",
             },
+            profile : {},
             work: [{}],
             education: [{}],
             skills: [{}],
