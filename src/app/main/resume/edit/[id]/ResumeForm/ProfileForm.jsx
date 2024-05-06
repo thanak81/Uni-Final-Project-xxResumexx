@@ -3,7 +3,6 @@ import { Accordion, AccordionItem, Input, Textarea } from "@nextui-org/react";
 import { Heading, Text } from "@radix-ui/themes";
 import { z, ZodType } from "zod"; // Add new import
 import { useFormContext } from "react-hook-form";
-// import Tiptap from "../../components/TipTap";
 import Tiptap from "../../../components/TipTap";
 
 export const Schema = z.object({
@@ -24,7 +23,7 @@ export const Schema = z.object({
   }),
 });
 
-function ProfileForm({ data }) {
+function ProfileForm({ active, data }) {
   const {
     register,
     formState: { errors },
@@ -50,7 +49,7 @@ function ProfileForm({ data }) {
         <Tiptap
           value={"data.profile.summary"}
           data={
-            data?.payload?.data?.profile?.summary ? data?.payload?.data?.profile?.summary: ""
+            data.payload?.data?.profile?.summary
           }
         />
       </div>

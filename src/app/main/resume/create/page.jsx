@@ -13,6 +13,8 @@ import { toast } from "react-toastify";
 import TabComp from "@/app/main-feature/components/TabComp";
 import EyeIcon from "@/app/components/icons/EyeIcon";
 import EyeCloseIcon from "@/app/components/icons/EyeCloseIcon";
+import BardComp from "@/app/components/BardComp";
+import TabRightSide from "@/app/main-feature/components/TabRightSide";
 
 function CreateForm() {
   const router = useRouter();
@@ -44,11 +46,9 @@ function CreateForm() {
   }
   const [selectedTemplate, setSelectedTemplate] = useState(data[0]);
 
-  let autoSaveData
+  let autoSaveData;
   if (typeof window !== "undefined") {
-    autoSaveData = JSON.parse(
-      localStorage.getItem("autoSavedResumeData")
-    );
+    autoSaveData = JSON.parse(localStorage.getItem("autoSavedResumeData"));
   }
   // console.log("saveDATA",autoSaveData.data)
   const methods = useForm({
@@ -68,7 +68,7 @@ function CreateForm() {
               address: "",
               summary: "",
             },
-            profile : {},
+            profile: {},
             work: [{}],
             education: [{}],
             skills: [{}],
@@ -103,15 +103,18 @@ function CreateForm() {
     router.refresh();
   };
 
-  const activeRight = useActiveRight((state)=> state.activeRight)
-  const setActiveRight = useActiveRight((state)=> state.setActiveRight)
+  const activeRight = useActiveRight((state) => state.activeRight);
+  const setActiveRight = useActiveRight((state) => state.setActiveRight);
   return (
     <>
       <div className="flex gap-10 lg:gap-5 flex-col justify-center  lg:flex-row  mt-5 lg:h-screen">
+        {/* <div className="w-full">
+          <BardComp />
+        </div> */}
         <FormProvider {...methods}>
           <form onSubmit={methods.handleSubmit(onSubmit)} className="w-full">
             <Form
-            activeRight={activeRight}
+              activeRight={activeRight}
               autoSaveData={autoSaveData}
               selectedTemplate={selectedTemplate}
               printRef={printRef}
@@ -131,12 +134,13 @@ function CreateForm() {
             {!activeRight ? <EyeIcon /> : <EyeCloseIcon />}
           </div>
           {activeRight && (
-              <ProgressCard
-            printResume={printResume}
-            onSubmit={methods.handleSubmit(onSubmit)}
-            data={data}
-            handleTemplate={handleTemplate}
-          />
+         
+            <TabRightSide 
+              printResume={printResume}
+              onSubmit={methods.handleSubmit(onSubmit)}
+              data={data}
+              handleTemplate={handleTemplate}
+            />
           )}
         </div>
       </div>

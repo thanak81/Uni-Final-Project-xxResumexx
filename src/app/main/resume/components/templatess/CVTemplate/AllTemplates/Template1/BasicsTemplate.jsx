@@ -17,14 +17,14 @@ function BasicsTemplate({ resumeData, resumeDataLocal }) {
   const resumeWatch = resumeData.data.basics;
 
   return (
-    <div className="text-black pt-10 pb-5 h-full">
-      <div className="text-2xl font-bold text-center">
+    <div className="text-black pt-10 h-full">
+      <div className="text-2xl font-bold pb-3 text-center">
         {resumeWatch.name ? resumeWatch?.name : resumeLocal?.name}
       </div>
-      <div className="text-center">
+      <div className="text-justify px-5 pb-3">
         {resumeWatch.summary ? resumeWatch?.summary : resumeLocal?.summary}
       </div>
-      <div className="gap-5">
+      <div>
         <div className="text-center px-5 pb-5 text-sm">
           <span>
             {" "}
