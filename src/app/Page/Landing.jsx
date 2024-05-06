@@ -120,7 +120,7 @@ function Landing() {
             </Button>
           </>
         )}
-        <div className="flex gap-5 justify-center flex-wrap">
+        <div className="flex gap-5 justify-start flex-wrap">
           {/* {response.payload.map((data,index) => (
         <div className="flex" key={data._id}>
             <CardComp data={data} index={index} />

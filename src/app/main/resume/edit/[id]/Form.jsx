@@ -16,6 +16,7 @@ import ResumeHeader from "./ResumeForm/ResumeHeader";
 import LanguageForm from "./ResumeForm/LanguageForm";
 import EyeIcon from "@/app/components/icons/EyeIcon";
 import EyeCloseIcon from "@/app/components/icons/EyeCloseIcon";
+import ProfileForm from "./ResumeForm/ProfileForm";
 
 function FormComp({ register , selectedTemplate , printRef , data,activeRight}) {
 
@@ -37,6 +38,7 @@ function FormComp({ register , selectedTemplate , printRef , data,activeRight}) 
       >
         <ResumeHeader/>
         <Personal data={data} active={active} register={register} />
+        <ProfileForm  data={data}/> 
         <Education data={data}/>
         <WorkForm data={data}/>
         <Skill data={data}/>

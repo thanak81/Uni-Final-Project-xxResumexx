@@ -9,7 +9,7 @@ import SubmitDialogComp from "./SubmitDialogComp";
 function ProgressCard({ onSubmit, data, handleTemplate,printResume}) {
 
   return (
-    <div className="overflow-y-auto h-full">
+    <div className="overflow-y-auto h-full w-[18rem]">
       <Flex direction="column" gap="3" maxWidth="400px" className="h-screen">
         <Card variant="surface">
           <Text as="div" size="2" weight="bold">
