@@ -17,7 +17,7 @@ function TabRightSide({ onSubmit, data, handleTemplate, printResume }) {
           />
         </Tab>
         <Tab key="ai" title="AI">
-          <div className="w-full w-[25rem]">
+          <div className="w-full">
             <BardComp />
           </div>
         </Tab>
