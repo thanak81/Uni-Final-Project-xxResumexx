@@ -8,6 +8,7 @@ import { toast } from "react-toastify";
 import { useRouter } from "next/navigation";
 import EyeIcon from "@/app/components/icons/EyeIcon";
 import EyeCloseIcon from "@/app/components/icons/EyeCloseIcon";
+import TabRightSide from "@/app/main-feature/components/TabRightSide";
 
 function FormProviderComp({id,mutation ,active, data,handleTemplate, selectedTemplate, resumeDataById, printRef , printResume }) {
   const router = useRouter();
@@ -74,12 +75,11 @@ function FormProviderComp({id,mutation ,active, data,handleTemplate, selectedTem
             {!activeRight ? <EyeIcon /> : <EyeCloseIcon />}
           </div>
           {activeRight && (
-              <ProgressCard
-            printResume={printResume}
-            onSubmit={methods.handleSubmit(onSubmit)}
-            data={data}
-            handleTemplate={handleTemplate}
-          />
+          <TabRightSide
+          printResume={printResume}
+          onSubmit={methods.handleSubmit(onSubmit)}
+          data={data}
+          handleTemplate={handleTemplate}/>
           )}
         </div>
     </>

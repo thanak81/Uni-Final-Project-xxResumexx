@@ -23,7 +23,7 @@ function ProgressCard({ onSubmit, data, handleTemplate,printResume}) {
           <DownloadIcon /> Submit Resume
         </Button> */}
         <SubmitDialogComp onSubmit={onSubmit} printResume={printResume}/>
-        <Divider />
+        {/* <Divider />
         <Divider />
         <ScrollShadow className="w-full h-[24.5rem] flex flex-col gap-2" size={300} isEnabled={false}>
           <div className="py-5">
@@ -39,7 +39,7 @@ function ProgressCard({ onSubmit, data, handleTemplate,printResume}) {
           </Card>
           </div>
      
-        </ScrollShadow>
+        </ScrollShadow> */}
       </Flex>
     </div>
   );

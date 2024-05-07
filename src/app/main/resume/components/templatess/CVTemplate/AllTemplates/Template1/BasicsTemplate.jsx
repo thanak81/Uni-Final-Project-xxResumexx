@@ -21,7 +21,7 @@ function BasicsTemplate({ resumeData, resumeDataLocal }) {
       <div className="text-2xl font-bold pb-3 text-center">
         {resumeWatch.name ? resumeWatch?.name : resumeLocal?.name}
       </div>
-      <div className="text-justify px-5 pb-3">
+      <div className="text-justify flex justify-center px-5 pb-3">
         {resumeWatch.summary ? resumeWatch?.summary : resumeLocal?.summary}
       </div>
       <div>
