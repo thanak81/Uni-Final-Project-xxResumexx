@@ -65,14 +65,21 @@ function EditResume({ params }) {
   const data = [
     {
       id: 1,
-      name: "Template1",
+      name: "Resume Template1",
+      img: "/CV.png",
       template: <Template1Main />,
     },
     {
       id: 2,
-      name: "Template2",
+      name: "Resume Template2",
+      img: "/CV1.png",
       template: <Template2Main />,
     },
+    // {
+    //   id: 3,
+    //   name: "Template2",
+    //   template: <BasicsTemplate2 />,
+    // },
   ];
 
   function handleTemplate(template) {

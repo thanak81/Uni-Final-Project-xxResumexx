@@ -9,13 +9,16 @@ import EyeIcon from "@/app/components/icons/EyeIcon";
 import EyeCloseIcon from "@/app/components/icons/EyeCloseIcon";
 import FormComp from "./Form";
 import Template1Main from "../../components/templatess/CVTemplate/AllTemplates/Template1/Template1Main";
+import TabRightSide from "@/app/main-feature/components/TabRightSide";
 
 function FormProviderComp({id,mutation ,active,  coverLetterById, printRef , printCoverLetter }) {
   const router = useRouter();
+
   const data = [
     {
       id: 1,
-      name: "Template1",
+      name: "Cover Letter Template1",
+      img: "/CV.png",
       template: <Template1Main coverLetterById={coverLetterById}/>,
     },
   ];
@@ -84,11 +87,11 @@ function FormProviderComp({id,mutation ,active,  coverLetterById, printRef , pri
             {!activeRight ? <EyeIcon /> : <EyeCloseIcon />}
           </div>
           {activeRight && (
-              <ProgressCard
-            printResume={printCoverLetter}
-            onSubmit={methods.handleSubmit(onSubmit)}
-            data={data}
-            handleTemplate={handleTemplate}
+          <TabRightSide
+          printResume={printCoverLetter}
+          onSubmit={methods.handleSubmit(onSubmit)}
+          data={data}
+          handleTemplate={handleTemplate}
           />
           )}
         </div>

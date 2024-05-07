@@ -15,6 +15,7 @@ import EyeCloseIcon from "@/app/components/icons/EyeCloseIcon";
 import { createCoverLetter } from "@/app/services/coverLetterService";
 import Template1Main from "../components/templatess/CVTemplate/AllTemplates/Template1/Template1Main";
 import Template2Main from "../components/templatess/CVTemplate/AllTemplates/Template2/Template2Main";
+import TabRightSide from "@/app/main-feature/components/TabRightSide";
 
 function CreateCoverLetter() {
   const router = useRouter();
@@ -26,14 +27,16 @@ function CreateCoverLetter() {
   const data = [
     {
       id: 1,
-      name: "Template1",
+      name: "Cover Letter Template1",
+      img: "/CV.png",
       template: <Template1Main />,
     },
-    {
-      id: 2,
-      name: "Template2",
-      template: <Template2Main />,
-    },
+    // {
+    //   id: 2,
+    //   name: "Resume Template2",
+    //   img: "/CV.png",
+    //   template: <Template2Main />,
+    // },
     // {
     //   id: 3,
     //   name: "Template2",
@@ -120,8 +123,14 @@ function CreateCoverLetter() {
             {!activeRight ? <EyeIcon /> : <EyeCloseIcon />}
           </div>
           {activeRight && (
-            <ProgressCard
-              printResume={printResume}
+            // <ProgressCard
+            //   printResume={printResume}
+            //   onSubmit={methods.handleSubmit(onSubmit)}
+            //   data={data}
+            //   handleTemplate={handleTemplate}
+            // />
+            <TabRightSide
+                    printResume={printResume}
               onSubmit={methods.handleSubmit(onSubmit)}
               data={data}
               handleTemplate={handleTemplate}
