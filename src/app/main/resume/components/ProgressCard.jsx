@@ -1,12 +1,19 @@
 import DownloadIcon from "@/app/components/icons/DownloadIcon";
 import { Box, Button, Card, Flex, Text } from "@radix-ui/themes";
 import React from "react";
-import { Divider, ScrollShadow } from "@nextui-org/react";
+import { Divider, Input, ScrollShadow, Slider } from "@nextui-org/react";
 import TemplateSwitch from "../ui/TemplateSwitch";
 import { ScrollArea } from "@radix-ui/react-scroll-area";
 import SubmitDialogComp from "./SubmitDialogComp";
 
-function ProgressCard({ onSubmit, data, handleTemplate,printResume}) {
+function ProgressCard({
+  onSubmit,
+  printResume,
+  margin,
+  setMargin,
+  line,
+  setLine
+}) {
 
   return (
     <div className="overflow-y-auto h-full w-[18rem]">
@@ -22,7 +29,23 @@ function ProgressCard({ onSubmit, data, handleTemplate,printResume}) {
         {/* <Button onClick={onSubmit}>
           <DownloadIcon /> Submit Resume
         </Button> */}
-        <SubmitDialogComp onSubmit={onSubmit} printResume={printResume}/>
+        <SubmitDialogComp onSubmit={onSubmit} printResume={printResume} />
+        <Slider
+          label="Bottom Padding"
+          step={5}
+          value={margin}
+          maxValue={20}
+          onChange={setMargin}
+          className="max-w-md"
+        />
+        <Slider
+          label="Line Height"
+          step={10}
+          value={line}
+          maxValue={50}
+          onChange={setLine}
+          className="max-w-md"
+        />
         {/* <Divider />
         <Divider />
         <ScrollShadow className="w-full h-[24.5rem] flex flex-col gap-2" size={300} isEnabled={false}>

@@ -1,6 +1,7 @@
+import { cn } from "@/util/cn";
 import React from "react";
-import { useFormContext, useWatch } from "react-hook-form";
-function BasicsTemplate({ resumeData, resumeDataLocal }) {
+
+function BasicsTemplate({ resumeData, margin}) {
   let resumeLocal = {
     name: "Ronaldo JR",
     phone: "0123456789",
@@ -9,23 +10,18 @@ function BasicsTemplate({ resumeData, resumeDataLocal }) {
     email : "ronaldojr@gmail.com"
   };
 
-  // if (resumeDataLocal) {
-  //   resumeLocal = resumeDataLocal?.data.basics;
-  // }
-
-  console.log(resumeLocal);
   const resumeWatch = resumeData.data.basics;
-
+  console.log("basic Margin", margin)
   return (
-    <div className="text-black pt-10 h-full">
-      <div className="text-2xl font-bold pb-3 text-center">
+    <div className={cn(`text-black pt-10 h-full`,margin)}>
+      <div className="text-2xl font-bold  text-center">
         {resumeWatch.name ? resumeWatch?.name : resumeLocal?.name}
       </div>
-      <div className="text-justify flex justify-center px-5 pb-3">
+      <div className="text-center text-sm">
         {resumeWatch.summary ? resumeWatch?.summary : resumeLocal?.summary}
       </div>
       <div>
-        <div className="text-center px-5 pb-5 text-sm">
+        <div className="text-center  text-sm">
           <span>
             {" "}
             {resumeWatch.phone ? resumeWatch?.phone : resumeLocal?.phone}

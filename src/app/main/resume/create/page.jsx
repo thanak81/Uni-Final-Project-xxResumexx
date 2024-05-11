@@ -1,19 +1,22 @@
 "use client";
 import React, { useRef, useState } from "react";
 import Form from "./Form";
-import ProgressCard from "../components/ProgressCard";
-import { FormProvider, useForm, useWatch } from "react-hook-form";
+import { FormProvider, useForm} from "react-hook-form";
 import Template1Main from "../components/templatess/CVTemplate/AllTemplates/Template1/Template1Main";
 import { useReactToPrint } from "react-to-print";
-import { useActive, useActiveRight } from "../state/GlobalState";
+import {
+  useActive,
+  useActiveRight,
+  useLineHeight,
+  useMargin,
+  usePadding,
+} from "../state/GlobalState";
 import Template2Main from "../components/templatess/CVTemplate/AllTemplates/Template2/Template2Main";
 import { createResume } from "@/app/services/resumeService";
-import { usePathname, useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
-import TabComp from "@/app/main-feature/components/TabComp";
 import EyeIcon from "@/app/components/icons/EyeIcon";
 import EyeCloseIcon from "@/app/components/icons/EyeCloseIcon";
-import BardComp from "@/app/components/BardComp";
 import TabRightSide from "@/app/main-feature/components/TabRightSide";
 
 function CreateForm() {
@@ -23,6 +26,11 @@ function CreateForm() {
     content: () => printRef.current,
     documentTitle: "Resume",
   });
+
+  const setValue = usePadding((state) => state.setValue);
+  const value = usePadding((state) => state.value);
+  const line = useLineHeight((state) => state.value);
+  const setLine = useLineHeight((state) => state.setValue);
   const data = [
     {
       id: 1,
@@ -136,8 +144,11 @@ function CreateForm() {
             {!activeRight ? <EyeIcon /> : <EyeCloseIcon />}
           </div>
           {activeRight && (
-         
-            <TabRightSide 
+            <TabRightSide
+              line={line}
+              setLine={setLine}
+              setMargin={setValue}
+              margin={value}
               printResume={printResume}
               onSubmit={methods.handleSubmit(onSubmit)}
               data={data}

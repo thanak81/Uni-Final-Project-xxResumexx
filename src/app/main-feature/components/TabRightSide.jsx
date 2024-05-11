@@ -5,12 +5,25 @@ import ProgressCard from "@/app/main/resume/components/ProgressCard";
 import { Card, Tab, Tabs } from "@nextui-org/react";
 import Image from "next/image";
 import React from "react";
-function TabRightSide({ onSubmit, data, handleTemplate, printResume }) {
+function TabRightSide({
+  onSubmit,
+  data,
+  handleTemplate,
+  printResume,
+  margin,
+  setMargin,
+  line,
+  setLine
+}) {
   return (
     <div>
       <Tabs size="sm" aria-label="Options" color="primary">
         <Tab key="progress_card" title="Progress Card">
           <ProgressCard
+            line = {line}
+            setLine={setLine}
+            setMargin={setMargin}
+            margin={margin}
             printResume={printResume}
             onSubmit={onSubmit}
             data={data}
@@ -29,7 +42,7 @@ function TabRightSide({ onSubmit, data, handleTemplate, printResume }) {
               {data.map((dat) => (
                 <Card radius="sm" isHoverable key={dat.id}>
                   <Image
-                  onClick={() => handleTemplate(data[dat.id - 1])}
+                    onClick={() => handleTemplate(data[dat.id - 1])}
                     src={dat.img}
                     className="object-cover cursor-pointer"
                     alt={dat.name}
