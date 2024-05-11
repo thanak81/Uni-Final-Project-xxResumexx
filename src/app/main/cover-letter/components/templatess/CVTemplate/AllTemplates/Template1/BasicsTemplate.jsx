@@ -17,7 +17,7 @@ function BasicsTemplate({ coverData}) {
 
   return (
     <>
-      <div className="text-black pt-5 pb-5 h-full">
+      <div className="text-black pt-5  pb-5 h-full">
         <div className="flex justify-between items-center">
           <div className="text-3xl font-semibold text-left w-[25rem]">
             {coverWatch.name ? coverWatch?.name : coverLocal?.name}

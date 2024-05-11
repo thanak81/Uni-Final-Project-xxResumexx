@@ -39,7 +39,7 @@ function FormComp({ register, selectedTemplate, printRef , autoSaveData ,  activ
   }, [pathName, autoSavedResumeData]);
 
   return (
-    <Flex gap="3" className="w-full h-full ">
+    <Flex gap="3" className="w-full h-full transition-all">
       <ScrollShadow
         size={300}
         isEnabled={false}

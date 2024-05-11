@@ -15,6 +15,7 @@ import ProfileForm from "./CoverLetterForm/ProfileForm";
 import EmployeeForm from "./CoverLetterForm/EmployeeForm";
 import LetterDetailForm from "./CoverLetterForm/LetterDetailsForm";
 import ProgressCard from "../../resume/components/ProgressCard";
+import ResumeHeader from "../../resume/create/ResumeForm/ResumeHeader";
 
 function FormComp({
   register,
@@ -52,7 +53,7 @@ function FormComp({
         className={`h-[75%] 
         ${active && activeRight ? "w-[100%]" : "w-[90vh]"}
         
-        flex flex-col gap-2 transition-all px-5 w-full`}
+        flex flex-col gap-2 transition-all pr-5 w-full`}
       >
         <ProfileForm autoSaveData={autoSaveData}/>
         <EmployeeForm autoSaveData={autoSaveData}/>
@@ -73,7 +74,7 @@ function FormComp({
           />
         )}
       </div>
-      <div className="self-center lg:self-start mt-5 "></div>
+      {/* <div className="self-center lg:self-start mt-5 "></div> */}
     </Flex>
   );
 }

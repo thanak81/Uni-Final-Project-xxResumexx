@@ -15,15 +15,15 @@ function Template1Main({coverLetterById}) {
     autoSaveData = JSON.parse(localStorage.getItem("autoSavedCoverLetterData"));
   }
   return (
-    <>
-       <div className="p-5 w-full">
+    <div>
+       <div className="p-5 w-full ">
       <BasicsTemplate coverData={coverData} />
       <CoverLetterTemplate coverData={coverData} autoSaveData={autoSaveData}  coverLetterById={coverLetterById}/>
       {/* <ExperienceTemplate coverData={coverData}  resumeDataLocal={resumeDataLocal}/> */}
     </div>
           <div className="my-5 w-full border border-black/25"></div>
 
-    </>
+    </div>
  
   );
 }
