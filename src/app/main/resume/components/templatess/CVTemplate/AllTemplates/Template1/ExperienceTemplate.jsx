@@ -1,7 +1,8 @@
 import React from "react";
 import parse from "html-react-parser";
+import { cn } from "@/util/cn";
 
-function ExperienceTemplate({ resumeData }) {
+function ExperienceTemplate({ resumeData , gap }) {
   console.log("workdata", resumeData);
   const data = {
     work: [
@@ -29,7 +30,7 @@ function ExperienceTemplate({ resumeData }) {
           <div className=" font-bold text-[#005685] border-y border-black/25 p-2">
             Experience
           </div>
-          <div className="py-2 px-5 flex flex-col gap-3 text-black">
+          <div className={cn("p-5 flex flex-col gap-3 text-black",gap)}>
             {resumeData.data.work.map((wo) => (
               <div key={wo.id}>
                 <div className="flex justify-between">
@@ -61,7 +62,7 @@ function ExperienceTemplate({ resumeData }) {
                       <li>Create AR Ar Game</li>
                       <li>Create AR Ar Game</li>
                     </ul> */}
-                  <div className="w-[40rem] prose text-black">
+                  <div className="w-[40rem] prose text-black text-sm">
                     {wo?.summary && parse(wo.summary)}
                   </div>{" "}
                 </div>

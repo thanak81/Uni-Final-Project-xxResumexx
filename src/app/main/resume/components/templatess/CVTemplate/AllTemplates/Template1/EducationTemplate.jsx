@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import parse from "html-react-parser";
+import { cn } from "@/util/cn";
 
-function EducationTemplate({ resumeData }) {
+function EducationTemplate({ resumeData , gap }) {
   const data = {
     education: [
       {
@@ -21,6 +22,8 @@ function EducationTemplate({ resumeData }) {
   } else {
     checked = false;
   }
+
+
   return (
     <>
       {resumeData?.data.education?.length > 0 && checked && (
@@ -28,25 +31,25 @@ function EducationTemplate({ resumeData }) {
           <div className=" font-bold text-[#005685] border-y border-black/25 p-2">
             Education
           </div>
-          <div className="p-5 flex flex-col gap-5 text-black">
+          <div className={cn("p-5 flex flex-col text-black",gap)}>
             {resumeData?.data.education.map((edu) => (
               <div key={edu.id} className="">
-                <div className="flex justify-between">
-                  <div className="font-bold w-[40rem]">{edu.institution}</div>
-                  <div>
-                    <span>{edu.startYear}</span> -{" "}
-                    {edu.present ? (
-                      <span>Present</span>
-                    ) : (
-                      <span>{edu.endYear}</span>
-                    )}
+                  <div className="flex justify-between">
+                    <div className="font-bold w-[40rem]">{edu.institution}</div>
+                    <div>
+                      <span>{edu.startYear}</span> -{" "}
+                      {edu.present ? (
+                        <span>Present</span>
+                      ) : (
+                        <span>{edu.endYear}</span>
+                      )}
+                    </div>
                   </div>
-                </div>
                 <div className="text-sm flex flex-col gap-2 text-[#56606A]">
                   <div className="mt-2 font-semibold w-[40rem]">
                     {edu.level}, {edu.area}
                   </div>
-                  <div className="w-[40rem] prose">
+                  <div className="w-[40rem] prose text-sm text-black list-disc">
                     {" "}
                     {edu?.summary && parse(edu.summary)}
                   </div>

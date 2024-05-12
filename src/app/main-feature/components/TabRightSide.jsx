@@ -5,29 +5,16 @@ import ProgressCard from "@/app/main/resume/components/ProgressCard";
 import { Card, Tab, Tabs } from "@nextui-org/react";
 import Image from "next/image";
 import React from "react";
-function TabRightSide({
-  onSubmit,
-  data,
-  handleTemplate,
-  printResume,
-  margin,
-  setMargin,
-  line,
-  setLine
-}) {
+function TabRightSide({ onSubmit, data, handleTemplate, printResume,styleSwitch }) {
   return (
     <div>
       <Tabs size="sm" aria-label="Options" color="primary">
         <Tab key="progress_card" title="Progress Card">
           <ProgressCard
-            line = {line}
-            setLine={setLine}
-            setMargin={setMargin}
-            margin={margin}
             printResume={printResume}
             onSubmit={onSubmit}
-            data={data}
             handleTemplate={handleTemplate}
+            styleSwitch={styleSwitch}
           />
         </Tab>
         <Tab key="ai" title="AI">

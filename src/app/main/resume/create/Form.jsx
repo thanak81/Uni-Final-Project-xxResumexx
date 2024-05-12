@@ -46,10 +46,10 @@ function FormComp({ register, selectedTemplate, printRef , autoSaveData ,  activ
         className={`h-[75%] 
         ${active && activeRight ? "w-[100%]" : "w-[90vh]"}
         
-        flex flex-col gap-2 transition-all px-5 w-full`}
+        flex flex-col gap-2 transition-all pr-5  w-full`}
       >
-        <ResumeHeader />
-        <PersonalForm active={active} register={register} autoSaveData={autoSaveData}/>
+        <ResumeHeader /> 
+         <PersonalForm active={active} register={register} autoSaveData={autoSaveData}/> 
         <ProfileForm autoSaveData={autoSaveData}/>
         <EducationForm autoSaveData={autoSaveData}/>
         <WorkForm autoSaveData={autoSaveData}/>

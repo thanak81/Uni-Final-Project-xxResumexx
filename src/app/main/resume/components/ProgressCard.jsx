@@ -1,19 +1,16 @@
 import DownloadIcon from "@/app/components/icons/DownloadIcon";
-import { Box, Button, Card, Flex, Text } from "@radix-ui/themes";
-import React from "react";
+import { Box, Button, Card, Flex, Heading, Text } from "@radix-ui/themes";
+import React, { useEffect, useMemo, useState } from "react";
 import { Divider, Input, ScrollShadow, Slider } from "@nextui-org/react";
 import TemplateSwitch from "../ui/TemplateSwitch";
 import { ScrollArea } from "@radix-ui/react-scroll-area";
 import SubmitDialogComp from "./SubmitDialogComp";
+import { useGap, useLineHeight, usePadding } from "../state/GlobalState";
+import Template1Styling from "./templatess/CVTemplate/AllTemplates/TemplateStyling/Template1Styling";
+import Template2Styling from "./templatess/CVTemplate/AllTemplates/TemplateStyling/Template2Styling";
+import clsx from "clsx";
 
-function ProgressCard({
-  onSubmit,
-  printResume,
-  margin,
-  setMargin,
-  line,
-  setLine
-}) {
+function ProgressCard({ onSubmit, printResume, styleSwitch }) {
 
   return (
     <div className="overflow-y-auto h-full w-[18rem]">
@@ -30,39 +27,22 @@ function ProgressCard({
           <DownloadIcon /> Submit Resume
         </Button> */}
         <SubmitDialogComp onSubmit={onSubmit} printResume={printResume} />
-        <Slider
-          label="Bottom Padding"
-          step={5}
-          value={margin}
-          maxValue={20}
-          onChange={setMargin}
-          className="max-w-md"
-        />
-        <Slider
-          label="Line Height"
-          step={10}
-          value={line}
-          maxValue={50}
-          onChange={setLine}
-          className="max-w-md"
-        />
-        {/* <Divider />
-        <Divider />
-        <ScrollShadow className="w-full h-[24.5rem] flex flex-col gap-2" size={300} isEnabled={false}>
-          <div className="py-5">
-          <Card>
-            <Text>Choose Templates</Text>
-          </Card>
-          <Card>
-            <Card>
-              <div>
-                <TemplateSwitch data={data} handleTemplate={handleTemplate} />
-              </div>
-            </Card>
-          </Card>
+        <Divider className="" />
+        <ScrollShadow
+        hideScrollBar
+          className="w-full h-[44%] pb-2  flex flex-col gap-2 overflow-x-hidden"
+          size={300}
+          isEnabled={false}
+        >
+          <div className="">
+            <Heading as="h4" color="green">
+              {styleSwitch.title}
+            </Heading>
+            <div className="">
+              {styleSwitch.styling}
+            </div>
           </div>
-     
-        </ScrollShadow> */}
+        </ScrollShadow>
       </Flex>
     </div>
   );

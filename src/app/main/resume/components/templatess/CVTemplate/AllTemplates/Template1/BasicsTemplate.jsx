@@ -1,7 +1,7 @@
 import { cn } from "@/util/cn";
 import React from "react";
 
-function BasicsTemplate({ resumeData, margin}) {
+function BasicsTemplate({ resumeData, margin, line}) {
   let resumeLocal = {
     name: "Ronaldo JR",
     phone: "0123456789",
@@ -13,11 +13,12 @@ function BasicsTemplate({ resumeData, margin}) {
   const resumeWatch = resumeData.data.basics;
   console.log("basic Margin", margin)
   return (
-    <div className={cn(`text-black pt-10 h-full`,margin)}>
+    <div className={cn(`text-black pt-10 h-full`)}>
       <div className="text-2xl font-bold  text-center">
         {resumeWatch.name ? resumeWatch?.name : resumeLocal?.name}
       </div>
-      <div className="text-center text-sm">
+      <div className={cn(margin)}>
+      <div className={cn("text-center px-5 text-sm ",line)}>
         {resumeWatch.summary ? resumeWatch?.summary : resumeLocal?.summary}
       </div>
       <div>
@@ -26,7 +27,7 @@ function BasicsTemplate({ resumeData, margin}) {
             {" "}
             {resumeWatch.phone ? resumeWatch?.phone : resumeLocal?.phone}
           </span>
-          <span>|</span>
+          <span> | </span>
           <span>
             {" "}
             {resumeWatch.email ? resumeWatch?.email : resumeLocal?.email}
@@ -39,6 +40,8 @@ function BasicsTemplate({ resumeData, margin}) {
           </div>
         </div>
       </div>
+      </div>
+  
     </div>
   );
 }

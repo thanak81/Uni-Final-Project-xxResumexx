@@ -24,7 +24,7 @@ const Tiptap = ({ index, value, data }) => {
         class:
           //Width size is fixed becouse the default width is too big
           // `prose px-5 text-black prose-sm prose-zinc min-h-[500px]  max-w-[100rem] rounded  border border-[#71717A] overflow-y-scroll dark:prose-invert focus:border-white focus:outline-none [&_*]:my-2`,
-          `prose  text-black prose-sm prose-zinc min-h-[500px]  max-w-[100rem] rounded  border-none overflow-y-scroll dark:prose-invert focus:border-white focus:outline-none [&_*]:my-2`,
+          `prose overflow-y-hidden text-black prose-sm prose-zinc min-h-[500px]  max-w-[100rem] rounded  border-none overflow-y-scroll dark:prose-invert focus:border-white focus:outline-none [&_*]:my-2`,
 
         // "prose rounded-md  max-w-96 text-white border list-desc  min-h-[150px]  text-white border border-[#71717A] text-sm focus:outline-none focus:border-white",
       },

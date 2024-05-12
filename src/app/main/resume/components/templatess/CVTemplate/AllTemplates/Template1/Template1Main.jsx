@@ -5,37 +5,38 @@ import ExperienceTemplate from "./ExperienceTemplate";
 import EducationTemplate from "./EducationTemplate";
 import { useFormContext, useWatch } from "react-hook-form";
 import SkillTemplate from "./SkillTemplate";
-import { useReactToPrint } from "react-to-print";
 import LanguageTemplate from "./LanguageTemplate";
 import ProfileTemplate from "./ProfileTemplate";
-import { Slider } from "@nextui-org/react";
 import {
+  useGap,
   useLineHeight,
   usePadding,
 } from "@/app/main/resume/state/GlobalState";
 
 function Template1Main() {
-  const [margin, setMargin] = useState("pb-[0px]");
+  const [margin, setMargin] = useState("py-[0px]");
   const [line, setLine] = useState("leading-normal");
   const value = usePadding((state) => state.value);
   const lineValue = useLineHeight((state) => state.value);
+  const [gap,setGap] = useState("gap-5");
+  const gapValue = useGap((state)=> state.value)
 
   useEffect(() => {
     switch (value) {
       case 5:
-        setMargin("pb-[5px]");
+        setMargin("py-[5px]");
         break;
       case 10:
-        setMargin("pb-[10px]");
+        setMargin("py-[10px]");
         break;
       case 15:
-        setMargin("pb-[15px]");
+        setMargin("py-[15px]");
         break;
       case 20:
-        setMargin("pb-[20px]");
+        setMargin("py-[20px]");
         break;
       default:
-        setMargin("pb-[0px]");
+        setMargin("py-[0px]");
     }
     switch (lineValue) {
       case 10:
@@ -56,7 +57,23 @@ function Template1Main() {
       default:
         setLine("leading-normal");
     }
-  }, [value, lineValue]);
+    switch (gapValue) {
+      case 0:
+        setGap("gap-[4px]")
+        break;
+      case 2:
+        setGap("gap-[8px]");
+        break;
+      case 4:
+        setGap("gap-[16px]");
+        break;
+      case 6:
+        setGap("gap-[32px]");
+        break;
+      default:
+        setGap("gap-[32px]");
+    }
+  }, [value, lineValue,gapValue]);
 
   const { control } = useFormContext();
   const resumeData = useWatch({
@@ -65,11 +82,11 @@ function Template1Main() {
 
   return (
     <div>
-      <BasicsTemplate  resumeData={resumeData} margin={margin}/>
+      <BasicsTemplate  resumeData={resumeData} margin={margin} line={line}/>
       <ProfileTemplate resumeData={resumeData} line={line} />
-      <ExperienceTemplate resumeData={resumeData} />
-      <EducationTemplate resumeData={resumeData} />
-      <SkillTemplate resumeData={resumeData} />
+      <ExperienceTemplate resumeData={resumeData} gap={gap}/>
+      <EducationTemplate resumeData={resumeData} gap={gap} />
+      <SkillTemplate resumeData={resumeData}/>
       <LanguageTemplate resumeData={resumeData} />
     </div>
   );

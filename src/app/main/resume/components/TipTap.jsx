@@ -25,7 +25,7 @@ const Tiptap = ({ index, value, data }) => {
         class: 
         // `prose px-5 prose-sm prose-zinc min-h-[150px]  rounded  border border-[#71717A] overflow-y-scroll dark:prose-invert focus:border-white focus:outline-none [&_*]:my-2`,
         //Width size is fixed becouse the default width is too big
-        `prose px-5 prose-sm prose-zinc min-h-[150px] max-h-[300px] rounded w-[350px] border border-[#71717A] overflow-y-scroll dark:prose-invert focus:border-white focus:outline-none [&_*]:my-2`,
+        `prose px-5 prose-sm prose-zinc min-h-[150px] max-h-[300px] rounded  border border-[#71717A] overflow-y-scroll dark:prose-invert focus:border-white focus:outline-none [&_*]:my-2`,
         // "prose rounded-md min-w-full max-w-96 text-white border list-desc  min-h-[150px]  text-white border border-[#71717A] text-sm focus:outline-none focus:border-white",
       },
     },
@@ -36,7 +36,7 @@ const Tiptap = ({ index, value, data }) => {
   });
 
   return (
-    <div className="mx-auto">
+    <div className="w-full">
       <ToolBar editor={editor} />
       <EditorContent editor={editor} />
     </div>

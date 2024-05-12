@@ -1,5 +1,5 @@
 "use client";
-import React, { useRef, useState } from "react";
+import React, { useEffect, useMemo, useRef, useState } from "react";
 import Form from "./Form";
 import ProgressCard from "../../resume/components/ProgressCard";
 import { FormProvider, useForm, useWatch } from "react-hook-form";
@@ -48,7 +48,33 @@ function CreateCoverLetter() {
     setSelectedTemplate(template);
   }
   const [selectedTemplate, setSelectedTemplate] = useState(data[0]);
+  const stylingSwitcherData = useMemo(
+    () => [
+      {
+        id: 1,
+        title: "Template 1 Styling",
+        styling: "Coming Soon",
+      },
+      {
+        id: 2,
+        title: "Template 2 Styling",
+        styling: "Coming Soon",
+      },
+    ],
+    []
+  );
 
+  const [styleSwitch, setStylingSwitch] = useState(stylingSwitcherData[0]);
+  useEffect(() => {
+    switch (selectedTemplate.id) {
+      case 1:
+        setStylingSwitch(stylingSwitcherData[0]);
+        break;
+      case 2:
+        setStylingSwitch(stylingSwitcherData[1]);
+        break;
+    }
+  }, [selectedTemplate, stylingSwitcherData]);
   let autoSaveData;
   if (typeof window !== "undefined") {
     autoSaveData = JSON.parse(localStorage.getItem("autoSavedCoverLetterData"));
@@ -123,14 +149,9 @@ function CreateCoverLetter() {
             {!activeRight ? <EyeIcon /> : <EyeCloseIcon />}
           </div>
           {activeRight && (
-            // <ProgressCard
-            //   printResume={printResume}
-            //   onSubmit={methods.handleSubmit(onSubmit)}
-            //   data={data}
-            //   handleTemplate={handleTemplate}
-            // />
             <TabRightSide
-                    printResume={printResume}
+            styleSwitch={styleSwitch}
+              printResume={printResume}
               onSubmit={methods.handleSubmit(onSubmit)}
               data={data}
               handleTemplate={handleTemplate}

@@ -35,3 +35,8 @@ export const useLineHeight = create((set) => ({
   value: 30,
   setValue: (newValue) => set({ value: newValue }),
 }));
+
+export const useGap = create((set)=> ({
+  value : 5,
+  setValue: (newValue)=> set({value: newValue})
+}))

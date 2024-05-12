@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useMemo, useRef, useState } from "react";
 // import Form from "./Form";
 // import { Form } from "react-hook-form";
 import ProgressCard from "../../components/ProgressCard";
@@ -26,6 +26,8 @@ import FormProviderComp from "./FormProvider";
 import Link from "next/link";
 import { Button, Heading } from "@radix-ui/themes";
 import { Spinner } from "@nextui-org/react";
+import Template1Styling from "../../components/templatess/CVTemplate/AllTemplates/TemplateStyling/Template1Styling";
+import Template2Styling from "../../components/templatess/CVTemplate/AllTemplates/TemplateStyling/Template2Styling";
 
 function EditResume({ params }) {
   const id = params.id;
@@ -75,17 +77,41 @@ function EditResume({ params }) {
       img: "/CV1.png",
       template: <Template2Main />,
     },
-    // {
-    //   id: 3,
-    //   name: "Template2",
-    //   template: <BasicsTemplate2 />,
-    // },
   ];
+
+
+  const stylingSwitcherData = useMemo(
+    () => [
+      {
+        id: 1,
+        title: "Template 1 Styling",
+        styling: <Template1Styling />,
+      },
+      {
+        id: 2,
+        title: "Template 2 Styling",
+        styling: <Template2Styling />,
+      },
+    ],
+    []
+  );
+  const [selectedTemplate, setSelectedTemplate] = useState(data[0]);
+
+  const [styleSwitch, setStylingSwitch] = useState(stylingSwitcherData[0]);
+  useEffect(() => {
+    switch (selectedTemplate.id) {
+      case 1:
+        setStylingSwitch(stylingSwitcherData[0]);
+        break;
+      case 2:
+        setStylingSwitch(stylingSwitcherData[1]);
+        break;
+    }
+  }, [selectedTemplate, stylingSwitcherData]);
 
   function handleTemplate(template) {
     setSelectedTemplate(template);
   }
-  const [selectedTemplate, setSelectedTemplate] = useState(data[0]);
 
   if (isLoading) {
     return (
@@ -108,6 +134,7 @@ function EditResume({ params }) {
             mutation={mutation}
             data={data}
             handleTemplate={handleTemplate}
+            styleSwitch={styleSwitch}
             selectedTemplate={selectedTemplate}
             resumeDataById={resumeDataById}
             printResume={printResume}

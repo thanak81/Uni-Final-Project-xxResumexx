@@ -1,7 +1,7 @@
 "use client";
-import React, { useRef, useState } from "react";
+import React, { useEffect, useMemo, useRef, useState } from "react";
 import Form from "./Form";
-import { FormProvider, useForm} from "react-hook-form";
+import { FormProvider, useForm } from "react-hook-form";
 import Template1Main from "../components/templatess/CVTemplate/AllTemplates/Template1/Template1Main";
 import { useReactToPrint } from "react-to-print";
 import {
@@ -18,6 +18,8 @@ import { toast } from "react-toastify";
 import EyeIcon from "@/app/components/icons/EyeIcon";
 import EyeCloseIcon from "@/app/components/icons/EyeCloseIcon";
 import TabRightSide from "@/app/main-feature/components/TabRightSide";
+import Template1Styling from "../components/templatess/CVTemplate/AllTemplates/TemplateStyling/Template1Styling";
+import Template2Styling from "../components/templatess/CVTemplate/AllTemplates/TemplateStyling/Template2Styling";
 
 function CreateForm() {
   const router = useRouter();
@@ -27,10 +29,6 @@ function CreateForm() {
     documentTitle: "Resume",
   });
 
-  const setValue = usePadding((state) => state.setValue);
-  const value = usePadding((state) => state.value);
-  const line = useLineHeight((state) => state.value);
-  const setLine = useLineHeight((state) => state.setValue);
   const data = [
     {
       id: 1,
@@ -56,6 +54,33 @@ function CreateForm() {
   }
   const [selectedTemplate, setSelectedTemplate] = useState(data[0]);
 
+  const stylingSwitcherData = useMemo(
+    () => [
+      {
+        id: 1,
+        title: "Template 1 Styling",
+        styling: <Template1Styling />,
+      },
+      {
+        id: 2,
+        title: "Template 2 Styling",
+        styling: <Template2Styling />,
+      },
+    ],
+    []
+  );
+
+  const [styleSwitch, setStylingSwitch] = useState(stylingSwitcherData[0]);
+  useEffect(() => {
+    switch (selectedTemplate.id) {
+      case 1:
+        setStylingSwitch(stylingSwitcherData[0]);
+        break;
+      case 2:
+        setStylingSwitch(stylingSwitcherData[1]);
+        break;
+    }
+  }, [selectedTemplate, stylingSwitcherData]);
   let autoSaveData;
   if (typeof window !== "undefined") {
     autoSaveData = JSON.parse(localStorage.getItem("autoSavedResumeData"));
@@ -145,10 +170,7 @@ function CreateForm() {
           </div>
           {activeRight && (
             <TabRightSide
-              line={line}
-              setLine={setLine}
-              setMargin={setValue}
-              margin={value}
+              styleSwitch={styleSwitch}
               printResume={printResume}
               onSubmit={methods.handleSubmit(onSubmit)}
               data={data}
