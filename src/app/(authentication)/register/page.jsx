@@ -5,7 +5,6 @@ import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 import { useRouter } from "next/navigation";
-import InputComp from "@/app/resume/components/InputComp";
 import { Button } from "@radix-ui/themes";
 import { useForm } from "react-hook-form";
 import { Input } from "@nextui-org/react";
