@@ -44,11 +44,11 @@ function EducationForm({ autoSaveData }) {
     remove(index);
   }
   return (
-    <div className="rounded-xl flex flex-col gap-2 justify-center items-center shadow-2xl">
+    <div className="rounded-xl flex flex-col gap-2 justify-center items-center ">
       <Accordion>
         <AccordionItem
           title={
-            <Heading className="self-start text-white" as="h3">
+            <Heading className="self-start" as="h3">
               Education
             </Heading>
           }

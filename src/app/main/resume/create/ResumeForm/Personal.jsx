@@ -32,7 +32,7 @@ function PersonalForm({ active  ,  autoSaveData}) {
   } = useFormContext();
 
   return (
-    <div className=" rounded-xl flex flex-col gap-2 justify-center items-center shadow-2xl">
+    <div className=" rounded-xl flex flex-col gap-2 justify-center items-center ">
       <Accordion>
         <AccordionItem
           title={
@@ -51,9 +51,10 @@ function PersonalForm({ active  ,  autoSaveData}) {
       <div className={`flex ${active ? "flex-col" : ""} gap-2 w-full`}>
         <Input
           label="Full name"
-          radius="sm"
+          // radius="sm"
           key="inside"
-          variant="bordered"
+          // variant="bordered"
+          className="border-2 border-blue-500 rounded-xl"
           labelPlacement="inside"
           defaultValue={autoSaveData?.data.basics.name? autoSaveData.data.basics.name : ""}
           // isInvalid= {error ?  true : false}
@@ -62,9 +63,10 @@ function PersonalForm({ active  ,  autoSaveData}) {
         />
         <Input
           label="Email"
-          radius="sm"
+          // radius="sm"
           key="inside"
-          variant="bordered"
+          className="border-2 border-blue-500 rounded-xl"
+          // variant="bordered"
           labelPlacement="inside"
           defaultValue={autoSaveData?.data.basics.email? autoSaveData.data.basics.email : ""}
           // isInvalid= {error ?  true : false}
@@ -75,9 +77,10 @@ function PersonalForm({ active  ,  autoSaveData}) {
       <div className="w-full">
         <Input
           label="Address"
-          radius="sm"
+          // radius="sm"
           key="inside"
-          variant="bordered"
+          className="border-2 border-blue-500 rounded-xl"
+          // variant="bordered"
           labelPlacement="inside"
           defaultValue={autoSaveData?.data.basics.address? autoSaveData.data.basics.address : ""}
           // isInvalid= {error ?  true : false}
@@ -88,10 +91,11 @@ function PersonalForm({ active  ,  autoSaveData}) {
       <div className="w-full">
         <Input
           label="Phone Number"
-          radius="sm"
+          // radius="sm"
           key="inside"
-          variant="bordered"
+          // variant="bordered"
           labelPlacement="inside"
+          className="border-2 border-blue-500 rounded-xl"
           // isInvalid= {error ?  true : false}
           //   errorMessage={Object.keys(errors).length ===0 ?"" : error }
           defaultValue={autoSaveData?.data.basics.phone? autoSaveData.data.basics.phone : ""}
@@ -100,7 +104,8 @@ function PersonalForm({ active  ,  autoSaveData}) {
       </div>
       <div className="w-full">
         <Textarea
-          variant="bordered"
+          className="border-2 border-blue-500 rounded-xl"
+          // variant="bordered"
           label="Description"
           defaultValue={autoSaveData?.data.basics.summary? autoSaveData.data.basics.summary : ""}
           {...register("data.basics.summary")}

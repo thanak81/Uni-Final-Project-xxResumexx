@@ -12,7 +12,7 @@ function CoverLetterTemplate({ coverData, autoSaveData, coverLetterById }) {
     check = true;
   }
   return (
-    <div className="prose text-black list-disc text-sm max-w-full text-justify break-words">
+    <div className=" text-sm max-w-full text-justify break-words">
       <div className="font-bold text-black mb-5">{coverWatch.profile.date}</div>
       <div className="font-bold text-black mb-5">
         {coverWatch.employee.company}

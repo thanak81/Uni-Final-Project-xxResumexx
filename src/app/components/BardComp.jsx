@@ -29,7 +29,7 @@ function BardComp() {
       />
       <div className="self-end justify-end">
         <Button className="cursor-pointer" type="submit">
-          Ask Bard
+          Ask
         </Button>
       </div>
       {completion && (
@@ -37,7 +37,7 @@ function BardComp() {
           <small>Click on text to copy</small>
 
           <div
-            className="rounded-xl text-sm bg-white h-[21rem] text-black p-2 text-justify overflow-y-auto"
+            className="rounded-xl text-sm bg-[#212121] h-[21rem] font-semibold text-white p-2  overflow-y-auto"
             onClick={() => {
               navigator.clipboard.writeText(completion);
             }}

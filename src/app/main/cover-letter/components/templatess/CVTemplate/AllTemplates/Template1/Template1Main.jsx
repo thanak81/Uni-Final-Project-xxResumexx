@@ -16,7 +16,7 @@ function Template1Main({coverLetterById}) {
   }
   return (
     <div>
-       <div className="p-5 w-full ">
+       <div className="p-5 w-full">
       <BasicsTemplate coverData={coverData} />
       <CoverLetterTemplate coverData={coverData} autoSaveData={autoSaveData}  coverLetterById={coverLetterById}/>
       {/* <ExperienceTemplate coverData={coverData}  resumeDataLocal={resumeDataLocal}/> */}

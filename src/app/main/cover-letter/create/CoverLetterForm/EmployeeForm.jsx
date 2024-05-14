@@ -32,7 +32,7 @@ function EmployeeForm({ active  ,  autoSaveData}) {
   } = useFormContext();
 
   return (
-    <div className=" rounded-xl flex flex-col gap-2 justify-center items-center shadow-2xl">
+    <div className=" rounded-xl flex flex-col gap-2 justify-center items-center">
       <Accordion>
         <AccordionItem
           title={
@@ -51,10 +51,12 @@ function EmployeeForm({ active  ,  autoSaveData}) {
       <div className={`flex ${active ? "flex-col" : ""} gap-2 w-full`}>
         <Input
           label="Company Name"
-          radius="sm"
+          // radius="sm"
           key="inside"
-          variant="bordered"
+          // variant="bordered"
           labelPlacement="inside"
+          className="border-2 border-blue-500 rounded-xl"
+
           defaultValue={autoSaveData?.data.employee.company? autoSaveData.data.employee.company : ""}
           // isInvalid= {error ?  true : false}
           //   errorMessage={Object.keys(errors).length ===0 ?"" : error }
@@ -62,9 +64,11 @@ function EmployeeForm({ active  ,  autoSaveData}) {
         />
         <Input
           label="Hiring Manager Name"
-          radius="sm"
+          // radius="sm"
           key="inside"
-          variant="bordered"
+          // variant="bordered"
+          className="border-2 border-blue-500 rounded-xl"
+
           labelPlacement="inside"
           defaultValue={autoSaveData?.data.employee.hiringManager? autoSaveData.data.employee.hiringManager : ""}
           // isInvalid= {error ?  true : false}

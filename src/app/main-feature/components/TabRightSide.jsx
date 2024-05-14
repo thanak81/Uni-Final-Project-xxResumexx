@@ -3,6 +3,7 @@
 import BardComp from "@/app/components/BardComp";
 import ProgressCard from "@/app/main/resume/components/ProgressCard";
 import { Card, Tab, Tabs } from "@nextui-org/react";
+import { Heading } from "@radix-ui/themes";
 import Image from "next/image";
 import React from "react";
 function TabRightSide({ onSubmit, data, handleTemplate, printResume,styleSwitch }) {
@@ -24,7 +25,7 @@ function TabRightSide({ onSubmit, data, handleTemplate, printResume,styleSwitch 
         </Tab>
         <Tab key="template" title="Template">
           <div className="w-[18rem] flex gap-4 flex-col">
-            <div>Template</div>
+            <Heading as="h4" color="green">Templates</Heading>
             <div className="grid grid-cols-2 gap-2">
               {data.map((dat) => (
                 <Card radius="sm" isHoverable key={dat.id}>

@@ -47,10 +47,12 @@ function ProfileForm({ active, autoSaveData }) {
       <div className="w-full">
         <Input
           label="Job Title"
-          radius="sm"
+          // radius="sm"
           key="inside"
-          variant="bordered"
+          // variant="bordered"
           labelPlacement="inside"
+          className="border-2 border-blue-500 rounded-xl"
+
           // isInvalid= {error ?  true : false}
           //   errorMessage={Object.keys(errors).length ===0 ?"" : error }
           defaultValue={
@@ -64,10 +66,12 @@ function ProfileForm({ active, autoSaveData }) {
       <div className={`flex ${active ? "flex-col" : ""} gap-2 w-full`}>
         <Input
           label="Full name"
-          radius="sm"
+          // radius="sm"
           key="inside"
-          variant="bordered"
+          // variant="bordered"
           labelPlacement="inside"
+          className="border-2 border-blue-500 rounded-xl"
+
           defaultValue={
             autoSaveData?.data.profile.name ? autoSaveData.data.profile.name : ""
           }
@@ -77,10 +81,12 @@ function ProfileForm({ active, autoSaveData }) {
         />
         <Input
           label="Email"
-          radius="sm"
+          // radius="sm"
           key="inside"
-          variant="bordered"
+          // variant="bordered"
           labelPlacement="inside"
+          className="border-2 border-blue-500 rounded-xl"
+
           defaultValue={
             autoSaveData?.data.profile.email
               ? autoSaveData.data.profile.email
@@ -94,9 +100,11 @@ function ProfileForm({ active, autoSaveData }) {
       <div className="w-full">
         <Input
           label="Address"
-          radius="sm"
+          // radius="sm"
           key="inside"
-          variant="bordered"
+          // variant="bordered"
+          className="border-2 border-blue-500 rounded-xl"
+
           labelPlacement="inside"
           defaultValue={
             autoSaveData?.data.profile.address
@@ -111,9 +119,11 @@ function ProfileForm({ active, autoSaveData }) {
       <div className="w-full">
         <Input
           label="Phone Number"
-          radius="sm"
+          // radius="sm"
           key="inside"
-          variant="bordered"
+          // variant="bordered"
+          className="border-2 border-blue-500 rounded-xl"
+
           labelPlacement="inside"
           // isInvalid= {error ?  true : false}
           //   errorMessage={Object.keys(errors).length ===0 ?"" : error }
@@ -128,9 +138,11 @@ function ProfileForm({ active, autoSaveData }) {
       <div className="w-full">
         <Input
           label="Date"
-          radius="sm"
+          // radius="sm"
           key="inside"
-          variant="bordered"
+          // variant="bordered"
+          className="border-2 border-blue-500 rounded-xl"
+
           labelPlacement="inside"
           // isInvalid= {error ?  true : false}
           //   errorMessage={Object.keys(errors).length ===0 ?"" : error }

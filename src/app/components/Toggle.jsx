@@ -4,7 +4,7 @@ import { FontItalicIcon } from "@radix-ui/react-icons";
 
 function ToggleComp({pressed,onPressedChange,icon}) {
   return (
-    <Toggle.Root pressed={pressed} onPressedChange={onPressedChange} className="Toggle" aria-label="Toggle">
+    <Toggle.Root pressed={pressed} onPressedChange={onPressedChange} className="Toggle " aria-label="Toggle">
       {icon}
     </Toggle.Root>
   );

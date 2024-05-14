@@ -17,7 +17,7 @@ export const useStore = create((set) => ({
 
 // Active state to open/close resume on create form
 export const useActive = create((set) => ({
-  active: false,
+  active: true,
   setActive: () => set((state) => ({ active: !state.active })),
 }));
 

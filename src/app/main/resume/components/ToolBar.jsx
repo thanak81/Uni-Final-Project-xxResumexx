@@ -6,6 +6,7 @@ import {
   FontBoldIcon,
   ListBulletIcon,
 } from "@radix-ui/react-icons";
+import NumberBullet from "@/app/components/icons/NumberBullet";
 
 function ToolBar({ editor }) {
   if (!editor) {
@@ -26,7 +27,7 @@ function ToolBar({ editor }) {
       <ToggleComp
         pressed={editor.isActive("orderedList") ? "is-active" : ""}
         onPressedChange={() => editor.chain().focus().toggleOrderedList().run()}
-        icon={<ListBulletIcon />}
+        icon={<NumberBullet />}
       />
     </div>
   );

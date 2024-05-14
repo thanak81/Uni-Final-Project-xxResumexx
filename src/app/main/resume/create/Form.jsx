@@ -15,6 +15,7 @@ import Skill from "./ResumeForm/Skill";
 import LanguageForm from "./ResumeForm/LanguageForm";
 import ResumeHeader from "./ResumeForm/ResumeHeader";
 import ProfileForm from "./ResumeForm/ProfileForm";
+import NovelEditor from "../components/NovelEditor";
 
 function FormComp({ register, selectedTemplate, printRef , autoSaveData ,  activeRight }) {
   // const [active, setActive] = useState(false);
@@ -49,6 +50,7 @@ function FormComp({ register, selectedTemplate, printRef , autoSaveData ,  activ
         flex flex-col gap-2 transition-all pr-5  w-full`}
       >
         <ResumeHeader /> 
+        {/* <NovelEditor/> */}
          <PersonalForm active={active} register={register} autoSaveData={autoSaveData}/> 
         <ProfileForm autoSaveData={autoSaveData}/>
         <EducationForm autoSaveData={autoSaveData}/>

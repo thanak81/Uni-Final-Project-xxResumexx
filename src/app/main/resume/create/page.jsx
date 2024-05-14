@@ -159,7 +159,7 @@ function CreateForm() {
             </div> */}
           </form>
         </FormProvider>
-        <div className="self-center lg:self-start  ">
+        <div className="self-center lg:self-start">
           <div
             onClick={setActiveRight}
             className="cursor-pointer"
@@ -177,6 +177,7 @@ function CreateForm() {
               handleTemplate={handleTemplate}
             />
           )}
+     
         </div>
       </div>
     </>
