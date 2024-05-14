@@ -21,7 +21,7 @@ export const authOptions = {
                 password: {},
             },
             async authorize(credentials,req){
-              const register = await fetch("https://xxresumexx-m94qw0u1k-thanak81s-projects.vercel.app/api/login",{
+              const register = await fetch("https://xxresumexx.vercel.app/api/login",{
                 method:"POST",
                 headers: {"Content-Type": "application/json"},
                 body: JSON.stringify({
