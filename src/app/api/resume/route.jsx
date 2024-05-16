@@ -9,7 +9,6 @@ import { authOptions } from "../auth/[...nextauth]/route";
 // export async function GET(){
 //     const data = await fetch("http://localhost:3001/cv/getCV");
 //     const response = await data.json();
-//     console.log(response)
 //     return NextResponse.json({
 //         status: 200,
 //         payload: response,
@@ -33,9 +32,9 @@ export async function POST(request, res) {
   const data = await prisma.resume.create({
     data: {
       // title:resumeData.resumeInfo.title,
-      title: "resume1",
-      // slug: resumeData.resumeInfo.slug,
-      slug: "testing resume",
+      title: resumeData.resumeInfo.title,
+      slug: resumeData.resumeInfo.slug,
+      // slug: "testing resume",
       // need to make this dynamic
       user_id: user_id,
       data: resumeData.data,

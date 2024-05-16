@@ -15,7 +15,6 @@ import RemoveIcon from "./icons/RemoveIcon";
 import DeleteResumeButton from "./DeleteResumeButton";
 
 function Dialogs({ data, mutation, formattedDate }) {
-  console.log(data.id);
   return (
     <Dialog.Root>
       <Dialog.Trigger>
@@ -45,7 +44,9 @@ function Dialogs({ data, mutation, formattedDate }) {
               Cancel
             </Button>
           </Dialog.Close>
-          <Button title="Edit">Edit</Button>
+          <Button title="Edit">
+            <Link href={`/main/resume/edit/${data.id}`} >Edit</Link>
+          </Button>
         </Flex>
       </Dialog.Content>
     </Dialog.Root>

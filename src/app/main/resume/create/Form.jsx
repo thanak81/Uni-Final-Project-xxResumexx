@@ -16,6 +16,7 @@ import LanguageForm from "./ResumeForm/LanguageForm";
 import ResumeHeader from "./ResumeForm/ResumeHeader";
 import ProfileForm from "./ResumeForm/ProfileForm";
 import NovelEditor from "../components/NovelEditor";
+import CustomForm from "./ResumeForm/CustomForm";
 
 function FormComp({ register, selectedTemplate, printRef , autoSaveData ,  activeRight }) {
   // const [active, setActive] = useState(false);
@@ -57,6 +58,7 @@ function FormComp({ register, selectedTemplate, printRef , autoSaveData ,  activ
         <WorkForm autoSaveData={autoSaveData}/>
         <Skill autoSaveData={autoSaveData}/>
         <LanguageForm autoSaveData={autoSaveData}/> 
+        <CustomForm autoSaveData={autoSaveData}/>
         {/* <AdditionalForm />*/}
       </ScrollShadow>
       <div className="hidden md:block">

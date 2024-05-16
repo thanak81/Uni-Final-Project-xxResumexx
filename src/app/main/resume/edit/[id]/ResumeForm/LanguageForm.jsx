@@ -25,7 +25,7 @@ function handleRemove(index) {
 }
 
   return (
-    <div className="rounded-xl flex flex-col gap-2 justify-center items-center shadow-2xl">
+    <div className="rounded-xl flex flex-col gap-2 justify-center items-center">
     <Accordion>
       <AccordionItem
         title={
@@ -61,7 +61,6 @@ export default LanguageForm
 
 
 function Language({data,index, handleRemove}){
-  console.log("language",data)
   return (
     <>
       {index > 0 && <Divider className="my-5 bg-blue-500" />}

@@ -11,7 +11,6 @@ function BasicsTemplate({ resumeData, margin, line}) {
   };
 
   const resumeWatch = resumeData.data.basics;
-  console.log("basic Margin", margin)
   return (
     <div className={cn(`text-black pt-10 h-full`)}>
       <div className="text-2xl font-bold  text-center">

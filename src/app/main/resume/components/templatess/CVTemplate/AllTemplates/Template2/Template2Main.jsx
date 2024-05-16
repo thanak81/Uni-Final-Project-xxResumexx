@@ -11,7 +11,6 @@ function Template2Main() {
     control,
   });
 
-  console.log(resumeData);
   return (
     <div className="flex h-full border">
       <div className=" h-[297mm] w-[30%] bg-slate-800">

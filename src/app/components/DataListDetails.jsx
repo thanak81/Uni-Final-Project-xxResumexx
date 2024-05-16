@@ -3,7 +3,6 @@ import { Badge, Code, DataList, Flex } from "@radix-ui/themes";
 import Link from "next/link";
 
 function DataListDetails({ data ,allData}) {
-  console.log(data)
   return (
     <DataList.Root>
       <DataList.Item>

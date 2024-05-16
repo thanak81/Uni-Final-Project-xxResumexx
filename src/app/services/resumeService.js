@@ -14,7 +14,6 @@ export const createResume = async (data) => {
       headers: { "Content-Type": "application/json" },
     });
     const createData = await response.json();
-    console.log("response create", response);
     return createData;
   } catch (error) {
     console.error("Error creating resume:", error);
@@ -54,7 +53,6 @@ export const updateResume = async (request, id) => {
       body: JSON.stringify(request),
     });
     const updatedData = await response.json();
-    console.log("updatedDate", updatedData);
     return updatedData;
   } catch (error) {
     console.error("Error creating resume:", error);

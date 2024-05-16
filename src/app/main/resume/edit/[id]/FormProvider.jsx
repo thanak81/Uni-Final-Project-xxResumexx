@@ -15,7 +15,7 @@ function FormProviderComp({id,mutation ,active, data,handleTemplate, selectedTem
   const methods = useForm({
     defaultValues: {
       resumeInfo: {
-        title: "Resume",
+        title: `Resume ${id}`,
         slug: "For work",
         // user_id: session?.user.payload.id,
       },

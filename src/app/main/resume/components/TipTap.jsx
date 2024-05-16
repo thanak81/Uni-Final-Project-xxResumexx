@@ -10,7 +10,7 @@ import { cn } from "@/util/cn";
 import { useTheme } from "next-themes";
 import { useEffect } from "react";
 // import {z} from "zod"
-const Tiptap = ({ index, value, data }) => {
+const Tiptap = ({value, data }) => {
   const active = useActive((state) => state.activeRight);
   const { register, setValue } = useFormContext();
 
@@ -37,7 +37,6 @@ const {theme} = useTheme();
     },
     onUpdate({ editor }) {
       const html = editor.getHTML();
-      console.log(html)
       setValue(value, html);
     },
   });

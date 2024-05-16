@@ -7,10 +7,10 @@ import { useFormContext } from "react-hook-form";
 import InputComp from "../../../components/InputComp";
 
 
-function ResumeHeader() {
+function ResumeHeader({data}) {
     const {register} = useFormContext()
   return (
-    <div className=" rounded-xl flex flex-col gap-2 justify-center items-center shadow-2xl">
+    <div className=" rounded-xl flex flex-col gap-2 justify-center items-center shadow-2xl border border-yellow-500">
       <Accordion>
         <AccordionItem
           title={
@@ -28,7 +28,7 @@ function ResumeHeader() {
               variant="bordered"
               labelPlacement="outside"
               className="bg-none border-none"
-              defaultValue="Resume 1"
+              defaultValue={data?.payload?.title}
               label="Resume Title"
               {...register("resumeInfo.title")}
             />
@@ -39,7 +39,7 @@ function ResumeHeader() {
               variant="bordered"
               labelPlacement="outside"
               className="bg-none border-none"
-              defaultValue="For professional purpose"
+              defaultValue={data?.payload?.slug}
               label="Resume Description"
               {...register("resumeInfo.slug")}
             />

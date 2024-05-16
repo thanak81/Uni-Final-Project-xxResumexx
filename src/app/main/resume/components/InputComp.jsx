@@ -9,7 +9,6 @@ import { useFormContext } from "react-hook-form";
 function InputComp({name,error, ...props }) {
   const { register,formState: {errors} } = useFormContext();
   const {theme } = useTheme();
-console.log( theme,theme === "light")
   return (
     <Input
       radius="rounded-sm"

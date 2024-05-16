@@ -32,7 +32,7 @@ function PersonalForm({ active, data }) {
   } = useFormContext();
 
   return (
-    <div className=" rounded-xl flex flex-col gap-2 justify-center items-center shadow-2xl">
+    <div className=" rounded-xl flex flex-col gap-2 justify-center items-center">
       <Accordion>
         <AccordionItem
           title={
@@ -90,6 +90,7 @@ function PersonalForm({ active, data }) {
         <Textarea
           variant="bordered"
           label="Description"
+          className="border-2 border-blue-500 rounded-xl"
           defaultValue={data.payload.data.basics.summary}
           {...register("data.basics.summary")}
         />

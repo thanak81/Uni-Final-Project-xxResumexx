@@ -8,7 +8,6 @@ export const postData = async (data) => {
     })
 
     const apidata = await response.json()
-    console.log(apidata)
 
     return apidata;
 }

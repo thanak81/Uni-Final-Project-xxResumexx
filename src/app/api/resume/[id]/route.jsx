@@ -73,9 +73,9 @@ export const PUT = async (request, { params }) => {
       id: id,
     },
     data: {
-        title: "resume1",
+        title: data.resumeInfo.title,
         // slug: resumeData.resumeInfo.slug,
-        slug: "testing resume",
+        slug: data.resumeInfo.slug,
         // need to make this dynamic
         user_id: user_id,
         data: data.data,

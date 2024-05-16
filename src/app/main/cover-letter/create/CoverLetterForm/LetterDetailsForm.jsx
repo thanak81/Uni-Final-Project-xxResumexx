@@ -31,7 +31,7 @@ function LetterDetailForm({ active, autoSaveData }) {
   } = useFormContext();
 
   return (
-    <div className=" rounded-xl flex flex-col gap-2 justify-center items-center shadow-2xl">
+    <div className=" rounded-xl flex flex-col gap-2 justify-center items-center">
       <Accordion>
         <AccordionItem
           title={

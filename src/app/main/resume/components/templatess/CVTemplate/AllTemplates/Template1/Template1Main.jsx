@@ -12,6 +12,7 @@ import {
   useLineHeight,
   usePadding,
 } from "@/app/main/resume/state/GlobalState";
+import CustomTemplate from "./CustomTemplate";
 
 function Template1Main() {
   const [margin, setMargin] = useState("py-[0px]");
@@ -88,6 +89,7 @@ function Template1Main() {
       <EducationTemplate resumeData={resumeData} gap={gap} />
       <SkillTemplate resumeData={resumeData}/>
       <LanguageTemplate resumeData={resumeData} />
+      <CustomTemplate resumeData={resumeData} line={line}/>
     </div>
   );
 }

@@ -116,7 +116,6 @@ function CreateCoverLetter() {
     });
     // await createResume(data);
     await createCoverLetter(data);
-    console.log("cover-letter", data);
     localStorage.removeItem("autoSavedCoverLetterData");
     router.push("/");
     router.refresh();

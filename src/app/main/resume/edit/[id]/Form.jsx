@@ -6,8 +6,6 @@ import { Flex } from "@radix-ui/themes";
 import {ScrollShadow } from "@nextui-org/react";
 import { useActive} from "../../state/GlobalState";
 import Education from "./ResumeForm/Education";
-// import Template1 from "./Template1";
-// import TemplateContainer from "./TemplateContainer";
 import TemplateContainer from "../../create/TemplateContainer";
 import ArrowIcon from "@/app/components/icons/ArrowIcon";
 import WorkForm from "./ResumeForm/WorkForm";
@@ -17,6 +15,7 @@ import LanguageForm from "./ResumeForm/LanguageForm";
 import EyeIcon from "@/app/components/icons/EyeIcon";
 import EyeCloseIcon from "@/app/components/icons/EyeCloseIcon";
 import ProfileForm from "./ResumeForm/ProfileForm";
+import CustomForm from "./ResumeForm/CustomForm";
 
 function FormComp({ register , selectedTemplate , printRef , data,activeRight}) {
 
@@ -36,13 +35,14 @@ function FormComp({ register , selectedTemplate , printRef , data,activeRight}) 
         
         flex flex-col gap-2 transition-all px-5 w-full`}
       >
-        <ResumeHeader/>
+        <ResumeHeader data={data}/>
         <Personal data={data} active={active} register={register} />
         <ProfileForm  data={data}/> 
         <Education data={data}/>
         <WorkForm data={data}/>
         <Skill data={data}/>
         <LanguageForm data={data}/>
+        <CustomForm data={data}/>
       </ScrollShadow>
       <div className="hidden md:block">
       <div

@@ -92,7 +92,6 @@ function Education({
   watchPresent,
   autoSaveData,
 }) {
-  console.log(watchPresent);
   let status;
   const checkPresent = watchPresent.data.education.map((edu) => {
     if (edu.present) {

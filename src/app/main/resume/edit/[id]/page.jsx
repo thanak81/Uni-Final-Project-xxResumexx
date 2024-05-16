@@ -48,7 +48,6 @@ function EditResume({ params }) {
     },
   });
 
-  // console.log(data)
   const printRef = useRef();
 
   const handlePrint = useReactToPrint({

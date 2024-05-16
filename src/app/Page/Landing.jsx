@@ -26,8 +26,6 @@ function Landing() {
     error: coverError,
     isError: coverIsError,
   } = useQuery(["cover-letter"], getAllCoverLetter);
-
-  console.log("cdata", coverData);
   // delete resume
   const mutation = useMutation({
     onMutate: async (id) => {
@@ -108,6 +106,7 @@ function Landing() {
   if (isError && coverIsError) {
     return <span>Error: {coverError?.message}</span>;
   }
+
   return (
     <div className="flex flex-col gap-5">
       <div className="self-start">

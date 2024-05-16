@@ -3,7 +3,6 @@ import parse from "html-react-parser";
 import { cn } from "@/util/cn";
 
 function ExperienceTemplate({ resumeData , gap }) {
-  console.log("workdata", resumeData);
   const data = {
     work: [
       {
@@ -62,7 +61,7 @@ function ExperienceTemplate({ resumeData , gap }) {
                       <li>Create AR Ar Game</li>
                       <li>Create AR Ar Game</li>
                     </ul> */}
-                  <div className="w-[40rem] prose text-black text-sm">
+                  <div className="w-[40rem] marker:text-black prose text-black text-sm">
                     {wo?.summary && parse(wo.summary)}
                   </div>{" "}
                 </div>

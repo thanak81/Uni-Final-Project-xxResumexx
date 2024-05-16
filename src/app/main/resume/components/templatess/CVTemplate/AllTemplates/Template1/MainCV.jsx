@@ -13,7 +13,6 @@ function MainCV() {
     queryKey: ["cvData"],
     queryFn: () => ResumeAPI.getAll(),
   });
-  console.log(ResumeAPI.getAll());
   if (error) return <p>There was an error while fetching data</p>;
   return (
     <div className="flex justify-center items-center">

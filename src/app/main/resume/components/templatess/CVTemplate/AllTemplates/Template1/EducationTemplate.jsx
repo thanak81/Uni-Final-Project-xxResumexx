@@ -49,7 +49,7 @@ function EducationTemplate({ resumeData , gap }) {
                   <div className="mt-2 font-semibold w-[40rem]">
                     {edu.level}, {edu.area}
                   </div>
-                  <div className="w-[40rem] prose text-sm text-black list-disc">
+                  <div className="w-[40rem] marker:text-black prose text-sm text-black list-disc">
                     {" "}
                     {edu?.summary && parse(edu.summary)}
                   </div>

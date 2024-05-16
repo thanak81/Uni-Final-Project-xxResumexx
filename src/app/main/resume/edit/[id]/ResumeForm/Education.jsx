@@ -39,19 +39,16 @@ function EducationForm({ data }) {
     append(defaultEducation);
   }
 
-  // useEffect(()=> {
-  //   append({})
-  // },[append])
 
   function handleRemove(index) {
     remove(index);
   }
   return (
-    <div className="rounded-xl flex flex-col gap-2 justify-center items-center shadow-2xl">
+    <div className="rounded-xl flex flex-col gap-2 justify-center items-center">
       <Accordion>
         <AccordionItem
           title={
-            <Heading className="self-start text-white" as="h3">
+            <Heading className="self-star" as="h3">
               Education
             </Heading>
           }
@@ -89,7 +86,6 @@ function EducationForm({ data }) {
 export default EducationForm;
 
 function Education({ index, handleRemove, register, watchPresent, data }) {
-  console.log(watchPresent);
   let status;
   const checkPresent = watchPresent.data.education.map((edu) => {
     if (edu.present) {
@@ -110,11 +106,6 @@ function Education({ index, handleRemove, register, watchPresent, data }) {
               ? data.payload.data.education[index].institution
               : ""
           }
-          // isInvalid = {true}
-          // error={"sdsd"}
-          // placeholder={"University"}
-          //   value={value}
-          // onValueChange={setValue}
         />
         <Button
           className="p-5 cursor-pointer"
@@ -136,9 +127,6 @@ function Education({ index, handleRemove, register, watchPresent, data }) {
                 ? data.payload.data.education[index].level
                 : ""
             }
-
-            //   value={value}
-            // onValueChange={setValue}
           />
           <InputComp
             label={"Fields"}
@@ -148,9 +136,6 @@ function Education({ index, handleRemove, register, watchPresent, data }) {
                 ? data.payload.data.education[index].area
                 : ""
             }
-
-            // value={value}
-            // onValueChange={setValue}
           />
         </div>
       </div>
@@ -177,9 +162,6 @@ function Education({ index, handleRemove, register, watchPresent, data }) {
                 ? data.payload.data.education[index].startYear
                 : ""
             }
-
-            // value={value}
-            // onChange={(e) => setValue(e.target.value)}
           />
           <InputComp
             label={"End Year"}
@@ -190,16 +172,12 @@ function Education({ index, handleRemove, register, watchPresent, data }) {
                 ? data.payload.data.education[index].endYear
                 : ""
             }
-
-            // value={value}
-            // onChange={(e) => setValue(e.target.value)}
           />
         </div>
       </div>
       <div className="w-full">
         <Tiptap
           value={`data.education.${index}.summary`}
-          index={index}
           data={
             data?.payload?.data?.education[index]?.summary
               ? data.payload.data.education[index].summary
@@ -211,68 +189,3 @@ function Education({ index, handleRemove, register, watchPresent, data }) {
   );
 }
 
-function InitialEducation() {
-  return (
-    <>
-      <div className="w-full">
-        <InputComp
-          label={"University or High School"}
-          name={`education.institution`}
-
-          // isInvalid = {true}
-          // error={"sdsd"}
-          // placeholder={"University"}
-          //   value={value}
-          // onValueChange={setValue}
-        />
-      </div>
-      <div className="w-full">
-        <div className="flex gap-2">
-          <InputComp
-            label={"Level"}
-            name={`education.level`}
-
-            //   value={value}
-            // onValueChange={setValue}
-          />
-          <InputComp
-            label={"Fields"}
-            name={`education.fields`}
-
-            // value={value}
-            // onValueChange={setValue}
-          />
-        </div>
-      </div>
-      <div className="w-full">
-        <div className="flex gap-2">
-          <InputComp
-            label={"Start Year"}
-            name={`education.startYear`}
-
-            // value={value}
-            // onChange={(e) => setValue(e.target.value)}
-          />
-          <InputComp
-            label={"End Year"}
-            name={`education.endYear`}
-
-            // value={value}
-            // onChange={(e) => setValue(e.target.value)}
-          />
-        </div>
-      </div>
-      <div className="w-full">
-        <Tiptap value={"education.summary"} />
-      </div>
-      {/* <div className="w-full">
-        <Textarea
-          variant="bordered"
-          label="Description"
-          placeholder="Enter your description"
-          // {...register("education.description")}
-        />
-      </div> */}
-    </>
-  );
-}

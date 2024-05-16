@@ -35,12 +35,12 @@ const formattedDate = date.toLocaleString('en-US', { month: 'long', day: 'numeri
       </div>
       <CardBody className="">
         <small>Resume {data.id}</small>
-        <p>Title: {data.title}</p>
+        <p className="font-bold text-blue-500">{data.title}</p>
          <small>{formattedDate}</small>
         {/* <small>{data.updatedAt}</small>  */}
         <Divider className="my-4" />
         <div className="flex justify-between items-center">
-          <p>{data.slug}</p>
+          <p className="text-sm">{data.slug}</p>
           <Button color="">
             <Link href={`/main/resume/edit/${data.id}`}  className="text-white text-sm">Edit</Link>
           </Button>

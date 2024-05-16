@@ -20,7 +20,6 @@ import HoverCardComp from "./HoverCard";
 function NavBar() {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
   const pathName = usePathname();
-  console.log(pathName);
   const menuItems = [
     "Profile",
     "Dashboard",
@@ -51,8 +50,6 @@ function NavBar() {
   ];
 
   const { status, data: session } = useSession();
-  console.log(status);
-  console.log(session);
   return (
     <Navbar className="" onMenuOpenChange={setIsMenuOpen}>
       <NavbarContent>

@@ -35,7 +35,6 @@ function LoginPage() {
     resolver: zodResolver(Schema),
   });
 
-  console.log(errors);
 
   async function onSubmit(data) {
     const response = await signIn("credentials", {

@@ -26,14 +26,13 @@ export const Schema = z.object({
 });
 
 function LetterDetailForm({ data }) {
-  console.log("summaryLee",data)
   const {
     register,
     formState: { errors },
   } = useFormContext();
 
   return (
-    <div className=" rounded-xl flex flex-col gap-2 justify-center items-center shadow-2xl">
+    <div className=" rounded-xl flex flex-col gap-2 justify-center items-center">
       <Accordion>
         <AccordionItem
           title={
