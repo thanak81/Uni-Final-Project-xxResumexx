@@ -1,5 +1,5 @@
 "use client"
-import React, { useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { FormProvider, useForm } from "react-hook-form";
 import ProgressCard from "../../../resume/components/ProgressCard";
 import { useActive, useActiveRight } from "../../../resume/state/GlobalState";
@@ -58,6 +58,34 @@ function FormProviderComp({id,mutation ,active,  coverLetterById, printRef , pri
     router.push("/");
     router.refresh();
   };
+
+  const stylingSwitcherData = useMemo(
+    () => [
+      {
+        id: 1,
+        title: "Template 1 Styling",
+        styling: "Coming Soon",
+      },
+      {
+        id: 2,
+        title: "Template 2 Styling",
+        styling: "Coming Soon",
+      },
+    ],
+    []
+  );
+  
+  const [styleSwitch, setStylingSwitch] = useState(stylingSwitcherData[0]);
+  useEffect(() => {
+    switch (selectedTemplate.id) {
+      case 1:
+        setStylingSwitch(stylingSwitcherData[0]);
+        break;
+      case 2:
+        setStylingSwitch(stylingSwitcherData[1]);
+        break;
+    }
+  }, [selectedTemplate, stylingSwitcherData]);
   const activeRight = useActiveRight((state) => state.activeRight);
   const setActiveRight = useActiveRight((state) => state.setActiveRight);
 
@@ -88,6 +116,7 @@ function FormProviderComp({id,mutation ,active,  coverLetterById, printRef , pri
           </div>
           {activeRight && (
           <TabRightSide
+          styleSwitch={styleSwitch}
           printResume={printCoverLetter}
           onSubmit={methods.handleSubmit(onSubmit)}
           data={data}

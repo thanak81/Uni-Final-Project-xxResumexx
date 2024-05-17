@@ -37,7 +37,7 @@ function BardComp() {
           <small>Click on text to copy</small>
 
           <div
-            className="rounded-xl text-sm bg-[#212121] h-[21rem] font-semibold text-white p-2  overflow-y-auto"
+            className="rounded-xl  bg-[#212121] h-[21rem]  text-white p-2  overflow-y-auto"
             onClick={() => {
               navigator.clipboard.writeText(completion);
             }}

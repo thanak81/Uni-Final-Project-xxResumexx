@@ -28,6 +28,7 @@ import { Button, Heading } from "@radix-ui/themes";
 import { Spinner } from "@nextui-org/react";
 import Template1Styling from "../../components/templatess/CVTemplate/AllTemplates/TemplateStyling/Template1Styling";
 import Template2Styling from "../../components/templatess/CVTemplate/AllTemplates/TemplateStyling/Template2Styling";
+import Template3Main from "../../components/templatess/CVTemplate/AllTemplates/Template3/Template3Main";
 
 function EditResume({ params }) {
   const id = params.id;
@@ -52,7 +53,7 @@ function EditResume({ params }) {
 
   const handlePrint = useReactToPrint({
     content: () => printRef.current,
-    documentTitle: "Resume",
+    documentTitle: "Resume"+crypto.randomUUID(),
   });
 
   const active = useActive((state) => state.active);
@@ -75,6 +76,12 @@ function EditResume({ params }) {
       name: "Resume Template2",
       img: "/CV1.png",
       template: <Template2Main />,
+    },
+    {
+      id: 3,
+      name: "Resume Template3",
+      img: "/Resume Template Img/ResumeTemplate3.jpg",
+      template: <Template3Main/>,
     },
   ];
 

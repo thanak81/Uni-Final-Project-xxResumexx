@@ -20,13 +20,14 @@ import EyeCloseIcon from "@/app/components/icons/EyeCloseIcon";
 import TabRightSide from "@/app/main-feature/components/TabRightSide";
 import Template1Styling from "../components/templatess/CVTemplate/AllTemplates/TemplateStyling/Template1Styling";
 import Template2Styling from "../components/templatess/CVTemplate/AllTemplates/TemplateStyling/Template2Styling";
+import Template3Main from "../components/templatess/CVTemplate/AllTemplates/Template3/Template3Main";
 
 function CreateForm() {
   const router = useRouter();
   const printRef = useRef();
   const handlePrint = useReactToPrint({
     content: () => printRef.current,
-    documentTitle: "Resume",
+    documentTitle: "Resume"+crypto.randomUUID(),
   });
 
   const data = [
@@ -42,11 +43,13 @@ function CreateForm() {
       img: "/CV1.png",
       template: <Template2Main />,
     },
-    // {
-    //   id: 3,
-    //   name: "Template2",
-    //   template: <BasicsTemplate2 />,
-    // },
+    {
+      id: 3,
+      name: "Resume Template3",
+      img: "/Resume Template Img/ResumeTemplate3.jpg",
+      template: <Template3Main />,
+    },
+
   ];
 
   function handleTemplate(template) {

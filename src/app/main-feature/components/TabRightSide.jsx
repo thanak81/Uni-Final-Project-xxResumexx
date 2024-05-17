@@ -8,7 +8,7 @@ import Image from "next/image";
 import React from "react";
 function TabRightSide({ onSubmit, data, handleTemplate, printResume,styleSwitch }) {
   return (
-    <div>
+    <div >
       <Tabs size="sm" aria-label="Options" color="primary">
         <Tab key="progress_card" title="Progress Card">
           <ProgressCard
@@ -24,7 +24,8 @@ function TabRightSide({ onSubmit, data, handleTemplate, printResume,styleSwitch 
           </div>
         </Tab>
         <Tab key="template" title="Template">
-          <div className="w-[18rem] flex gap-4 flex-col">
+        <div className="h-[30rem] overflow-y-auto overflow-x-hidden">
+         <div className="w-[18rem] flex gap-4 flex-col">
             <Heading as="h4" color="green">Templates</Heading>
             <div className="grid grid-cols-2 gap-2">
               {data.map((dat) => (
@@ -41,6 +42,8 @@ function TabRightSide({ onSubmit, data, handleTemplate, printResume,styleSwitch 
               ))}
             </div>
           </div>
+        </div>
+         
         </Tab>
       </Tabs>
     </div>

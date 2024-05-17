@@ -7,6 +7,7 @@ import { useFormContext } from "react-hook-form";
 import Placeholder from "@tiptap/extension-placeholder";
 import ToolBarCoverLetter from "./ToolbarCoverLetter";
 import TextAlign from "@tiptap/extension-text-align";
+import BardComp from "@/app/components/BardComp";
 // import BubbleMenu from '@tiptap/extension-bubble-menu'
 
 // import {z} from "zod"

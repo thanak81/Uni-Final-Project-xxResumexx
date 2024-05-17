@@ -4,7 +4,7 @@
     font-family: Arial, Helvetica, sans-serif;
     width: 210mm;
     position: relative;
-    /* min-height: 297mm; */
+    min-height: 297mm;
     /* max-height:max-content; */
     background-color: white;
     /* box-shadow: 0 0 5px rgba(0, 0, 0, 1); */
