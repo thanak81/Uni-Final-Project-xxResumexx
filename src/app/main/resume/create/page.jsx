@@ -69,6 +69,11 @@ function CreateForm() {
         title: "Template 2 Styling",
         styling: <Template2Styling />,
       },
+      {
+        id: 3,
+        title: "Template 3 Styling",
+        styling: <Template2Styling />,
+      },
     ],
     []
   );

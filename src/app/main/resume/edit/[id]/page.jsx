@@ -98,6 +98,11 @@ function EditResume({ params }) {
         title: "Template 2 Styling",
         styling: <Template2Styling />,
       },
+      {
+        id: 3,
+        title: "Template 3 Styling",
+        styling: <Template2Styling />,
+      },
     ],
     []
   );
@@ -111,6 +116,9 @@ function EditResume({ params }) {
         break;
       case 2:
         setStylingSwitch(stylingSwitcherData[1]);
+        break;
+      case 3:
+        setStylingSwitch(stylingSwitcherData[2]);
         break;
     }
   }, [selectedTemplate, stylingSwitcherData]);
