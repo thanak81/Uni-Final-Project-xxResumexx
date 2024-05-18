@@ -35,18 +35,21 @@ function CreateForm() {
       id: 1,
       name: "Resume Template1",
       img: "/CV.png",
+      uploadImg : true,
       template: <Template1Main />,
     },
     {
       id: 2,
       name: "Resume Template2",
       img: "/CV1.png",
+      uploadImg : false,
       template: <Template2Main />,
     },
     {
       id: 3,
       name: "Resume Template3",
       img: "/Resume Template Img/ResumeTemplate3.jpg",
+      uploadImg : false,
       template: <Template3Main />,
     },
 
@@ -106,6 +109,7 @@ function CreateForm() {
         : {
             basics: {
               name: "",
+              img: "",
               email: "",
               phone: "",
               address: "",
@@ -121,8 +125,6 @@ function CreateForm() {
     },
     // resolver: zodResolver(Schema)
   });
-  // const notify = () => toast("Resume created successfully");
-  // console.log("notify",notify)
   const active = useActive((state) => state.active);
   const printResume = () => {
     if (active) {
@@ -141,6 +143,7 @@ function CreateForm() {
       theme: "dark",
       // transition: Bounce,
     });
+    console.log("resumeimg",data)
     await createResume(data);
     localStorage.removeItem("autoSavedResumeData");
     router.push("/");
@@ -149,6 +152,8 @@ function CreateForm() {
 
   const activeRight = useActiveRight((state) => state.activeRight);
   const setActiveRight = useActiveRight((state) => state.setActiveRight);
+
+  
   return (
     <>
       <div className="flex gap-10 lg:gap-5 flex-col justify-center  lg:flex-row  mt-5 lg:h-screen">

@@ -69,20 +69,24 @@ function EditResume({ params }) {
       id: 1,
       name: "Resume Template1",
       img: "/CV.png",
+      uploadImg : true,
       template: <Template1Main />,
     },
     {
       id: 2,
       name: "Resume Template2",
       img: "/CV1.png",
+      uploadImg : false,
       template: <Template2Main />,
     },
     {
       id: 3,
       name: "Resume Template3",
       img: "/Resume Template Img/ResumeTemplate3.jpg",
-      template: <Template3Main/>,
+      uploadImg : false,
+      template: <Template3Main />,
     },
+
   ];
 
 

@@ -36,7 +36,7 @@ function FormComp({ register , selectedTemplate , printRef , data,activeRight}) 
         flex flex-col gap-2 transition-all px-5 w-full`}
       >
         <ResumeHeader data={data}/>
-        <Personal data={data} active={active} register={register} />
+        <Personal data={data} active={active} register={register} selectedTemplate={selectedTemplate} />
         <ProfileForm  data={data}/> 
         <Education data={data}/>
         <WorkForm data={data}/>

@@ -40,3 +40,8 @@ export const useGap = create((set)=> ({
   value : 5,
   setValue: (newValue)=> set({value: newValue})
 }))
+
+export const getImage = create((set)=> ({
+  value: "",
+  setValue : (newValue)=>set({value: newValue})
+}))

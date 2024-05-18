@@ -43,6 +43,8 @@ function EducationForm({ data }) {
   function handleRemove(index) {
     remove(index);
   }
+
+  console.log("fieldsedu",fields)
   return (
     <div className="rounded-xl flex flex-col gap-2 justify-center items-center">
       <Accordion>

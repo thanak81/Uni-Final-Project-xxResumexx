@@ -1,11 +1,13 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Accordion, AccordionItem, Input, Textarea } from "@nextui-org/react";
-import { Heading, Text } from "@radix-ui/themes";
+import { Button, Heading, Text } from "@radix-ui/themes";
 // import { useStore } from "../../state/GlobalState";
 // import InputComp from "../../components/InputComp";
 import InputComp from "../../../components/InputComp";
 import { z, ZodType } from "zod"; // Add new import
-import { useFormContext } from "react-hook-form";
+import { useFieldArray, useFormContext } from "react-hook-form";
+import ImageUpload from "@/app/upload/page";
+import RemoveIcon from "@/app/components/icons/RemoveIcon";
 
 export const Schema = z.object({
   basics: z.object({
@@ -25,12 +27,32 @@ export const Schema = z.object({
   }),
 });
 
-function PersonalForm({ active, data }) {
+function PersonalForm({ active, data, selectedTemplate }) {
   const {
     register,
+    setValue,
+    control,
     formState: { errors },
   } = useFormContext();
 
+  const { fields, append, remove, insert } = useFieldArray({
+    control,
+    name: "data.basics.img",
+  });
+  console.log("fields", fields);
+  const [storeImg, setStoreImg] = useState(data.payload.data.basics.img);
+
+  function handleAdd(e) {
+    e.preventDefault();
+    setStoreImg(true);
+    append();
+  }
+console.log("field", data.payload.data.basics)
+
+  function handleRemove(index) {
+    setStoreImg(false);
+    remove(index);
+  }
   return (
     <div className=" rounded-xl flex flex-col gap-2 justify-center items-center">
       <Accordion>
@@ -47,20 +69,45 @@ function PersonalForm({ active, data }) {
           </Text>
         </AccordionItem>
       </Accordion>
-
+      {selectedTemplate.uploadImg && (
+        <div className="w-full">
+          {fields.map((field, index) => {
+            return (
+              <div key={field.id} className="flex justify-between">
+                <ImageUpload setValue={setValue} value={`data.basics.img.${index}`} />
+                <Button
+                  className="p-5 cursor-pointer"
+                  color="red"
+                  title="Remove"
+                  onClick={() => handleRemove(index)}
+                >
+                  <RemoveIcon />
+                </Button>
+              </div>
+            );
+          })}
+               {fields.length === 0 && (
+            <div className="flex justify-center">
+              <Button onClick={handleAdd} type="button">
+                {fields.length === 1 ? "Change Image" : "Add Image"}
+              </Button>
+            </div>
+          )}
+        </div>
+      )}
       <div className={`flex ${active ? "flex-col" : ""} gap-2 w-full`}>
         <InputComp
           // value={name}
           // onValueChange={setName}
           label={"Full name"}
           name={"data.basics.name"}
-          defaultValue = {data.payload.data.basics.name}
+          defaultValue={data.payload.data.basics.name}
           // error={errors?.basics?.name?.message}
         />
         <InputComp
           label={"Email"}
           name={"data.basics.email"}
-          defaultValue = {data.payload.data.basics.email}
+          defaultValue={data.payload.data.basics.email}
           // error={errors?.basics?.email?.message}
         />
       </div>
@@ -68,7 +115,7 @@ function PersonalForm({ active, data }) {
         <InputComp
           label={"Address"}
           name={"data.basics.address"}
-          defaultValue = {data.payload.data.basics.address}
+          defaultValue={data.payload.data.basics.address}
 
           // error={errors?.basics?.address?.message}
         />
@@ -79,7 +126,7 @@ function PersonalForm({ active, data }) {
           // value={number}
           // onValueChange={setNumber}
           name={"data.basics.phone"}
-          defaultValue = {data.payload.data.basics.phone}
+          defaultValue={data.payload.data.basics.phone}
 
           // error={errors?.basics?.number?.message}
           // isInvalid = {true}

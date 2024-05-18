@@ -52,7 +52,7 @@ function FormComp({ register, selectedTemplate, printRef , autoSaveData ,  activ
       >
         <ResumeHeader /> 
         {/* <NovelEditor/> */}
-         <PersonalForm active={active} register={register} autoSaveData={autoSaveData}/> 
+         <PersonalForm active={active} register={register} autoSaveData={autoSaveData} selectedTemplate={selectedTemplate}/> 
         <ProfileForm autoSaveData={autoSaveData}/>
         <EducationForm autoSaveData={autoSaveData}/>
         <WorkForm autoSaveData={autoSaveData}/>

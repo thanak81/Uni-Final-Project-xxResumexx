@@ -1,10 +1,12 @@
-import React from "react";
+import React, { Fragment, useState } from "react";
 import { Accordion, AccordionItem, Input, Textarea } from "@nextui-org/react";
-import { Heading, Text } from "@radix-ui/themes";
+import { Button, Heading, Text } from "@radix-ui/themes";
 import { useStore } from "../../state/GlobalState";
 import InputComp from "../../components/InputComp";
 import { z, ZodType } from "zod"; // Add new import
-import { useFormContext } from "react-hook-form";
+import { useFieldArray, useFormContext } from "react-hook-form";
+import ImageUpload from "@/app/upload/page";
+import RemoveIcon from "@/app/components/icons/RemoveIcon";
 
 export const Schema = z.object({
   basics: z.object({
@@ -24,12 +26,32 @@ export const Schema = z.object({
   }),
 });
 
-function PersonalForm({ active  ,  autoSaveData}) {
-  
+function PersonalForm({ active, autoSaveData, selectedTemplate }) {
   const {
     register,
+    setValue,
+    control,
+    resetField,
     formState: { errors },
   } = useFormContext();
+
+  const { fields, append, remove } = useFieldArray({
+    control,
+    name: "data.basics.img",
+  });
+
+  const [storeImg, setStoreImg] = useState(false);
+
+  function handleAdd(e) {
+    e.preventDefault();
+    setStoreImg(true);
+    append();
+  }
+
+  function handleRemove(index) {
+    setStoreImg(false);
+    remove(index);
+  }
 
   return (
     <div className=" rounded-xl flex flex-col gap-2 justify-center items-center ">
@@ -47,7 +69,35 @@ function PersonalForm({ active  ,  autoSaveData}) {
           </Text>
         </AccordionItem>
       </Accordion>
-
+      {selectedTemplate.uploadImg && (
+        <div className="w-full">
+          {fields.map((field, index) => {
+            return (
+              <div key={field.id} className="flex justify-between">
+                <ImageUpload
+                  setValue={setValue}
+                  value={`data.basics.img.${index}`}
+                />
+                <Button
+                  className="p-5 cursor-pointer"
+                  color="red"
+                  title="Remove"
+                  onClick={() => handleRemove(index)}
+                >
+                  <RemoveIcon />
+                </Button>
+              </div>
+            );
+          })}
+          {storeImg !== true && (
+            <div className="flex justify-center">
+              <Button onClick={handleAdd} type="button">
+                Add image
+              </Button>
+            </div>
+          )}
+        </div>
+      )}
       <div className={`flex ${active ? "flex-col" : ""} gap-2 w-full`}>
         <Input
           label="Full name"
@@ -56,7 +106,9 @@ function PersonalForm({ active  ,  autoSaveData}) {
           // variant="bordered"
           className="border-2 border-blue-500 rounded-xl"
           labelPlacement="inside"
-          defaultValue={autoSaveData?.data.basics.name? autoSaveData.data.basics.name : ""}
+          defaultValue={
+            autoSaveData?.data.basics.name ? autoSaveData.data.basics.name : ""
+          }
           // isInvalid= {error ?  true : false}
           //   errorMessage={Object.keys(errors).length ===0 ?"" : error }
           {...register("data.basics.name")}
@@ -68,7 +120,11 @@ function PersonalForm({ active  ,  autoSaveData}) {
           className="border-2 border-blue-500 rounded-xl"
           // variant="bordered"
           labelPlacement="inside"
-          defaultValue={autoSaveData?.data.basics.email? autoSaveData.data.basics.email : ""}
+          defaultValue={
+            autoSaveData?.data.basics.email
+              ? autoSaveData.data.basics.email
+              : ""
+          }
           // isInvalid= {error ?  true : false}
           //   errorMessage={Object.keys(errors).length ===0 ?"" : error }
           {...register("data.basics.email")}
@@ -82,7 +138,11 @@ function PersonalForm({ active  ,  autoSaveData}) {
           className="border-2 border-blue-500 rounded-xl"
           // variant="bordered"
           labelPlacement="inside"
-          defaultValue={autoSaveData?.data.basics.address? autoSaveData.data.basics.address : ""}
+          defaultValue={
+            autoSaveData?.data.basics.address
+              ? autoSaveData.data.basics.address
+              : ""
+          }
           // isInvalid= {error ?  true : false}
           //   errorMessage={Object.keys(errors).length ===0 ?"" : error }
           {...register("data.basics.address")}
@@ -98,7 +158,11 @@ function PersonalForm({ active  ,  autoSaveData}) {
           className="border-2 border-blue-500 rounded-xl"
           // isInvalid= {error ?  true : false}
           //   errorMessage={Object.keys(errors).length ===0 ?"" : error }
-          defaultValue={autoSaveData?.data.basics.phone? autoSaveData.data.basics.phone : ""}
+          defaultValue={
+            autoSaveData?.data.basics.phone
+              ? autoSaveData.data.basics.phone
+              : ""
+          }
           {...register("data.basics.phone")}
         />
       </div>
@@ -107,7 +171,11 @@ function PersonalForm({ active  ,  autoSaveData}) {
           className="border-2 border-blue-500 rounded-xl"
           // variant="bordered"
           label="Description"
-          defaultValue={autoSaveData?.data.basics.summary? autoSaveData.data.basics.summary : ""}
+          defaultValue={
+            autoSaveData?.data.basics.summary
+              ? autoSaveData.data.basics.summary
+              : ""
+          }
           {...register("data.basics.summary")}
         />
       </div>
