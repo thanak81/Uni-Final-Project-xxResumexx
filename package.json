@@ -13,6 +13,7 @@
     "@ai-sdk/google": "^0.0.9",
     "@auth/prisma-adapter": "^2.0.0",
     "@formkit/auto-animate": "^0.8.2",
+    "@formkit/drag-and-drop": "^0.0.38",
     "@google-ai/generativelanguage": "^2.3.0",
     "@google/generative-ai": "^0.10.0",
     "@nextui-org/react": "^2.2.10",

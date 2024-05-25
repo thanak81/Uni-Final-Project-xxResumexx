@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import parse from "html-react-parser";
-import { cn } from "@/util/cn";
+import { cn } from "@/app/util/cn";
 
-function EducationTemplate({ resumeData , gap }) {
+function EducationTemplate({ resumeData, gap }) {
   const data = {
     education: [
       {
@@ -23,7 +23,6 @@ function EducationTemplate({ resumeData , gap }) {
     checked = false;
   }
 
-
   return (
     <>
       {resumeData?.data.education?.length > 0 && checked && (
@@ -31,20 +30,20 @@ function EducationTemplate({ resumeData , gap }) {
           <div className=" font-bold text-[#005685] border-y border-black/25 p-2">
             Education
           </div>
-          <div className={cn("p-5 flex flex-col text-black",gap)}>
+          <div className={cn("p-5 flex flex-col text-black", gap)}>
             {resumeData?.data.education.map((edu) => (
               <div key={edu.id} className="">
-                  <div className="flex justify-between">
-                    <div className="font-bold w-[40rem]">{edu.institution}</div>
-                    <div>
-                      <span>{edu.startYear}</span> -{" "}
-                      {edu.present ? (
-                        <span>Present</span>
-                      ) : (
-                        <span>{edu.endYear}</span>
-                      )}
-                    </div>
+                <div className="flex justify-between">
+                  <div className="font-bold w-[40rem]">{edu.institution}</div>
+                  <div>
+                    <span>{edu.startYear}</span> -{" "}
+                    {edu.present ? (
+                      <span>Present</span>
+                    ) : (
+                      <span>{edu.endYear}</span>
+                    )}
                   </div>
+                </div>
                 <div className="text-sm flex flex-col gap-2 text-[#56606A]">
                   <div className="mt-2 font-semibold w-[40rem]">
                     {edu.level}, {edu.area}

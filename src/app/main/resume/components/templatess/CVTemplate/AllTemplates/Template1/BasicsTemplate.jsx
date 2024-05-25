@@ -1,4 +1,4 @@
-import { cn } from "@/util/cn";
+import { cn } from "@/app/util/cn";
 import Image from "next/image";
 import React from "react";
 
@@ -12,24 +12,25 @@ function BasicsTemplate({ resumeData, margin, line }) {
   };
 
   const resumeWatch = resumeData?.data?.basics;
-  console.log("watch",resumeWatch.img)
   return (
     <div
       className={cn(
         `text-black pt-10 h-full flex  items-center justify-center gap-5`
       )}
     >
-      {resumeWatch?.img.length !==0 ? (
-        <div className="mr-[70px]">
+      {resumeWatch?.img.length !== 0 ? (
+        <div className="ml-[120px] mb-5">
           <Image
-            src={resumeWatch.img[0]}
-            width={150}
-            height={150}
+            src={resumeWatch?.img[0]? resumeWatch.img[0] : ""}
+            width={170}
+            height={170}
             className="rounded-full"
             alt="ResumeIMG"
           />
         </div>
-      ): ""}
+      ) : (
+        ""
+      )}
 
       <div className={`${resumeWatch?.img.length !== 0 ? "mr-[150px]" : ""}`}>
         <div className="text-2xl font-bold  text-center">

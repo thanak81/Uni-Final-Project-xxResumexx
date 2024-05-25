@@ -36,12 +36,28 @@ export const useLineHeight = create((set) => ({
   setValue: (newValue) => set({ value: newValue }),
 }));
 
-export const useGap = create((set)=> ({
-  value : 5,
-  setValue: (newValue)=> set({value: newValue})
+export const useGap = create((set) => ({
+  value: 5,
+  setValue: (newValue) => set({ value: newValue }),
+}));
+
+export const getImage = create((set) => ({
+  value: "",
+  setValue: (newValue) => set({ value: newValue }),
+}));
+
+export const draggable = create((set) => ({
+  draggable: false,
+  setDraggable: () => set((state) => ({ draggable: !state.draggable })),
+}));
+
+
+export const aiData = create((set)=> ({
+  value: "",
+  setValue: (newValue) => set({value: newValue})
 }))
 
-export const getImage = create((set)=> ({
+export const checkGrammar = create((set)=> ({
   value: "",
-  setValue : (newValue)=>set({value: newValue})
+  setValue: (newValue)=> set({value: newValue})
 }))

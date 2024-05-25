@@ -1,6 +1,6 @@
 "use client";
 
-import { UploadButton, UploadDropzone } from "@/util/uploadthing";
+import { UploadButton, UploadDropzone } from "@/app/util/uploadthing";
 import { useTheme } from "next-themes";
 import Image from "next/image";
 import { useState } from "react";

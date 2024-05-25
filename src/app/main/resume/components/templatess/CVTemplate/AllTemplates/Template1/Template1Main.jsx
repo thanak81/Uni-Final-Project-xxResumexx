@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useRef, useState } from "react";
+import React, { Fragment, useEffect, useRef, useState } from "react";
 import BasicsTemplate from "./BasicsTemplate";
 import ExperienceTemplate from "./ExperienceTemplate";
 import EducationTemplate from "./EducationTemplate";
@@ -8,19 +8,20 @@ import SkillTemplate from "./SkillTemplate";
 import LanguageTemplate from "./LanguageTemplate";
 import ProfileTemplate from "./ProfileTemplate";
 import {
+  draggable,
   useGap,
   useLineHeight,
   usePadding,
 } from "@/app/main/resume/state/GlobalState";
 import CustomTemplate from "./CustomTemplate";
-
+import { useDragAndDrop } from "@formkit/drag-and-drop/react";
 function Template1Main() {
   const [margin, setMargin] = useState("py-[0px]");
   const [line, setLine] = useState("leading-normal");
   const value = usePadding((state) => state.value);
   const lineValue = useLineHeight((state) => state.value);
-  const [gap,setGap] = useState("gap-5");
-  const gapValue = useGap((state)=> state.value)
+  const [gap, setGap] = useState("gap-5");
+  const gapValue = useGap((state) => state.value);
 
   useEffect(() => {
     switch (value) {
@@ -60,7 +61,7 @@ function Template1Main() {
     }
     switch (gapValue) {
       case 0:
-        setGap("gap-[4px]")
+        setGap("gap-[4px]");
         break;
       case 2:
         setGap("gap-[8px]");
@@ -74,22 +75,44 @@ function Template1Main() {
       default:
         setGap("gap-[32px]");
     }
-  }, [value, lineValue,gapValue]);
+  }, [value, lineValue, gapValue]);
 
   const { control } = useFormContext();
   const resumeData = useWatch({
     control,
   });
+  const section = [
+    {
+      section: <ProfileTemplate resumeData={resumeData} line={line} />,
+    },
+    {
+      section: <ExperienceTemplate resumeData={resumeData} gap={gap} />,
+    },
+    {
+      section: <EducationTemplate resumeData={resumeData} gap={gap} />,
+    },
+    {
+      section: <SkillTemplate resumeData={resumeData} />,
+    },
+    {
+      section: <LanguageTemplate resumeData={resumeData} />,
+    },
+    {
+      section: <CustomTemplate resumeData={resumeData} line={line} />,
+    },
+  ];
 
+  const [templates, temp] = useDragAndDrop(section);
+  const drag = draggable((state) => state.draggable);
   return (
     <div>
-      <BasicsTemplate  resumeData={resumeData} margin={margin} line={line}/>
-      <ProfileTemplate resumeData={resumeData} line={line} />
-      <ExperienceTemplate resumeData={resumeData} gap={gap}/>
-      <EducationTemplate resumeData={resumeData} gap={gap} />
-      <SkillTemplate resumeData={resumeData}/>
-      <LanguageTemplate resumeData={resumeData} />
-      <CustomTemplate resumeData={resumeData} line={line}/>
+          <BasicsTemplate resumeData={resumeData} margin={margin} line={line} />
+          <ProfileTemplate resumeData={resumeData} line={line} />
+          <ExperienceTemplate resumeData={resumeData} gap={gap} />
+          <EducationTemplate resumeData={resumeData} gap={gap} />
+          <SkillTemplate resumeData={resumeData} />
+          <LanguageTemplate resumeData={resumeData} />
+          <CustomTemplate resumeData={resumeData} line={line} />
     </div>
   );
 }

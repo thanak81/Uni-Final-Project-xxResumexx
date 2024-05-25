@@ -13,7 +13,7 @@ function Template2Main() {
 
   return (
     <div className="flex h-full border">
-      <div className=" h-[297mm] w-[30%] bg-slate-800">
+      <div className=" w-[30%] bg-slate-800 ">
         <BasicsTemplate resumeData={resumeData} />
         <SkillTemplate resumeData={resumeData} />
         <LanguageTemplate resumeData={resumeData}/>

@@ -1,8 +1,8 @@
 import React, { Fragment } from "react";
 import parse from "html-react-parser";
-import { cn } from "@/util/cn";
+import { cn } from "@/app/util/cn";
 
-function CustomTemplate({ resumeData,line }) {
+function CustomTemplate({ resumeData, line }) {
   return (
     <>
       {resumeData.data.custom && (

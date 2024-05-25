@@ -46,7 +46,12 @@ body {
     height: auto;
     margin: 0 !important;
     padding: 0 !important;
+    /* page-break-inside: avoid; */
     overflow: hidden;
+  }
+  .scroll-container {
+    overflow: visible;
+    height: fit-content;
   }
 }
 @import '@radix-ui/colors/black-alpha.css';

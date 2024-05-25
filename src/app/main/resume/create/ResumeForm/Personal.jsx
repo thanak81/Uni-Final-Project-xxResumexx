@@ -73,7 +73,7 @@ function PersonalForm({ active, autoSaveData, selectedTemplate }) {
         <div className="w-full">
           {fields.map((field, index) => {
             return (
-              <div key={field.id} className="flex justify-between">
+              <div key={field.id} className="flex justify-between w-full">
                 <ImageUpload
                   setValue={setValue}
                   value={`data.basics.img.${index}`}

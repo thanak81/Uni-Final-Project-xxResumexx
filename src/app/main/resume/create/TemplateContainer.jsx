@@ -11,7 +11,7 @@ function TemplateContainer({ selectedTemplate, printRef }) {
       <ScrollShadow
         size={300}
         isEnabled={false}
-        className={`w-full ${pathName.startsWith("/main/resume/edit") ? "h-[80%]" : "h-[74%]"}  flex flex-col gap-2 bg-white`}
+        className={`w-full ${pathName.startsWith("/main/resume/edit") ? "h-[80%]" : "h-[74%]"}  flex flex-col gap-2 p-4 bg-[#E5E5E5]`}
       >
           <Template1 selectedTemplate={selectedTemplate} printRef={printRef} />
       </ScrollShadow>

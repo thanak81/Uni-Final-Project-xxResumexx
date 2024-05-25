@@ -3,7 +3,7 @@ import { EnvelopeClosedIcon, MobileIcon } from "@radix-ui/react-icons";
 import React, { Fragment } from "react";
 import { useFormContext, useWatch } from "react-hook-form";
 import parse from "html-react-parser";
-import { cn } from "@/util/cn";
+import { cn } from "@/app/util/cn";
 
 function Template3Main() {
   const { control } = useFormContext();
@@ -13,7 +13,7 @@ function Template3Main() {
   return (
     <div className={HKFont.className}>
       <div className={`text-black pt-10 pb-5 px-[50px] w-full`}>
-        <div className="text-center uppercase leading-relaxed">
+        <div className="text-center uppercase leading-relaxed ">
           <div className="text-[30px] text-[#575757] font-bold tracking-widest">
             {resumeData.data.basics.name
               ? resumeData.data.basics.name
@@ -27,8 +27,8 @@ function Template3Main() {
 
           <div className="border-b-[2px] mt-5 border-[#575757]"></div>
         </div>
-        <div className="grid grid-cols-5 h-screen">
-          <div className="bg-[#F8F8F8] h-full py-5 px-5 col-span-2">
+        <div className="flex">
+          <div className="bg-[#F8F8F8] py-5 px-5 col-span-2 w-[30rem]">
             <div className="flex flex-col gap-4">
               <div className="uppercase tracking-widest font-bold">Contact</div>
               {resumeData.data.basics.phone && (
@@ -128,7 +128,7 @@ function Template3Main() {
                   <div className="uppercase tracking-widest font-bold">
                     Education
                   </div>
-                  <div className="text-sm flex flex-col gap-4 items-start">
+                  <div className="text-sm flex flex-col gap-4">
                     {resumeData.data.education.map((edu) => (
                       <div
                         key={edu.institution}
@@ -207,7 +207,7 @@ function Template3Main() {
               </Fragment>
             )}
           </div>
-          <div className="col-span-3 py-5 px-5">
+          <div className="col-span-3 py-5 px-5 w-full">
             {resumeData.data.profile && (
               <div className="flex flex-col gap-4">
                 <div className="uppercase tracking-widest font-bold ">
