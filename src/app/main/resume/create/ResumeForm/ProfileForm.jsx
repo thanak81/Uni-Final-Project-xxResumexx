@@ -1,7 +1,7 @@
 import React from "react";
 import { Accordion, AccordionItem, Input, Textarea } from "@nextui-org/react";
 import { Heading, Text } from "@radix-ui/themes";
-import { useStore } from "../../state/GlobalState";
+import { resumeForm, useStore } from "../../state/GlobalState";
 import InputComp from "../../components/InputComp";
 import { z, ZodType } from "zod"; // Add new import
 import { useFormContext } from "react-hook-form";
@@ -25,12 +25,13 @@ export const Schema = z.object({
   }),
 });
 
-function ProfileForm({ active, autoSaveData }) {
+function ProfileForm({ active, autoSaveData}) {
   const {
     register,
     formState: { errors },
   } = useFormContext();
-
+  const formComp = resumeForm(state=>state.value)
+  // const profileFormId = 
   return (
     <div className=" rounded-xl flex flex-col  gap-2 justify-center items-center shadow-2xl">
       <Accordion>

@@ -61,3 +61,14 @@ export const checkGrammar = create((set)=> ({
   value: "",
   setValue: (newValue)=> set({value: newValue})
 }))
+
+
+export const resumeForm = create((set)=> ({
+  value:[],
+  setValue: (newValue)=> set({value: newValue})
+}))
+
+export const aiCheckState = create((set)=> ({
+  value: "",
+  setValue: (newValue)=> set({value: newValue})
+}))

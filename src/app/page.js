@@ -14,7 +14,6 @@ export default function Home() {
   return (
     <>
       <main className="flex h-full flex-col  w-full p-24">
-      <BardComp data={data} setData={setData}/>
           <Landing />
       </main>
     </>
