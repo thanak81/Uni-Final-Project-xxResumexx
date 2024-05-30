@@ -5,8 +5,10 @@ export const getAllResume = async (req) => {
   const response = await data.json();
   return response.payload.resume;
 };
+import { toast } from "react-toastify";
 
 export const createResume = async (data) => {
+
   try {
     const response = await fetch("http://localhost:3000/api/resume", {
       method: "POST",
@@ -14,9 +16,31 @@ export const createResume = async (data) => {
       headers: { "Content-Type": "application/json" },
     });
     const createData = await response.json();
+    toast.success("Resume created successfully", {
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "dark",
+      // transition: Bounce,
+    });
     return createData;
   } catch (error) {
-    console.error("Error creating resume:", error);
+    // console.error("Error creating resume:", error);
+    toast.error(`There an error while creating a resume ${error}`, {
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "dark",
+      // transition: Bounce,
+    });
     throw error;
   }
 };

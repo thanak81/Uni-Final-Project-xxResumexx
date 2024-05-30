@@ -10,6 +10,7 @@ import EyeCloseIcon from "@/app/components/icons/EyeCloseIcon";
 import FormComp from "./Form";
 import Template1Main from "../../components/templatess/CVTemplate/AllTemplates/Template1/Template1Main";
 import TabRightSide from "@/app/main-feature/components/TabRightSide";
+import { coverLetterStyling } from "../../data/coverLetterData";
 
 function FormProviderComp({id,mutation ,active,  coverLetterById, printRef , printCoverLetter }) {
   const router = useRouter();
@@ -42,38 +43,12 @@ function FormProviderComp({id,mutation ,active,  coverLetterById, printRef , pri
   });
 
   const onSubmit = async (data) => {
-    toast.success("Cover letter updated successfully", {
-      position: "top-right",
-      autoClose: 5000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: "dark",
-      // transition: Bounce,
-    });
-    // await createCoverLetter(data);
-    await mutation.mutate(data,id)
-    router.push("/");
+      await mutation.mutate(data,id)
+    // router.push("/");
     router.refresh();
   };
 
-  const stylingSwitcherData = useMemo(
-    () => [
-      {
-        id: 1,
-        title: "Template 1 Styling",
-        styling: "Coming Soon",
-      },
-      {
-        id: 2,
-        title: "Template 2 Styling",
-        styling: "Coming Soon",
-      },
-    ],
-    []
-  );
+  const stylingSwitcherData = coverLetterStyling;
   
   const [styleSwitch, setStylingSwitch] = useState(stylingSwitcherData[0]);
   useEffect(() => {
@@ -100,9 +75,6 @@ function FormProviderComp({id,mutation ,active,  coverLetterById, printRef , pri
             activeRight={activeRight}
 
           />
-          {/* <div className="hidden lg:block">
-        <TemplateContainer/>
-      </div> */}
         </form>
       </FormProvider>
       <div className="self-center lg:self-start  ">
@@ -111,7 +83,6 @@ function FormProviderComp({id,mutation ,active,  coverLetterById, printRef , pri
             className="cursor-pointer"
             title={!active ? "Preview Resume" : "Close Preview"}
           >
-            {/* <ArrowIcon /> */}
             {!activeRight ? <EyeIcon /> : <EyeCloseIcon />}
           </div>
           {activeRight && (

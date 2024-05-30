@@ -4,16 +4,45 @@ export const getAllCoverLetter = async () => {
 
   return data.payload.coverLetter;
 };
+import { toast } from "react-toastify";
 
 export const createCoverLetter = async (data) => {
-  const res = await fetch("http://localhost:3000/api/cover-letter", {
-    method: "POST",
-    body: JSON.stringify(data),
-    headers: { "Content-Type": "application/json" },
-  });
-  const createData = await res.json();
-  return createData;
+  try{
+    const res = await fetch("http://localhost:3000/api/cover-letter", {
+      method: "POST",
+      body: JSON.stringify(data),
+      headers: { "Content-Type": "application/json" },
+    });
+    const createData = await res.json();
+    toast.success("Cover letter created successfully", {
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "dark",
+      // transition: Bounce,
+    });
+    return createData;
+  }catch(error){
+    toast.error(`There was an error creating your cover letter. Please try again ${error}`, {
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "dark",
+      // transition: Bounce,
+    });
+  }
+  
 };
+
+
 
 export const updateCoverLetter = async (data, id) => {
   const res = await fetch(`http://localhost:3000/api/cover-letter/${id}`, {

@@ -45,7 +45,6 @@ function Template1Styling() {
           className="max-w-md"
         />
         {gap !== 4 && <Button className='my-2 cursor-pointer' onClick={() => setGap(4)}>Reset</Button>}
-        <Button onClick={drag}>Change layout</Button>
     </>
   )
 }

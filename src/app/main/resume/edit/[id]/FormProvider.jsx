@@ -32,17 +32,6 @@ function FormProviderComp({id,mutation ,active, data,handleTemplate, selectedTem
   const setActiveRight = useActiveRight((state)=> state.setActiveRight)
 
   const onSubmit = async (data) => {
-    toast.success("Resume updated successfully", {
-      position: "top-right",
-      autoClose: 5000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: "dark",
-      // transition: Bounce,
-    });
     await mutation.mutate(data,id)
     // router.push(`/resume/edit/${id}`);
     // router.refresh();

@@ -41,9 +41,11 @@ export async function POST(req) {
   console.log("title",title)
   switch (title) {
     case "generateContent":
+      console.log("genecon")
       return await generateContent(prompt,model)
       break;
     case "fixedGrammar":
+      console.log("fixedgrammar")
       return await fixGrammar(prompt,model);
       break;
   }

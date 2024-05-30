@@ -12,7 +12,7 @@ import BardComp from "@/app/components/BardComp";
 
 // import {z} from "zod"
 const Tiptap = ({ index, value, data }) => {
-  const { register, setValue } = useFormContext();
+  const {setValue } = useFormContext();
 
   const editor = useEditor({
     extensions: [

@@ -8,12 +8,14 @@ import { Skeleton, Spinner } from "@nextui-org/react";
 import Link from "next/link";
 import { redirect } from "next/navigation";
 import { toast } from "react-toastify";
-import { deleteCoverLetter, getAllCoverLetter } from "../services/coverLetterService";
+import {
+  deleteCoverLetter,
+  getAllCoverLetter,
+} from "../services/coverLetterService";
 import CardCompCover from "../main/cover-letter/components/CardComp";
 
 function Landing() {
   const queryClient = useQueryClient();
-  // const response = await getAllResume();
   // get all resume
   const { isLoading, data, error, isError } = useQuery(
     ["resume"],
@@ -37,6 +39,20 @@ function Landing() {
       return { previousResume };
     },
     onError: (err, newTodo, context) => {
+      toast.error(
+        `There was an error when removing resume. Please try again `,
+        {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "dark",
+          // transition: Bounce,
+        }
+      );
       queryClient.setQueryData(["resume"], context.previousResume);
     },
     mutationFn: (id) => deleteResume(id),
@@ -44,7 +60,7 @@ function Landing() {
       queryClient.invalidateQueries({ queryKey: ["resume"] });
     },
     onSuccess: () => {
-      toast.success("Resume successfully removed", {
+      toast.success("Resume is successfully removed", {
         position: "top-right",
         autoClose: 5000,
         hideProgressBar: false,
@@ -68,6 +84,20 @@ function Landing() {
       return { previousCover };
     },
     onError: (err, newTodo, context) => {
+      toast.error(
+        `There was an error when removing cover letter. Please try again `,
+        {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "dark",
+          // transition: Bounce,
+        }
+      );
       queryClient.setQueryData(["cover-letter"], context.previousCover);
     },
     mutationFn: (id) => deleteCoverLetter(id),
@@ -113,7 +143,9 @@ function Landing() {
         <Heading className="mb-5">Recent Resume</Heading>
         {data.length <= 0 && (
           <>
-            <Heading color="green" className="mb-5">No recent resume. Go create one!</Heading>
+            <Heading color="green" className="mb-5">
+              No recent resume. Go create one!
+            </Heading>
             <Button>
               <Link href="/main/resume/create">Lets go</Link>
             </Button>
@@ -148,7 +180,11 @@ function Landing() {
         <div className="flex gap-5 justify-center flex-wrap">
           {coverData?.map((dat, index) => (
             <div className="flex" key={dat.id}>
-              <CardCompCover data={dat} index={index} mutation={mutationCover} />
+              <CardCompCover
+                data={dat}
+                index={index}
+                mutation={mutationCover}
+              />
             </div>
           ))}
         </div>

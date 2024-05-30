@@ -8,8 +8,8 @@ function CustomTemplate({ resumeData, line }) {
       {resumeData.data.custom && (
         <div className="flex flex-col">
           {resumeData.data.custom.map((cus) => (
-            <Fragment key={cus.id}>
-              <div className=" font-bold text-[#005685] border-y border-black/25 p-2 mb-5">
+            <Fragment key={cus}>
+              <div className=" font-bold text-[#005685] border-y border-black/25 p-2">
                 {cus.heading ? cus.heading : "Custom"}
               </div>
               <div

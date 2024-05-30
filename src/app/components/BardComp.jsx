@@ -120,15 +120,16 @@ function BardComp({ width, enableCompletion, aiForm, editor }) {
           </div>
         ))}
       </div>
-
-      {completion && (
-        <div>
-          {/* <input value={data} onChange={(e) => setData(e.target.value)} /> */}
-          {isLoading && (
+      {isLoading && (
             <small>
+              Generating ......
               <Spinner />
             </small>
           )}
+      {completion && (
+        <div>
+          {/* <input value={data} onChange={(e) => setData(e.target.value)} /> */}
+        
           <small
             onClick={() =>
               editor.chain().focus().insertContent(completion).run()

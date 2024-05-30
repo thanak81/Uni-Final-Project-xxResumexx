@@ -29,6 +29,8 @@ import { Spinner } from "@nextui-org/react";
 import Template1Styling from "../../components/templatess/CVTemplate/AllTemplates/TemplateStyling/Template1Styling";
 import Template2Styling from "../../components/templatess/CVTemplate/AllTemplates/TemplateStyling/Template2Styling";
 import Template3Main from "../../components/templatess/CVTemplate/AllTemplates/Template3/Template3Main";
+import { toast } from "react-toastify";
+import { resumeTemplateData, stylingData } from "../../data/resumeData";
 
 function EditResume({ params }) {
   const id = params.id;
@@ -41,11 +43,37 @@ function EditResume({ params }) {
   } = useQuery("resume", () => getResumeById(id));
   // const { isLoading, data, error, isError } = useQuery("resume", getAllResume);
 
-
   const mutation = useMutation({
     mutationFn: (request) => updateResume(request, id),
     onSuccess: () => {
+      toast.success("Resume updated successfully", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+        // transition: Bounce,
+      });
       queryClient.invalidateQueries({ queryKey: ["resume"] });
+    },
+    onError: (error) => {
+      toast.error(
+        `There is an error while updating Resume. Please try again ${error}`,
+        {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "dark",
+          // transition: Bounce,
+        }
+      );
     },
   });
 
@@ -53,7 +81,7 @@ function EditResume({ params }) {
 
   const handlePrint = useReactToPrint({
     content: () => printRef.current,
-    documentTitle: "Resume"+crypto.randomUUID(),
+    documentTitle: "Resume" + crypto.randomUUID(),
   });
 
   const active = useActive((state) => state.active);
@@ -64,52 +92,12 @@ function EditResume({ params }) {
     }
   };
 
-  const data = [
-    {
-      id: 1,
-      name: "Resume Template1",
-      img: "/CV.png",
-      uploadImg : true,
-      template: <Template1Main />,
-    },
-    {
-      id: 2,
-      name: "Resume Template2",
-      img: "/CV1.png",
-      uploadImg : false,
-      template: <Template2Main />,
-    },
-    {
-      id: 3,
-      name: "Resume Template3",
-      img: "/Resume Template Img/ResumeTemplate3.jpg",
-      uploadImg : false,
-      template: <Template3Main />,
-    },
+  const data = resumeTemplateData;
+  function handleTemplate(template) {
+    setSelectedTemplate(template);
+  }
 
-  ];
-
-
-  const stylingSwitcherData = useMemo(
-    () => [
-      {
-        id: 1,
-        title: "Template 1 Styling",
-        styling: <Template1Styling />,
-      },
-      {
-        id: 2,
-        title: "Template 2 Styling",
-        styling: <Template2Styling />,
-      },
-      {
-        id: 3,
-        title: "Template 3 Styling",
-        styling: <Template2Styling />,
-      },
-    ],
-    []
-  );
+  const stylingSwitcherData = stylingData;
   const [selectedTemplate, setSelectedTemplate] = useState(data[0]);
 
   const [styleSwitch, setStylingSwitch] = useState(stylingSwitcherData[0]);
@@ -126,10 +114,6 @@ function EditResume({ params }) {
         break;
     }
   }, [selectedTemplate, stylingSwitcherData]);
-
-  function handleTemplate(template) {
-    setSelectedTemplate(template);
-  }
 
   if (isLoading) {
     return (

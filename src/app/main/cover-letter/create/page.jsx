@@ -8,7 +8,6 @@ import { useReactToPrint } from "react-to-print";
 import { useActive, useActiveRight } from "../../resume/state/GlobalState";
 import { createResume } from "@/app/services/resumeService";
 import { usePathname, useRouter } from "next/navigation";
-import { toast } from "react-toastify";
 import RightSidebar from "@/app/main-feature/RightSidebar";
 import EyeIcon from "@/app/components/icons/EyeIcon";
 import EyeCloseIcon from "@/app/components/icons/EyeCloseIcon";
@@ -16,6 +15,7 @@ import { createCoverLetter } from "@/app/services/coverLetterService";
 import Template1Main from "../components/templatess/CVTemplate/AllTemplates/Template1/Template1Main";
 import Template2Main from "../components/templatess/CVTemplate/AllTemplates/Template2/Template2Main";
 import TabRightSide from "@/app/main-feature/components/TabRightSide";
+import { coverLetterStyling, coverLetterTemplates } from "../data/coverLetterData";
 
 function CreateCoverLetter() {
   const router = useRouter();
@@ -24,45 +24,13 @@ function CreateCoverLetter() {
     content: () => printRef.current,
     documentTitle: "Resume",
   });
-  const data = [
-    {
-      id: 1,
-      name: "Cover Letter Template1",
-      img: "/CV.png",
-      template: <Template1Main />,
-    },
-    // {
-    //   id: 2,
-    //   name: "Resume Template2",
-    //   img: "/CV.png",
-    //   template: <Template2Main />,
-    // },
-    // {
-    //   id: 3,
-    //   name: "Template2",
-    //   template: <BasicsTemplate2 />,
-    // },
-  ];
+  const data = coverLetterTemplates;
 
   function handleTemplate(template) {
     setSelectedTemplate(template);
   }
   const [selectedTemplate, setSelectedTemplate] = useState(data[0]);
-  const stylingSwitcherData = useMemo(
-    () => [
-      {
-        id: 1,
-        title: "Template 1 Styling",
-        styling: "Coming Soon",
-      },
-      {
-        id: 2,
-        title: "Template 2 Styling",
-        styling: "Coming Soon",
-      },
-    ],
-    []
-  );
+  const stylingSwitcherData = coverLetterStyling;
 
   const [styleSwitch, setStylingSwitch] = useState(stylingSwitcherData[0]);
   useEffect(() => {
@@ -103,17 +71,6 @@ function CreateCoverLetter() {
     }
   };
   const onSubmit = async (data) => {
-    toast.success("Cover letter created successfully", {
-      position: "top-right",
-      autoClose: 5000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: "dark",
-      // transition: Bounce,
-    });
     // await createResume(data);
     await createCoverLetter(data);
     localStorage.removeItem("autoSavedCoverLetterData");

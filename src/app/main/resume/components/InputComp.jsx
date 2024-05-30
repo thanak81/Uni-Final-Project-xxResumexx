@@ -14,6 +14,7 @@ function InputComp({ name, error, ...props }) {
   const { theme } = useTheme();
   return (
     <Input
+      aria-label = "Input"
       radius="rounded-sm"
       key="inside"
       // variant="bordered"

@@ -17,7 +17,7 @@ function LanguageTemplate({ resumeData }) {
           </div>
           <div className="p-5">
             <div className="flex flex-col gap-5">
-              <div className="flex flex-col gap-5 px-5 pb-5 text-sm">
+              <div className="flex flex-col gap-5 px-5  text-sm">
                 <ul className="flex flex-col gap-5  list-disc text-black">
                   {resumeData.data.language?.map((lan) => {
                     return (

@@ -13,13 +13,8 @@ import { useEffect, useState } from "react";
 import { AutoCompleteNode } from "@/app/util/customExtension";
 // import {z} from "zod"
 const Tiptap = ({ value, data }) => {
-  const active = useActive((state) => state.activeRight);
-  const setGrammar = checkGrammar((state)=>state.setValue)
-  const grammar = checkGrammar((state) => state.value);
+  const {setValue } = useFormContext();
 
-  const { register, setValue ,getValues } = useFormContext();
-  // let sentence="" ;
-  const [sentence,setSentence]= useState("")
   const { theme } = useTheme();
   const datas = aiData((state) => state.value);
 

@@ -38,7 +38,7 @@ function BasicsTemplate({ resumeData, margin, line }) {
         </div>
         <div className={cn(margin)}>
           <div className={cn("text-center px-5 text-sm ", line)}>
-            {resumeWatch.summary ? resumeWatch?.summary : resumeLocal?.summary}
+            {resumeWatch.summary ? resumeWatch?.summary : ""}
           </div>
           <div>
             <div className="text-center  text-sm">

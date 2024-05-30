@@ -1,28 +1,17 @@
 "use client";
-import React, { useRef, useState } from "react";
-import Form from "./Form";
-import ProgressCard from "@/app/main/resume/components/ProgressCard";
-import { FormProvider, useForm, useWatch } from "react-hook-form";
+import React, { useRef} from "react";
 import { useReactToPrint } from "react-to-print";
-import { useActive, useActiveRight } from "@/app/main/resume/state/GlobalState";
-import { createResume } from "@/app/services/resumeService";
-import { usePathname, useRouter } from "next/navigation";
-import { toast } from "react-toastify";
-import RightSidebar from "@/app/main-feature/RightSidebar";
-import EyeIcon from "@/app/components/icons/EyeIcon";
-import EyeCloseIcon from "@/app/components/icons/EyeCloseIcon";
+import { useActive } from "@/app/main/resume/state/GlobalState";
 import {
-  createCoverLetter,
   getCoverLetterById,
   updateCoverLetter,
 } from "@/app/services/coverLetterService";
-import Template1Main from "../../components/templatess/CVTemplate/AllTemplates/Template1/Template1Main";
-import Template2Main from "../../components/templatess/CVTemplate/AllTemplates/Template2/Template2Main";
 import { useMutation, useQuery, useQueryClient } from "react-query";
 import { Spinner } from "@nextui-org/react";
 import { Button, Heading } from "@radix-ui/themes";
 import Link from "next/link";
 import FormProviderComp from "@/app/main/cover-letter/edit/[id]/FormProviderComp";
+import { toast } from "react-toastify";
 
 function EditCoverLetter({ params }) {
   const id = params.id;
@@ -37,11 +26,34 @@ function EditCoverLetter({ params }) {
   const mutation = useMutation({
     mutationFn: (request) => updateCoverLetter(request, id),
     onSuccess: () => {
+      toast.success("Cover letter updated successfully", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+        // transition: Bounce,
+      });
       queryClient.invalidateQueries({ queryKey: ["cover-letter"] });
     },
+    onError: (error)=>{
+      toast.error(`There was an error updated your resume. Please try again ${error}`, {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+        // transition: Bounce,
+      });
+    }
   });
 
-  const router = useRouter();
   const printRef = useRef();
   const handlePrint = useReactToPrint({
     content: () => printRef.current,
