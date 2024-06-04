@@ -94,9 +94,9 @@ function ProfileForm({ active, autoSaveData }) {
               ? autoSaveData.data.profile.address
               : ""
           }
-          name={"data.profile.job"}
+          name={"data.profile.address"}
 
-          {...register("data.profile.job")}
+          // {...register("data.profile.job")}
         />
       </div>
       <div className="w-full">

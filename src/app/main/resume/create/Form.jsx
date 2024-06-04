@@ -18,6 +18,7 @@ import ProfileForm from "./ResumeForm/ProfileForm";
 import NovelEditor from "../components/NovelEditor";
 import CustomForm from "./ResumeForm/CustomForm";
 import { useTheme } from "next-themes";
+import { toast } from "react-toastify";
 
 function FormComp({
   register,
@@ -41,8 +42,27 @@ function FormComp({
       // Check if autoSavedResumeData is not empty
       if (Object.keys(autoSavedResumeData).length !== 0) {
         // Serialize the object before storing it in localStorage
-        const serializedData = JSON.stringify(autoSavedResumeData);
-        localStorage.setItem("autoSavedResumeData", serializedData);
+        try {
+          
+          const serializedData = JSON.stringify(autoSavedResumeData);
+          localStorage.setItem("autoSavedResumeData", serializedData);
+        } catch (err) {
+          if (err.name === "QuotaExceededError") {
+            window.localStorage.clear();
+          }
+          toast.error(`Autosave is off.There an error on local storage. ${err}`, {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "dark",
+            // transition: Bounce,
+          });
+         
+        }
       }
     }
   }, [pathName, autoSavedResumeData]);

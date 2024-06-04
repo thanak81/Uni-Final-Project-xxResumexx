@@ -18,7 +18,7 @@ function BasicsTemplate({ resumeData, margin, line }) {
         `text-black pt-10 h-full flex  items-center justify-center gap-5`
       )}
     >
-      {resumeWatch?.img.length !== 0 ? (
+      {resumeWatch?.img?.length !== 0 ? (
         <div className="ml-[120px] mb-5">
           <Image
             src={resumeWatch?.img[0]? resumeWatch.img[0] : ""}

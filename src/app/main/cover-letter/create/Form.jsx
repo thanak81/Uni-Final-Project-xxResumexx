@@ -40,24 +40,41 @@ function FormComp({
       // Check if autoSavedResumeData is not empty
       if (Object.keys(autoSavedCoverLetterData).length !== 0) {
         // Serialize the object before storing it in localStorage
+      try{
         const serializedData = JSON.stringify(autoSavedCoverLetterData);
         localStorage.setItem("autoSavedCoverLetterData", serializedData);
+      }catch(err){
+        if (err.name === 'QuotaExceededError') {
+          window.localStorage.clear()
+        }
+        toast.error(`There an error on local storage ${err}`, {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "dark",
+          // transition: Bounce,
+        });
+      }
+       
       }
     }
   }, [pathName, autoSavedCoverLetterData]);
   const theme = useTheme();
 
-const formData= [
-  {
-    id: 1,
-    component :         <ProfileForm autoSaveData={autoSaveData}/>
-
-  },
-  {
-    id:2,
-    component :         <EmployeeForm autoSaveData={autoSaveData}/>
-  }
-]
+  const formData = [
+    {
+      id: 1,
+      component: <ProfileForm autoSaveData={autoSaveData} />,
+    },
+    {
+      id: 2,
+      component: <EmployeeForm autoSaveData={autoSaveData} />,
+    },
+  ];
 
   return (
     <Flex gap="3" className="w-full h-full transition-all">
@@ -66,13 +83,11 @@ const formData= [
         isEnabled={false}
         className={`h-[75%] 
         ${active && activeRight ? "w-[100%]" : "w-[90vh]"}
-        ${
-          theme.theme === "light" ? "bg-[#ECF0F5]" : ""
-        } 
+        ${theme.theme === "light" ? "bg-[#ECF0F5]" : ""} 
         flex flex-col gap-2 transition-all p-5 w-full`}
       >
-        {formData.map((form)=> (
-            <div
+        {formData.map((form) => (
+          <div
             className={`w-full  px-5" key={form.id} ${
               theme.theme === "light"
                 ? "bg-white rounded-xl p-5 border"
