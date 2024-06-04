@@ -16,6 +16,7 @@ import EmployeeForm from "./CoverLetterForm/EmployeeForm";
 import LetterDetailForm from "./CoverLetterForm/LetterDetailsForm";
 import ProgressCard from "../../resume/components/ProgressCard";
 import ResumeHeader from "../../resume/create/ResumeForm/ResumeHeader";
+import { useTheme } from "next-themes";
 
 function FormComp({
   register,
@@ -44,6 +45,19 @@ function FormComp({
       }
     }
   }, [pathName, autoSavedCoverLetterData]);
+  const theme = useTheme();
+
+const formData= [
+  {
+    id: 1,
+    component :         <ProfileForm autoSaveData={autoSaveData}/>
+
+  },
+  {
+    id:2,
+    component :         <EmployeeForm autoSaveData={autoSaveData}/>
+  }
+]
 
   return (
     <Flex gap="3" className="w-full h-full transition-all">
@@ -52,11 +66,23 @@ function FormComp({
         isEnabled={false}
         className={`h-[75%] 
         ${active && activeRight ? "w-[100%]" : "w-[90vh]"}
-        
-        flex flex-col gap-2 transition-all pr-5 w-full`}
+        ${
+          theme.theme === "light" ? "bg-[#ECF0F5]" : ""
+        } 
+        flex flex-col gap-2 transition-all p-5 w-full`}
       >
-        <ProfileForm autoSaveData={autoSaveData}/>
-        <EmployeeForm autoSaveData={autoSaveData}/>
+        {formData.map((form)=> (
+            <div
+            className={`w-full  px-5" key={form.id} ${
+              theme.theme === "light"
+                ? "bg-white rounded-xl p-5 border"
+                : "bg-[#1B1B1B] rounded-xl p-5"
+            }`}
+            key={form.id}
+          >
+            {form.component}
+          </div>
+        ))}
       </ScrollShadow>
       <div className="hidden md:block">
         <div

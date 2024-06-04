@@ -3,6 +3,7 @@ import { Accordion, AccordionItem, Input, Textarea } from "@nextui-org/react";
 import { Heading, Text } from "@radix-ui/themes";
 import { z, ZodType } from "zod"; // Add new import
 import { useFormContext } from "react-hook-form";
+import InputComp from "@/app/main/resume/components/InputComp";
 
 export const Schema = z.object({
   profile: z.object({
@@ -45,13 +46,10 @@ function ProfileForm({ active, autoSaveData }) {
         </AccordionItem>
       </Accordion>
       <div className="w-full">
-        <Input
+        <InputComp
           label="Job Title"
           // radius="sm"
-          key="inside"
           // variant="bordered"
-          labelPlacement="inside"
-          className="border-2 border-blue-500 rounded-xl"
 
           // isInvalid= {error ?  true : false}
           //   errorMessage={Object.keys(errors).length ===0 ?"" : error }
@@ -60,98 +58,68 @@ function ProfileForm({ active, autoSaveData }) {
               ? autoSaveData?.data.profile.job
               : ""
           }
-          {...register("data.profile.job")}
+          name={"data.profile.job"}
+
+          // {...register("data.profile.job")}
         />
       </div>
       <div className={`flex ${active ? "flex-col" : ""} gap-2 w-full`}>
-        <Input
+        <InputComp
           label="Full name"
-          // radius="sm"
-          key="inside"
-          // variant="bordered"
-          labelPlacement="inside"
-          className="border-2 border-blue-500 rounded-xl"
 
           defaultValue={
             autoSaveData?.data.profile.name ? autoSaveData.data.profile.name : ""
           }
           // isInvalid= {error ?  true : false}
           //   errorMessage={Object.keys(errors).length ===0 ?"" : error }
-          {...register("data.profile.name")}
+          name={"data.profile.name"}
         />
-        <Input
+        <InputComp
           label="Email"
-          // radius="sm"
-          key="inside"
-          // variant="bordered"
-          labelPlacement="inside"
-          className="border-2 border-blue-500 rounded-xl"
-
           defaultValue={
             autoSaveData?.data.profile.email
               ? autoSaveData.data.profile.email
               : ""
           }
-          // isInvalid= {error ?  true : false}
-          //   errorMessage={Object.keys(errors).length ===0 ?"" : error }
-          {...register("data.profile.email")}
+          name={"data.profile.email"}
+
         />
       </div>
       <div className="w-full">
-        <Input
+        <InputComp
           label="Address"
-          // radius="sm"
-          key="inside"
-          // variant="bordered"
-          className="border-2 border-blue-500 rounded-xl"
 
-          labelPlacement="inside"
           defaultValue={
             autoSaveData?.data.profile.address
               ? autoSaveData.data.profile.address
               : ""
           }
-          // isInvalid= {error ?  true : false}
-          //   errorMessage={Object.keys(errors).length ===0 ?"" : error }
-          {...register("data.profile.address")}
+          name={"data.profile.job"}
+
+          {...register("data.profile.job")}
         />
       </div>
       <div className="w-full">
-        <Input
+        <InputComp
           label="Phone Number"
-          // radius="sm"
-          key="inside"
-          // variant="bordered"
-          className="border-2 border-blue-500 rounded-xl"
-
-          labelPlacement="inside"
-          // isInvalid= {error ?  true : false}
-          //   errorMessage={Object.keys(errors).length ===0 ?"" : error }
           defaultValue={
             autoSaveData?.data.profile.phone
               ? autoSaveData.data.profile.phone
               : ""
           }
-          {...register("data.profile.phone")}
+          name={"data.profile.phone"}
+
         />
       </div>
       <div className="w-full">
-        <Input
+        <InputComp
           label="Date"
-          // radius="sm"
-          key="inside"
-          // variant="bordered"
-          className="border-2 border-blue-500 rounded-xl"
-
-          labelPlacement="inside"
-          // isInvalid= {error ?  true : false}
-          //   errorMessage={Object.keys(errors).length ===0 ?"" : error }
           defaultValue={
             autoSaveData?.data.profile.date
               ? autoSaveData.data.profile.date
               : ""
           }
-          {...register("data.profile.date")}
+          name={"data.profile.date"}
         />
       </div>
     </div>

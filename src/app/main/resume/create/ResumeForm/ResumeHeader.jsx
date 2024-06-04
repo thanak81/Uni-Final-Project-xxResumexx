@@ -8,7 +8,7 @@ import { useFormContext } from "react-hook-form";
 function ResumeHeader() {
     const {register} = useFormContext()
   return (
-    <div className=" rounded-xl flex flex-col gap-2 justify-center items-center shadow-2xl border-2 border-yellow-500">
+    <div className=" rounded-xl flex flex-col gap-2 justify-center items-center  border-2 border-yellow-500">
       <Accordion>
         <AccordionItem
           title={

@@ -17,6 +17,7 @@ import ResumeHeader from "./ResumeForm/ResumeHeader";
 import ProfileForm from "./ResumeForm/ProfileForm";
 import NovelEditor from "../components/NovelEditor";
 import CustomForm from "./ResumeForm/CustomForm";
+import { useTheme } from "next-themes";
 
 function FormComp({
   register,
@@ -48,57 +49,54 @@ function FormComp({
 
   const setForms = resumeForm((state) => state.setValue);
   const forms = resumeForm((state) => state.value);
-  useEffect(() => {
-    const formData = [
-      {
-        id: 1,
-        component: <ResumeHeader />,
-      },
-      {
-        id: 2,
-        component: (
-          <PersonalForm
-            active={active}
-            register={register}
-            autoSaveData={autoSaveData}
-            selectedTemplate={selectedTemplate}
-          />
-        ),
-      },
-      {
-        id: 3,
+  const formData = [
+    {
+      id: 1,
+      component: <ResumeHeader />,
+    },
+    {
+      id: 2,
+      component: (
+        <PersonalForm
+          active={active}
+          register={register}
+          autoSaveData={autoSaveData}
+          selectedTemplate={selectedTemplate}
+        />
+      ),
+    },
+    {
+      id: 3,
 
-        component: <ProfileForm autoSaveData={autoSaveData} />,
-      },
-      {
-        id: 4,
+      component: <ProfileForm autoSaveData={autoSaveData} />,
+    },
+    {
+      id: 4,
 
-        component: <EducationForm autoSaveData={autoSaveData} />,
-      },
-      {
-        id: 5,
+      component: <EducationForm autoSaveData={autoSaveData} />,
+    },
+    {
+      id: 5,
 
-        component: <WorkForm autoSaveData={autoSaveData} />,
-      },
-      {
-        id: 6,
+      component: <WorkForm autoSaveData={autoSaveData} />,
+    },
+    {
+      id: 6,
 
-        component: <Skill autoSaveData={autoSaveData} />,
-      },
-      {
-        id: 7,
+      component: <Skill autoSaveData={autoSaveData} />,
+    },
+    {
+      id: 7,
 
-        component: <LanguageForm autoSaveData={autoSaveData} />,
-      },
-      {
-        id: 8,
+      component: <LanguageForm autoSaveData={autoSaveData} />,
+    },
+    {
+      id: 8,
 
-        component: <CustomForm autoSaveData={autoSaveData} />,
-      },
-    ];
-    resumeForm.getState().setValue(formData);
-  }, [active, register, autoSaveData, selectedTemplate, setForms]);
-
+      component: <CustomForm autoSaveData={autoSaveData} />,
+    },
+  ];
+  const theme = useTheme();
   return (
     <Flex gap="3" className="w-full h-full transition-all">
       <ScrollShadow
@@ -107,23 +105,32 @@ function FormComp({
         className={`h-[75%] 
         ${active && activeRight ? "w-[100%]" : "w-[90vh]"}
         
-        flex flex-col gap-2 transition-all pr-5  w-full`}
+        flex flex-col gap-2 transition-all ${
+          theme.theme === "light" ? "bg-[#ECF0F5]" : ""
+        } p-5  w-full`}
       >
         {/* <ResumeHeader />
-        <PersonalForm
-          active={active}
-          register={register}
-          autoSaveData={autoSaveData}
-          selectedTemplate={selectedTemplate}
-        />
+         <PersonalForm
+           active={active}
+           register={register}
+           autoSaveData={autoSaveData}
+           selectedTemplate={selectedTemplate}
+         />
         <ProfileForm autoSaveData={autoSaveData} />
-        <EducationForm autoSaveData={autoSaveData} />
-        <WorkForm autoSaveData={autoSaveData} />
-        <Skill autoSaveData={autoSaveData} />
-        <LanguageForm autoSaveData={autoSaveData} />
-        <CustomForm autoSaveData={autoSaveData} /> */}
-        {forms.map((form) => (
-          <div className="w-full" key={form.id}>
+         <EducationForm autoSaveData={autoSaveData} />
+         <WorkForm autoSaveData={autoSaveData} />
+         <Skill autoSaveData={autoSaveData} />
+         <LanguageForm autoSaveData={autoSaveData} />
+         <CustomForm autoSaveData={autoSaveData} />  */}
+        {formData.map((form) => (
+          <div
+            className={`w-full  px-5" key={form.id} ${
+              theme.theme === "light"
+                ? "bg-white rounded-xl p-5 border"
+                : "bg-[#1B1B1B] rounded-xl p-5"
+            }`}
+            key={form.id}
+          >
             {form.component}
           </div>
         ))}

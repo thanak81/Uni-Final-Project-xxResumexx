@@ -46,7 +46,7 @@ function EducationTemplate({ resumeData, gap }) {
                 </div>
                 <div className="text-sm flex flex-col gap-2 text-[#56606A]">
                   <div className="mt-2 font-semibold w-[40rem]">
-                    {edu.level}, {edu.area}
+                    {edu.level} {edu.area}
                   </div>
                   <div className="w-[40rem] marker:text-black prose text-sm text-black list-disc">
                     {" "}

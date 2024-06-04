@@ -19,13 +19,14 @@ function BasicsTemplate({ coverData}) {
     <>
       <div className="text-black pt-5  pb-5 h-full">
         <div className="flex justify-between items-center">
-          <div className="text-3xl font-semibold text-left w-[25rem]">
+          <div className="text-3xl font-semibold text-left w-[30rem]">
             {coverWatch.name ? coverWatch?.name : coverLocal?.name}
           </div>
-          <div className="text-right">
+          <div className="text-right  w-[50rem]">
             <div>{coverWatch.phone? coverWatch?.phone: coverLocal?.phone}</div>
             <div>{coverWatch.address? coverWatch?.address: coverLocal?.address}</div>
             <div>{coverWatch.email? coverWatch?.email: coverLocal?.email}</div>
+            {/* <di>{coverWatch.email? coverWatch?.email: coverLocal?.email}</di> */}
           </div>
         </div>
       </div>

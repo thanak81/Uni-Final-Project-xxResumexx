@@ -5,6 +5,7 @@ import { z, ZodType } from "zod"; // Add new import
 import { useFormContext } from "react-hook-form";
 import Tiptap from "../../components/TipTap";
 import { Label } from "@radix-ui/themes/dist/cjs/components/context-menu";
+import InputComp from "@/app/main/resume/components/InputComp";
 
 export const Schema = z.object({
   employee: z.object({
@@ -49,31 +50,17 @@ function EmployeeForm({ active  ,  autoSaveData}) {
       </Accordion>
 
       <div className={`flex ${active ? "flex-col" : ""} gap-2 w-full`}>
-        <Input
+        <InputComp
           label="Company Name"
-          // radius="sm"
-          key="inside"
-          // variant="bordered"
-          labelPlacement="inside"
-          className="border-2 border-blue-500 rounded-xl"
 
           defaultValue={autoSaveData?.data.employee.company? autoSaveData.data.employee.company : ""}
-          // isInvalid= {error ?  true : false}
-          //   errorMessage={Object.keys(errors).length ===0 ?"" : error }
-          {...register("data.employee.company")}
-        />
-        <Input
-          label="Hiring Manager Name"
-          // radius="sm"
-          key="inside"
-          // variant="bordered"
-          className="border-2 border-blue-500 rounded-xl"
+          name={"data.employee.company"}
 
-          labelPlacement="inside"
+        />
+        <InputComp
+          label="Hiring Manager Name"
           defaultValue={autoSaveData?.data.employee.hiringManager? autoSaveData.data.employee.hiringManager : ""}
-          // isInvalid= {error ?  true : false}
-          //   errorMessage={Object.keys(errors).length ===0 ?"" : error }
-          {...register("data.employee.hiringManager")}
+          name={"data.employee.hiringManager"}
         />
       </div>
     </div>

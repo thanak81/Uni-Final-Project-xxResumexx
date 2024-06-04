@@ -99,27 +99,22 @@ function PersonalForm({ active, autoSaveData, selectedTemplate }) {
         </div>
       )}
       <div className={`flex ${active ? "flex-col" : ""} gap-2 w-full`}>
-        <Input
+        <InputComp
           label="Full name"
           // radius="sm"
-          key="inside"
           // variant="bordered"
-          className="border-2 border-blue-500 rounded-xl"
-          labelPlacement="inside"
           defaultValue={
             autoSaveData?.data.basics.name ? autoSaveData.data.basics.name : ""
           }
+          name={"data.basics.name"}
           // isInvalid= {error ?  true : false}
           //   errorMessage={Object.keys(errors).length ===0 ?"" : error }
-          {...register("data.basics.name")}
+          // {...register("data.basics.name")}
         />
-        <Input
+        <InputComp
           label="Email"
           // radius="sm"
-          key="inside"
-          className="border-2 border-blue-500 rounded-xl"
           // variant="bordered"
-          labelPlacement="inside"
           defaultValue={
             autoSaveData?.data.basics.email
               ? autoSaveData.data.basics.email
@@ -127,17 +122,16 @@ function PersonalForm({ active, autoSaveData, selectedTemplate }) {
           }
           // isInvalid= {error ?  true : false}
           //   errorMessage={Object.keys(errors).length ===0 ?"" : error }
-          {...register("data.basics.email")}
+          name={"data.basics.email"}
+
+          // {...register("data.basics.email")}
         />
       </div>
       <div className="w-full">
-        <Input
+        <InputComp
           label="Address"
           // radius="sm"
-          key="inside"
-          className="border-2 border-blue-500 rounded-xl"
           // variant="bordered"
-          labelPlacement="inside"
           defaultValue={
             autoSaveData?.data.basics.address
               ? autoSaveData.data.basics.address
@@ -145,17 +139,14 @@ function PersonalForm({ active, autoSaveData, selectedTemplate }) {
           }
           // isInvalid= {error ?  true : false}
           //   errorMessage={Object.keys(errors).length ===0 ?"" : error }
-          {...register("data.basics.address")}
+          name={"data.basics.address"}
         />
       </div>
       <div className="w-full">
-        <Input
+        <InputComp
           label="Phone Number"
           // radius="sm"
-          key="inside"
           // variant="bordered"
-          labelPlacement="inside"
-          className="border-2 border-blue-500 rounded-xl"
           // isInvalid= {error ?  true : false}
           //   errorMessage={Object.keys(errors).length ===0 ?"" : error }
           defaultValue={
@@ -163,12 +154,14 @@ function PersonalForm({ active, autoSaveData, selectedTemplate }) {
               ? autoSaveData.data.basics.phone
               : ""
           }
-          {...register("data.basics.phone")}
+          name={"data.basics.phone"}
+
+          // {...register("data.basics.phone")}
         />
       </div>
       <div className="w-full">
         <Textarea
-          className="border-2 border-blue-500 rounded-xl"
+          className=""
           // variant="bordered"
           label="Description"
           defaultValue={

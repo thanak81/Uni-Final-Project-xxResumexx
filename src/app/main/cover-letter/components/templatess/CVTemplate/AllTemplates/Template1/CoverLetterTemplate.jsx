@@ -16,6 +16,7 @@ function CoverLetterTemplate({ coverData, autoSaveData, coverLetterById }) {
       <div className="font-bold text-black mb-5">{coverWatch.profile.date}</div>
       <div className="font-bold text-black mb-5">
         {coverWatch.employee.company}
+        <div className="py-1 pb-0">{coverWatch.employee.hiringManager}</div>
       </div>
       {/* <div className="w-full">{parse(coverWatch.letter.summary)}</div> */}
       <Tiptap
@@ -29,7 +30,8 @@ function CoverLetterTemplate({ coverData, autoSaveData, coverLetterById }) {
           !check
             ? autoSaveData?.data?.letter?.summary
             : coverLetterById.payload.data.letter.summary
-            ? coverLetterById.payload.data.letter.summary : ""
+            ? coverLetterById.payload.data.letter.summary
+            : ""
         }
       />
     </div>

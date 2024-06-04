@@ -15,12 +15,14 @@ function InputComp({ name, error, ...props }) {
   return (
     <Input
       aria-label = "Input"
-      radius="rounded-sm"
+      radius="sm"
       key="inside"
       // variant="bordered"
       labelPlacement="inside"
+      
+      classNames={{inputWrapper: "rounded ",base: "focus:border-2 focus:border-blue-500"}}
       className={cn(
-        "  focus:border-2  focus:border-green-500ne rounded-xl border-2 border-blue-500",
+        "  focus:border-2  focus:border-blue-500 rounded  border-black",
         {}
       )}
       // className = {{input: "bg-white"}}

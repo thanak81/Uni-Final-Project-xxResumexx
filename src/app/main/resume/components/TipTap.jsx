@@ -32,7 +32,7 @@ const Tiptap = ({ value, data }) => {
           // `prose px-5 prose-sm prose-zinc min-h-[150px]  rounded  border border-[#71717A] overflow-y-scroll dark:prose-invert focus:border-white focus:outline-none [&_*]:my-2`,
           //Width size is fixed becouse the default width is too big
           cn(
-            ` px-5 text-black [&_strong]:text-black border-2 border-blue-500 [&_ol]:list-decimal  [&_ul]:list-disc bg-white/2 prose-sm prose-zinc min-h-[150px] max-h-[300px] rounded text-black overflow-y-scroll dark:prose-invert focus:border-green-500 focus:outline-none [&_*]:my-2`,
+            ` px-5 text-black [&_strong]:text-black [&_ol]:list-decimal bg-[#F4F4F5] [&_ul]:list-disc border  prose-sm prose-zinc min-h-[150px] max-h-[300px] rounded text-black overflow-y-scroll dark:prose-invert  focus:outline-none [&_*]:my-2`,
             {
               "bg-white": theme === "dark",
             }
