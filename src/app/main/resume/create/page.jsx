@@ -16,6 +16,9 @@ import Template1Styling from "../components/templatess/CVTemplate/AllTemplates/T
 import Template2Styling from "../components/templatess/CVTemplate/AllTemplates/TemplateStyling/Template2Styling";
 import Template3Main from "../components/templatess/CVTemplate/AllTemplates/Template3/Template3Main";
 import AllData, { resumeTemplateData, stylingData } from "../data/resumeData";
+import ResumePDFTemplate from "@/app/components/PDF/ResumePDFTemplate";
+import PDFTemplate1 from "../components/templatess/CVTemplate/AllTemplates/PDFTemplate1/PDFTemplate1";
+import { PDFDownloadLink } from "@react-pdf/renderer";
 
 function CreateForm() {
   const router = useRouter();
@@ -98,6 +101,11 @@ function CreateForm() {
     <>
       <div className="flex gap-10 lg:gap-5 flex-col  justify-center  lg:flex-row  mt-5 lg:h-screen">
         <FormProvider {...methods}>
+          <PDFDownloadLink document={<PDFTemplate1 />} fileName={"TITLE"}>
+            {({ blob, url, loading, error }) =>
+              loading ? "Loading document..." : "Download now!"
+            }
+          </PDFDownloadLink>
           <form onSubmit={methods.handleSubmit(onSubmit)} className="w-full">
             <Form
               activeRight={activeRight}
@@ -105,6 +113,7 @@ function CreateForm() {
               selectedTemplate={selectedTemplate}
               printRef={printRef}
             />
+
             {/* <div className="hidden lg:block">
               <TemplateContainer/>
             </div> */}

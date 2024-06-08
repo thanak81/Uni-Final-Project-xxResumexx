@@ -1,6 +1,8 @@
+import ResumePDFTemplate from "@/app/components/PDF/ResumePDFTemplate";
 import { cn } from "@/app/util/cn";
 import Image from "next/image";
 import React from "react";
+import PDFTemplate1 from "../PDFTemplate1/PDFTemplate1";
 
 function BasicsTemplate({ resumeData, margin, line }) {
   let resumeLocal = {
@@ -18,7 +20,8 @@ function BasicsTemplate({ resumeData, margin, line }) {
         `text-black pt-10 h-full flex  items-center justify-center gap-5`
       )}
     >
-      {resumeWatch?.img?.length !== 0 ? (
+
+      {resumeWatch?.img.length !== 0 ? (
         <div className="ml-[120px] mb-5">
           <Image
             src={resumeWatch?.img[0]? resumeWatch.img[0] : ""}

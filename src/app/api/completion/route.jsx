@@ -35,10 +35,9 @@ export async function POST(req) {
   const google = createGoogleGenerativeAI({
     apiKey: process.env.BARD_API_KEY || ""
   })
-  const model = google("models/gemini-pro")
+  const model = google("models/gemini-1.5-pro")
 
   const { prompt , title} = await req.json();
-  console.log("title",title)
   switch (title) {
     case "generateContent":
       console.log("genecon")

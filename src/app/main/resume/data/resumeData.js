@@ -1,3 +1,4 @@
+import MainTemplate from "../components/templatess/CVTemplate/AllTemplates/PDFTemplate1/PDFTemplate1";
 import Template1Main from "../components/templatess/CVTemplate/AllTemplates/Template1/Template1Main";
 import Template2Main from "../components/templatess/CVTemplate/AllTemplates/Template2/Template2Main";
 import Template3Main from "../components/templatess/CVTemplate/AllTemplates/Template3/Template3Main";
@@ -50,5 +51,12 @@ const {
             uploadImg : false,
             template: <Template3Main />,
           },
+          {
+            id:4,
+            name: "Resume Template4",
+            img: "/Resume Template Img/ResumeTemplate3.jpg",
+            uploadImg: false,
+            template: <MainTemplate/>
+          }
     ]
 

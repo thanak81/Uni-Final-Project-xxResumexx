@@ -23,7 +23,7 @@ function LanguageTemplate({ resumeData }) {
                     return (
                       <Fragment key={lan.name}>
                         <li className="flex justify-between">
-                          <span> {lan.name}</span>
+                          <li> {lan.name}</li>
                           <span> {lan.fluency}</span>
                         </li>
                       </Fragment>

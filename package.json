@@ -1,5 +1,5 @@
 {
-  "name": "resume_shad",
+  "name": "xxResumexx",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -48,6 +48,7 @@
     "react": "^18",
     "react-dom": "^18",
     "react-hook-form": "^7.51.2",
+    "react-pdf-tailwind": "^2.3.0",
     "react-query": "^3.39.3",
     "react-to-print": "^2.15.1",
     "react-toastify": "^10.0.5",

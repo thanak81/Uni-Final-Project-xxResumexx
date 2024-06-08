@@ -16,7 +16,7 @@ function Template1({ selectedTemplate, printRef }) {
   return (
     <div ref={printRef}>
       <ResumeStructure
-        template={selectedTemplate.template}
+        template={selectedTemplate}
         printRef={printRef}
       />
     </div>
