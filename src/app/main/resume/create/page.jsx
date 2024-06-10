@@ -101,11 +101,6 @@ function CreateForm() {
     <>
       <div className="flex gap-10 lg:gap-5 flex-col  justify-center  lg:flex-row  mt-5 lg:h-screen">
         <FormProvider {...methods}>
-          <PDFDownloadLink document={<PDFTemplate1 />} fileName={"TITLE"}>
-            {({ blob, url, loading, error }) =>
-              loading ? "Loading document..." : "Download now!"
-            }
-          </PDFDownloadLink>
           <form onSubmit={methods.handleSubmit(onSubmit)} className="w-full">
             <Form
               activeRight={activeRight}

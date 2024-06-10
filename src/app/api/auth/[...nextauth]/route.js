@@ -26,6 +26,7 @@ export const authOptions = {
                 })
               })
               const data = await register.json()
+              console.log("dara",data)
               if(register.ok && data){
                 return data;
               }else{

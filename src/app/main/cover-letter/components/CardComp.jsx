@@ -23,13 +23,15 @@ const formattedDate = date.toLocaleString('en-US', { month: 'long', day: 'numeri
           {/* <Dialog/> */}
           <Dialog formattedDate={formattedDate} data={data} mutation={mutation} />
         </div>
-        <Image
-          src="/CV.png"
-          className="object-cover"
-          alt="Resume"
-          width={270}
-          height={200}
-        />
+        <div className="w-[15rem]">
+          <Image
+            src="/image.png"
+            className="object-cover"
+            alt="Resume"
+            width={2700}
+            height={2000}
+          />
+        </div>
       </div>
       <CardBody className="">
         <small>Cover Letter {data.id}</small>

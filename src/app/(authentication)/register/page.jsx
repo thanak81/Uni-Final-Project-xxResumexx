@@ -185,9 +185,6 @@ function RegisterPage() {
                 </span>
               </div>
             </div>
-            <div className="text-sm">
-              ----------------- Continue with -------------------
-            </div>
           </div>
         </div>
       </form>

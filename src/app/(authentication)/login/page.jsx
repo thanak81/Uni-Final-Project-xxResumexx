@@ -43,6 +43,8 @@ function LoginPage() {
       redirect: false,
     });
 
+    console.log(response)
+
     if (response.status === 200) {
       toast.success("You are logged in!", {
         position: "top-right",
@@ -125,9 +127,9 @@ function LoginPage() {
                 </span>
               </div>
             </div>
-            <div className="text-sm font-bold">
+            {/* <div className="text-sm font-bold">
               ------------------------ Or Continue with ----------------------
-            </div>
+            </div> */}
             {/* <OauthComp /> */}
           </div>
         </div>

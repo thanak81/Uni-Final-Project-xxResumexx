@@ -8,12 +8,17 @@ const { PrismaClient } = require("@prisma/client");
 const prisma = new PrismaClient();
 
 export const POST = async (req) => {
+
   const data = await req.json();
-  if (!data.email || !data.password)
-    return NextResponse.json({
+  console.log("datapass",data.password)
+  if (!data.email || !data.password){
+    NextResponse.json({
       message: "Please input email and password",
       date: new Date().toISOString(),
     });
+    return null;
+  }
+   
 
   const getUser = await prisma.user.findUnique({
     where: {
@@ -28,17 +33,19 @@ export const POST = async (req) => {
   );
 
   if (!passwordsMatch) {
-    return NextResponse.json({
+    NextResponse.json({
       message: "Wrong password",
       date: new Date().toISOString(),
     });
+    return null;
   }
 
   if (getUser === null) {
-    return NextResponse.json({
+     NextResponse.json({
       message: "User not found",
       date: new Date().toISOString(),
     });
+    return null;
   }
 
   return NextResponse.json({
