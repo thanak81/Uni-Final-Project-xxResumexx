@@ -17,17 +17,17 @@ function BasicsTemplate({ resumeData, margin, line }) {
   return (
     <div
       className={cn(
-        `text-black pt-10 h-full flex  items-center justify-center gap-5`
+        `text-black pt-10 h-full flex  items-center justify-center gap-10`
       )}
     >
 
       {resumeWatch?.img.length !== 0 ? (
-        <div className="ml-[120px] mb-5">
+        <div className="w-[150px]  ml-[100px] mb-5">
           <Image
             src={resumeWatch?.img[0]? resumeWatch.img[0] : ""}
-            width={170}
-            height={170}
-            className="rounded-full"
+            width={20000}
+            height={2000}
+            className="rounded-full h-[150px]"
             alt="ResumeIMG"
           />
         </div>

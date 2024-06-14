@@ -15,8 +15,8 @@ function Template2Main() {
   });
 
   return (
-    <div className="flex h-full border">
-      <div className=" w-[30%] bg-slate-800 ">
+    <div className="flex  h-[297mm] border">
+      <div className=" w-[30%] bg-slate-800 h-full">
         <BasicsTemplate resumeData={resumeData} />
         <SkillTemplate resumeData={resumeData} />
         <LanguageTemplate resumeData={resumeData}/>
@@ -26,7 +26,7 @@ function Template2Main() {
           {resumeData.data.basics.summary}
           <div
         className={cn(
-          "prose marker:text-black [&_ul]:text-black list-disc px-5  text-black max-w-full text-justify text-sm",
+          "prose marker:text-black [&_ul]:text-black list-disc   text-black max-w-full text-justify text-sm",
         )}
       >
         {resumeData?.data?.profile?.summary &&

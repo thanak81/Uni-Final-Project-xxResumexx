@@ -12,7 +12,7 @@ function Template3Main() {
   });
   return (
     <div className={HKFont.className}>
-      <div className={`text-black pt-10 pb-5 px-[50px] w-full`}>
+      <div className={`text-black pt-10 pb-5 px-[50px] w-full h-full`}>
         <div className="text-center uppercase leading-relaxed ">
           <div className="text-[30px] text-[#575757] font-bold tracking-widest">
             {resumeData.data.basics.name
@@ -27,8 +27,8 @@ function Template3Main() {
 
           <div className="border-b-[2px] mt-5 border-[#575757]"></div>
         </div>
-        <div className="flex">
-          <div className="bg-[#F8F8F8] py-5 px-5 col-span-2 w-[30rem]">
+        <div className="flex h-[297mm]">
+          <div className="bg-[#F8F8F8] py-5 px-5 col-span-2 w-[30rem] ">
             <div className="flex flex-col gap-4">
               <div className="uppercase tracking-widest font-bold">Contact</div>
               {resumeData.data.basics.phone && (
