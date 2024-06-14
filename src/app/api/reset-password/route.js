@@ -1,9 +1,9 @@
 import { NextResponse } from "next/server";
-
+import nodemailer from "nodemailer"
 const { PrismaClient } = require("@prisma/client");
-import { Resend } from "resend";
+// import { Resend } from "resend";
 
-const resend = new Resend(process.env.RESEND_API);
+// const resend = new Resend(process.env.RESEND_API);
 const prisma = new PrismaClient();
 
 export const POST = async (req) => {
@@ -23,12 +23,15 @@ export const POST = async (req) => {
       });
       return null;
   } 
-  const sendEmail = await resend.emails.send({
-    from: 'onboarding@resend.dev',
-    to: email,
-    subject: 'xxResume Reset Passsword',
-    html: `<div>Your otps code is ${Math.floor(100000 + Math.random() * 900000)} </div>`
-  });
+  // const sendEmail = await resend.emails.send({
+  //   from: 'onboarding@resend.dev',
+  //   to: email,
+  //   subject: 'xxResume Reset Passsword',
+  //   html: `<div>Your otps code is ${Math.floor(100000 + Math.random() * 900000)} </div>`
+  // });
+  const sendEmail = nodemailer.createTransport({
+    ser
+  })
 
   console.log(sendEmail)
 
