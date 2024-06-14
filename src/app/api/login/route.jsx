@@ -10,7 +10,6 @@ const prisma = new PrismaClient();
 export const POST = async (req) => {
 
   const data = await req.json();
-  console.log("datapass",data.password)
   if (!data.email || !data.password){
     NextResponse.json({
       message: "Please input email and password",
