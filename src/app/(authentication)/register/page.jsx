@@ -48,7 +48,7 @@ function RegisterPage() {
   console.log(errors);
 
   async function onSubmit(credentials) {
-    const response = await fetch("/api/register", {
+    const response = await fetch(`${process.env.NEXTAUTH_URL}/api/register`, {
       method: "POST",
       body: JSON.stringify({
         name: credentials.name,

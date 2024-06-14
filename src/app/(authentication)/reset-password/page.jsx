@@ -15,9 +15,11 @@ function ResetPassword() {
   } = useForm();
   async function onSubmit(data){
     const submit = await forgotPasswordService(data);
+    console.log("gey",process.env.NODE_ENV)
+
     console.log("submit",submit)
     if(submit.payload.code.error === null){
-            
+
     }
   }
   return (
