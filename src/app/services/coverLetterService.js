@@ -1,5 +1,5 @@
 export const getAllCoverLetter = async () => {
-  const res = await fetch(`${process.env.NEXTAUTH_URL}/api/cover-letter`);
+  const res = await fetch(`/api/cover-letter`);
   const data = await res.json();
 
   return data.payload.coverLetter;
@@ -8,7 +8,7 @@ import { toast } from "react-toastify";
 
 export const createCoverLetter = async (data) => {
   try{
-    const res = await fetch(`${process.env.NEXTAUTH_URL}/api/cover-letter`, {
+    const res = await fetch(`/api/cover-letter`, {
       method: "POST",
       body: JSON.stringify(data),
       headers: { "Content-Type": "application/json" },
@@ -45,7 +45,7 @@ export const createCoverLetter = async (data) => {
 
 
 export const updateCoverLetter = async (data, id) => {
-  const res = await fetch(`${process.env.NEXTAUTH_URL}/api/cover-letter/${id}`, {
+  const res = await fetch(`/api/cover-letter/${id}`, {
     method: "PUT",
     body: JSON.stringify(data),
     headers: { "Content-Type": "application/json" },
@@ -56,7 +56,7 @@ export const updateCoverLetter = async (data, id) => {
 
 export const deleteCoverLetter = async (id) => {
   try {
-    const res = await fetch(`${process.env.NEXTAUTH_URL}/api/cover-letter/${id}`, {
+    const res = await fetch(`/api/cover-letter/${id}`, {
       method: "DELETE",
       headers: { "Content-Type": "application/json" },
     });
@@ -69,7 +69,7 @@ export const deleteCoverLetter = async (id) => {
 
 export const getCoverLetterById = async (id) => {
   try {
-    const data = await fetch(`${process.env.NEXTAUTH_URL}/api/cover-letter/${id}`);
+    const data = await fetch(`/api/cover-letter/${id}`);
     const response = await data.json();
     return response;
   } catch (error) {
