@@ -11,15 +11,9 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { toast } from "react-toastify";
 import OauthComp from "../components/OauthComp";
+import { loginZod } from "@/app/zodValidation/zodValidation";
 function LoginPage() {
-  const Schema = z.object({
-    email: z.string().min(1, { message: "Email is required" }).email({
-      message: "Please input a valid email",
-    }),
-    password: z
-      .string()
-      .min(5, { message: "Password must be atleast 5 characters" }),
-  });
+  
 
   const router = useRouter();
 
@@ -32,7 +26,7 @@ function LoginPage() {
       email: "",
       password: "",
     },
-    resolver: zodResolver(Schema),
+    resolver: zodResolver(loginZod),
   });
 
 

@@ -9,3 +9,19 @@ console.log(response)
     console.log("dataa",data)
     return data;
 }
+
+export const accountDetailService  = async (body)=> {
+    console.log(body)
+    const response =  await fetch("/api/update-account",{
+        method : "PUT",
+        body: JSON.stringify({
+            name: body.name,
+            email : body.email
+        }),
+        headers: {"CONTENT-TYPE" : "application/json"}
+    })
+
+    const data = await response.json();
+    console.log(data)
+    return data;
+}

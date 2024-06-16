@@ -21,16 +21,18 @@ function NavBar() {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
   const pathName = usePathname();
   const menuItems = [
-    "Profile",
-    "Dashboard",
-    "Activity",
-    "Analytics",
-    "System",
-    "Deployments",
-    "My Settings",
-    "Team Settings",
-    "Help & Feedback",
-    "Log Out",
+    {
+      title: "Profile",
+      link: "/profile",
+    },
+    {
+      title: "Create Resume",
+      link: "/main/resume/create",
+    },
+    {
+      title: "Create Cover Letter",
+      link: "/main/cover-letter/create",
+    },
   ];
 
   const activeNavLink = [
@@ -98,9 +100,11 @@ function NavBar() {
                 ? session?.user.payload.name
                 : session?.user.name
             }
-            email={ session?.user?.payload?.email
-              ? session?.user.payload.email
-              : session?.user.email}
+            email={
+              session?.user?.payload?.email
+                ? session?.user.payload.email
+                : session?.user.email
+            }
           />
         ) : (
           <Link href="/login">Login</Link>
@@ -110,18 +114,12 @@ function NavBar() {
         {menuItems.map((item, index) => (
           <NavbarMenuItem key={`${item}-${index}`}>
             <Link
-              color={
-                index === 2
-                  ? "primary"
-                  : index === menuItems.length - 1
-                  ? "danger"
-                  : "foreground"
-              }
+              color={pathName !== item.link ? "foreground" : ""}
               className="w-full"
-              href="#"
+              href={item.link}
               size="lg"
             >
-              {item}
+              {item.title}
             </Link>
           </NavbarMenuItem>
         ))}

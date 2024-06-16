@@ -11,26 +11,11 @@ import { Input } from "@nextui-org/react";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { toast } from "react-toastify";
+import { registerZod } from "@/app/zodValidation/zodValidation";
 // import { Input } from "@nextui-org/react";
 
 function RegisterPage() {
-  const Schema = z
-    .object({
-      name: z.string().min(3, { message: "Name must be atleast 3 characters" }),
-      email: z.string().min(1, { message: "Email is required" }).email({
-        message: "Please input a valid email",
-      }),
-      password: z
-        .string()
-        .min(5, { message: "Password must be atleast 5 characters" }),
-      confirm_password: z
-        .string()
-        .min(1, { message: "Confirm Password is required" }),
-    })
-    .refine((data) => data.password === data.confirm_password, {
-      path: ["confirm_password"],
-      message: "Password don't match",
-    });
+  
 
   const router = useRouter();
   const {
@@ -43,7 +28,7 @@ function RegisterPage() {
       email: "",
       password: "",
     },
-    resolver: zodResolver(Schema),
+    resolver: zodResolver(registerZod),
   });
   console.log(errors);
 
