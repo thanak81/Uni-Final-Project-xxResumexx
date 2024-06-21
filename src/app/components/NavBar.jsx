@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useEffect } from "react";
 import {
   Navbar,
   NavbarBrand,
@@ -15,7 +15,7 @@ import {
 
 import { ThemeSwitcher } from "./ThemeSwticher";
 import { usePathname, useRouter } from "next/navigation";
-import { useSession } from "next-auth/react";
+import { getProviders, useSession } from "next-auth/react";
 import HoverCardComp from "./HoverCard";
 function NavBar() {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
@@ -34,7 +34,6 @@ function NavBar() {
       link: "/main/cover-letter/create",
     },
   ];
-
   const activeNavLink = [
     {
       id: 1,
@@ -52,6 +51,9 @@ function NavBar() {
   ];
 
   const { status, data: session } = useSession();
+  // console.log(session?.user.image)
+
+
   return (
     <Navbar className="" onMenuOpenChange={setIsMenuOpen}>
       <NavbarContent>
@@ -92,6 +94,7 @@ function NavBar() {
                       ? session?.user.payload.name
                       : session?.user.name
                   }
+                  src={session.user.image ? session.user.image : null}
                 />
               </Link>
             }

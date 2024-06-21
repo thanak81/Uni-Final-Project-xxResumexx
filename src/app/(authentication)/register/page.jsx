@@ -12,6 +12,7 @@ import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { toast } from "react-toastify";
 import { registerZod } from "@/app/zodValidation/zodValidation";
+import OauthComp from "../components/OauthComp";
 // import { Input } from "@nextui-org/react";
 
 function RegisterPage() {
@@ -173,6 +174,7 @@ function RegisterPage() {
           </div>
         </div>
       </form>
+      {/* <OauthComp/> */}
     </>
   );
 }

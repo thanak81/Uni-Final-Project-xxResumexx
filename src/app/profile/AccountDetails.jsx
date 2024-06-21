@@ -7,10 +7,13 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { accountDetailService } from "../services/authenticationService";
 import { loginZod, updateAccountZod } from "../zodValidation/zodValidation";
-import { useSession } from "next-auth/react";
 import { toast } from "react-toastify";
+import Image from "next/image";
+import { useSession } from "next-auth/react";
 
-function AccountDetails({ profile }) {
+function AccountDetails({ profile, session }) {
+  const { data, update } = useSession();
+  console.log("data", data);
   const {
     register,
     formState: { errors },
@@ -18,7 +21,6 @@ function AccountDetails({ profile }) {
   } = useForm({
     resolver: zodResolver(updateAccountZod),
   });
-  const { data: session, status, update } = useSession();
   async function onSubmit(acc) {
     const response = await accountDetailService(acc);
     if (response.status === 200) {
@@ -35,15 +37,48 @@ function AccountDetails({ profile }) {
       });
     }
   }
+  // console.log(session);
+  async function updateSession() {
+    await update();
+    console.log("i update myself")
+  }
   return (
     <>
-      <div className="text-3xl font-bold">Account Details</div>
-      <div className="text-sm">
-        Here, you can update your account information such as your profile
-        picture, name and username.
-      </div>
-      <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-5">
-        <div className="flex flex-col lg:flex-row gap-5 w-full">
+      <div className="text-3xl font-bold ">Account Details</div>
+      {session.provider === "google" ? (
+        <>
+          <div className="text-sm text-green-500 font-semibold.">
+            You are logged in with OAuth Provider.
+          </div>
+          <div>
+            If you wish to change your personal data. Please change it on your
+            google account
+          </div>
+        </>
+      ) : (
+        <div className="text-sm font-semibold text-green-500">
+          Here, you can update your account information such as your profile
+          picture, name and username.
+        </div>
+      )}
+
+      <form
+        onSubmit={handleSubmit(onSubmit)}
+        className="flex flex-col gap-5 w-full"
+      >
+        <div className="flex flex-col lg:flex-row items-center gap-5 w-full">
+          {profile.image && (
+            <div className="lg:w-[15rem] w-[10rem]">
+              <Image
+                alt="Profile Image"
+                className="rounded-full"
+                src={profile.image}
+                width={100000}
+                height={100000}
+              />
+            </div>
+          )}
+
           <div className="w-full">
             <Input
               radius="sm"
@@ -51,6 +86,7 @@ function AccountDetails({ profile }) {
               variant="bordered"
               label="Username"
               labelPlacement="outside"
+              disabled={session.provider === "google" ? true : false}
               defaultValue={profile.name}
               {...register("name")}
             />
@@ -62,6 +98,7 @@ function AccountDetails({ profile }) {
               variant="bordered"
               label="Email"
               labelPlacement="outside"
+              disabled={session.provider === "google"}
               defaultValue={profile.email}
               {...register("email")}
 
@@ -86,9 +123,11 @@ function AccountDetails({ profile }) {
           >
             Log out
           </Link>
-          <Button color="blue" type="submit"  className="cursor-pointer">
-            Update Profile
-          </Button>
+          {session.provider !== "google" && (
+            <Button color="blue" onClick={updateSession} type="submit" className="cursor-pointer">
+              Update Profile
+            </Button>
+          )}
         </div>
       </form>
     </>

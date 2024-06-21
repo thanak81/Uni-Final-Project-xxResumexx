@@ -16,8 +16,9 @@ export const GET = async (request, { params }) => {
     });
   }
 
-  const user_id = session.user.payload.id;
-
+  const user_id = session.user.payload?.id
+    ? session.user.payload.id
+    : session.user.id;
   const id = parseInt(params.id);
   const getCoverLetterById = await prisma.coverLetter.findUnique({
     where: {
@@ -60,8 +61,9 @@ export const PUT = async (req, { params }) => {
 
   const session = await getServerSession(authOptions);
 
-  const user_id = session.user.payload.id;
-
+  const user_id = session.user.payload?.id
+    ? session.user.payload.id
+    : session.user.id;
   const updatedCoverLetter = await prisma.coverLetter.update({
     where: {
       id: id,

@@ -4,12 +4,18 @@ import CredentialsProvider from "next-auth/providers/credentials";
 import { PrismaAdapter } from "@auth/prisma-adapter"
 import bcrypt from "bcrypt"
 import GoogleProvider from "next-auth/providers/google"
+import { signIn } from "next-auth/react";
 
 const prisma = new PrismaClient();
 export const authOptions = {
     adapter: PrismaAdapter(prisma),
     
     providers:[
+      GoogleProvider({
+        clientId: process.env.GOOGLE_CLIENT_ID,
+        clientSecret: process.env.GOOGLE_CLIENT_SECRET
+      })
+      ,
         CredentialsProvider({
             name : "Credentials",
             credentials: {
@@ -39,20 +45,42 @@ export const authOptions = {
       },
 
     callbacks: {
-        async session({ session, token }) {
+      // async signIn({account,profile}){
+      //   console.log(account)
+      //   if(!profile?.email){
+      //     throw new Error("No Profile")
+      //   }
+      //   await prisma.user.upsert({
+      //     where: {
+      //       email: profile.email
+      //     },
+      //     create: {
+      //       email: profile.email,
+      //       name: profile.name
+      //     },
+      //     update: {
+      //       name: profile.name
+      //     }
+      //   })
+
+      //   return true;
+      // },
+        async session({ session, token}) {
           session.user = token.user;
-          session.user.id = token.id
+          session.provider = token.provider;
+          session.user.id = token.id || token.sub
           return session;
         },
-        async jwt({ token, user }) {
+        async jwt({ token, user ,account}) {
           if (user) {
             token.user = user;
+            token.provider = account.provider;
           }
           return token;
         },
       },
-    
     secret : process.env.NEXTAUTH_SECRET,
+    
     pages: {
         signIn: "/login",
     },

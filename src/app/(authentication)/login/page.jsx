@@ -111,6 +111,9 @@ function LoginPage() {
             >
               Login
             </Button>
+            <div className="self-end">
+              <Link className="text-sm text-red-500" href={"/forgot-password/email"}>Forget Password?</Link>
+            </div>
             <div className="self-start">
               <div className="flex gap-2">
                 Dont have an account?
@@ -124,10 +127,11 @@ function LoginPage() {
             {/* <div className="text-sm font-bold">
               ------------------------ Or Continue with ----------------------
             </div> */}
-            {/* <OauthComp /> */}
+            <OauthComp />
           </div>
         </div>
       </form>
+
     </>
   );
 }

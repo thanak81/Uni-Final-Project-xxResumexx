@@ -1,17 +1,21 @@
-"use client"
+"use client";
 
 import Image from "next/image";
-import React from "react";
+import React, { useEffect } from "react";
 import { signIn, useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 
 function OauthComp() {
   const session = useSession();
+  console.log(session)
   const router = useRouter();
-  if (session) {
-    router.push("/");
-    router.refresh();
-  }
+  useEffect(() => {
+    if (session) {
+      router.push("/");
+      router.refresh();
+    }
+  }, [router,session]);
+
   return (
     <div
       onClick={() => signIn("google")}

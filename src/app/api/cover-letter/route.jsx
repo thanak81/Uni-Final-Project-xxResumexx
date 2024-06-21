@@ -8,7 +8,10 @@ const prisma = new PrismaClient();
 
 export const GET = async () => {
   const session = await getServerSession(authOptions);
-  const user_id = session.user.payload.id;
+  console.log("session id", session.user.id);
+  const user_id = session.user.payload?.id
+    ? session.user.payload.id
+    : session.user.id;
   if (!session) {
     return NextResponse.json({
       message: "You are unauthorize",
@@ -20,6 +23,7 @@ export const GET = async () => {
     where: {
       id: user_id,
     },
+
     include: {
       CoverLetter: true,
     },
@@ -50,7 +54,10 @@ export const GET = async () => {
 
 export const POST = async (request) => {
   const session = await getServerSession(authOptions);
-  const user_id = session.user.payload.id;
+  // const user_id = session.user.payload.id;
+  const user_id = session.user.payload?.id
+    ? session.user.payload.id
+    : session.user.id;
   const coverData = await request.json();
   const createCoverLetter = await prisma.coverLetter.create({
     data: {

@@ -11,7 +11,7 @@ function BreadCrumbComp() {
       {pathName.map((path, index) => {
         let href = `/${pathName.slice(0, index + 1).join("/")}`;
         return(
-         <BreadcrumbItem key={index} aria-label={`Go to ${(path.toLocaleUpperCase())}`} href={href}>{path.toLocaleUpperCase()}</BreadcrumbItem>)
+         <BreadcrumbItem key={index} aria-label={`Go to ${(path.toLocaleUpperCase())}`} href={href}> {path.toLocaleUpperCase()}</BreadcrumbItem>)
       })}
     </Breadcrumbs>
   );

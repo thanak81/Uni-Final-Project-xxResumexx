@@ -19,9 +19,9 @@ export default function RootLayout({ children }) {
         <Provider>
           <Theme>
             <AuthProvider>
-              <div className="fixed w-full top-0 z-[999]">
+              {/* <div className="fixed w-full top-0 z-[999]">
                 <NavBar />
-              </div>
+              </div> */}
             {children}
             <ToastContainerWrapper/>
             </AuthProvider>

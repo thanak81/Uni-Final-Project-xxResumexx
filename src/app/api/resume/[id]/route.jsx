@@ -20,13 +20,14 @@ export const GET = async (request, { params }) => {
     });
   }
 
-  const user_id = session.user.payload.id;
-
+  const user_id = session.user.payload?.id
+    ? session.user.payload.id
+    : session.user.id;
   const id = parseInt(params.id);
   const getResumeById = await prisma.resume.findUnique({
     where: {
       id: id,
-      user_id: user_id
+      user_id: user_id,
     },
   });
 
@@ -52,7 +53,7 @@ export const PUT = async (request, { params }) => {
 
   const getResumeById = await prisma.resume.findUnique({
     where: {
-      id: id
+      id: id,
     },
   });
   if (getResumeById === null) {
@@ -63,26 +64,27 @@ export const PUT = async (request, { params }) => {
     });
   }
   const session = await getServerSession(authOptions);
-//   if (!session) {
-//     return resp.status(401).json({ error: "Not authenticated" });
-//   }
-  const user_id = session.user.payload.id;
-
+  //   if (!session) {
+  //     return resp.status(401).json({ error: "Not authenticated" });
+  //   }
+  const user_id = session.user.payload?.id
+    ? session.user.payload.id
+    : session.user.id;
   const updateResume = await prisma.resume.update({
     where: {
       id: id,
     },
     data: {
-        title: data.resumeInfo.title,
-        // slug: resumeData.resumeInfo.slug,
-        slug: data.resumeInfo.slug,
-        // need to make this dynamic
-        user_id: user_id,
-        data: data.data,
+      title: data.resumeInfo.title,
+      // slug: resumeData.resumeInfo.slug,
+      slug: data.resumeInfo.slug,
+      // need to make this dynamic
+      user_id: user_id,
+      data: data.data,
     },
   });
 
-  console.log("updateddata", updateResume)
+  console.log("updateddata", updateResume);
 
   return NextResponse.json({
     message: "Resume updated successfully",
