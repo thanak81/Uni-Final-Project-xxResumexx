@@ -15,7 +15,10 @@ import { createCoverLetter } from "@/app/services/coverLetterService";
 import Template1Main from "../components/templatess/CVTemplate/AllTemplates/Template1/Template1Main";
 import Template2Main from "../components/templatess/CVTemplate/AllTemplates/Template2/Template2Main";
 import TabRightSide from "@/app/main-feature/components/TabRightSide";
-import { coverLetterStyling, coverLetterTemplates } from "../data/coverLetterData";
+import {
+  coverLetterStyling,
+  coverLetterTemplates,
+} from "../data/coverLetterData";
 
 function CreateCoverLetter() {
   const router = useRouter();
@@ -59,7 +62,7 @@ function CreateCoverLetter() {
         : {
             profile: {},
             letter: {},
-            employee: {}
+            employee: {},
           },
     },
     // resolver: zodResolver(Schema)
@@ -98,7 +101,7 @@ function CreateCoverLetter() {
         <div className="self-center lg:self-start  ">
           <div
             onClick={setActiveRight}
-            className="cursor-pointer"
+            className="cursor-pointer "
             title={!active ? "Preview Resume" : "Close Preview"}
           >
             {/* <ArrowIcon /> */}
@@ -106,10 +109,11 @@ function CreateCoverLetter() {
           </div>
           {activeRight && (
             <TabRightSide
-            styleSwitch={styleSwitch}
+              styleSwitch={styleSwitch}
               printResume={printResume}
               onSubmit={methods.handleSubmit(onSubmit)}
               data={data}
+              isSubmitting={methods.formState.isSubmitting}
               handleTemplate={handleTemplate}
             />
           )}

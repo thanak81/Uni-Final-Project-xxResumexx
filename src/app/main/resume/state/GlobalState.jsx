@@ -1,4 +1,5 @@
 "use client";
+import { m } from "framer-motion";
 import React from "react";
 import { create } from "zustand";
 
@@ -51,24 +52,27 @@ export const draggable = create((set) => ({
   setDraggable: () => set((state) => ({ draggable: !state.draggable })),
 }));
 
-
-export const aiData = create((set)=> ({
+export const aiData = create((set) => ({
   value: "",
-  setValue: (newValue) => set({value: newValue})
-}))
+  setValue: (newValue) => set({ value: newValue }),
+}));
 
-export const checkGrammar = create((set)=> ({
+export const checkGrammar = create((set) => ({
   value: "",
-  setValue: (newValue)=> set({value: newValue})
-}))
+  setValue: (newValue) => set({ value: newValue }),
+}));
 
+export const resumeForm = create((set) => ({
+  value: [],
+  setValue: (newValue) => set({ value: newValue }),
+}));
 
-export const resumeForm = create((set)=> ({
-  value:[],
-  setValue: (newValue)=> set({value: newValue})
-}))
-
-export const aiCheckState = create((set)=> ({
+export const aiCheckState = create((set) => ({
   value: "",
-  setValue: (newValue)=> set({value: newValue})
-}))
+  setValue: (newValue) => set({ value: newValue }),
+}));
+
+export const coverToolbar = create((set) => ({
+  value: "",
+  setValue: (newValue) => set({ value: newValue }),
+}));

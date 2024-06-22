@@ -5,11 +5,12 @@ import { useCompletion } from "ai/react";
 import React, { useEffect, useState } from "react";
 import { Input, Snippet, Spinner } from "@nextui-org/react";
 import { Button } from "@radix-ui/themes";
-import { aiCheckState, aiData, checkGrammar } from "../main/resume/state/GlobalState";
+// import { aiCheckState, aiData, checkGrammar } 
+import { aiCheckState, aiData, checkGrammar } from "../../resume/state/GlobalState";
 import { useFormContext, useWatch } from "react-hook-form";
 import parse from "html-react-parser";
 
-function BardComp({ width, aiForm, editor }) {
+function BardCover({ width, enableCompletion, aiForm, editor }) {
   const grammar = checkGrammar((state) => state.value);
 
   console.log("sentence", grammar);
@@ -18,9 +19,10 @@ function BardComp({ width, aiForm, editor }) {
   const [aiContent, setAiContent] = useState("");
   const setGrammar = checkGrammar((state) => state.setValue);
   const { control } = useFormContext();
-  const resumeWatch = useWatch({
+  const coverLetterWatch = useWatch({
     control,
   });
+  console.log("coverletter watch",coverLetterWatch)
   // const [trackAiState, setTrackAiState] = useState("");
   const setTrackAiState = aiCheckState((state)=>state.setValue)
   const checkAiState = aiCheckState((state) => state.value);
@@ -41,9 +43,9 @@ function BardComp({ width, aiForm, editor }) {
 
   useEffect(() => {
     // setGrammar(parse(resumeWatch.data.profile.summary));
-    if (resumeWatch.data.profile.summary) {
+    if (coverLetterWatch.data.letter.summary) {
       const tempElement = document.createElement("div");
-      tempElement.innerHTML = resumeWatch.data.profile.summary;
+      tempElement.innerHTML = coverLetterWatch.data.letter.summary;
 
       // Convert HTML content to plain text
       const plainText = tempElement.innerText;
@@ -54,6 +56,8 @@ function BardComp({ width, aiForm, editor }) {
     }
     if (completion && aiForm && isLoading) {
       setData(completion);
+      console.log("datacover", completion)
+    // editor.commands.setTextSelection(completion)
       editor.commands.setContent(completion);
       // to enable live preview since setContent does not trigger re-render
       editor.chain().focus().insertContent(" ").run();
@@ -63,7 +67,7 @@ function BardComp({ width, aiForm, editor }) {
     completion,
     setData,
     setInput,
-    resumeWatch.data.profile.summary,
+    coverLetterWatch.data.letter.summary,
     aiForm,
     isLoading,
   ]);
@@ -83,11 +87,11 @@ function BardComp({ width, aiForm, editor }) {
 
   // console.log("track", trackAiState);
 
-
+console.log(completion)
   return (
     <div
-      className={`flex flex-col gap-3 justify-between ${
-        width ? width : "w-[18rem]"
+      className={`flex gap-3 justify-between items-center ${
+        width ? width : "w-full"
       }`}
     >
       {/* <Input
@@ -104,7 +108,7 @@ function BardComp({ width, aiForm, editor }) {
       /> */}
       <div className="self-end justify-end"></div>
       {/* <Button onClick={handleSubmit}>Fixed Grammar</Button> */}
-      <div className="flex gap-3">
+      <div className="flex gap-3 ">
         {aiState.map((ai) => (
           <div key={ai.id}>
             <Button
@@ -124,12 +128,11 @@ function BardComp({ width, aiForm, editor }) {
       {isLoading && (
             <small>
               Generating ......
-              <Spinner />
+              {/* <Spinner /> */}
             </small>
           )}
       {/* {completion && (
         <div>
-          <input value={data} onChange={(e) => setData(e.target.value)} />
         
           <small
             onClick={() =>
@@ -141,9 +144,6 @@ function BardComp({ width, aiForm, editor }) {
 
           <div
             className="rounded-xl w-full bg-[#212121] h-[21rem]  text-white p-2  overflow-y-auto"
-            onClick={() => {
-              navigator.clipboard.writeText(completion);
-            }}
           >
             {completion}
           </div>
@@ -153,4 +153,4 @@ function BardComp({ width, aiForm, editor }) {
   );
 }
 
-export default BardComp;
+export default BardCover;

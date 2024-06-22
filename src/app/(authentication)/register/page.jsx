@@ -163,8 +163,8 @@ function RegisterPage() {
 
             <Button
               type="submit"
-              disabled={isSubmitting}
-              className={`text-white w-full  cursor-pointer  ${isSubmitting ? "bg-slate-500" : "bg-blue-500"}`}
+              loading={isSubmitting}
+              className={`text-white w-full  cursor-pointer`}
             >
               Sign up
             </Button>

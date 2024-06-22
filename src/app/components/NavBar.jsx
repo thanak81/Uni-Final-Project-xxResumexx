@@ -33,6 +33,7 @@ function NavBar() {
       title: "Create Cover Letter",
       link: "/main/cover-letter/create",
     },
+  
   ];
   const activeNavLink = [
     {
@@ -48,6 +49,7 @@ function NavBar() {
       nav_link: "/main/cover-letter/create",
       is_active: false,
     },
+  
   ];
 
   const { status, data: session } = useSession();

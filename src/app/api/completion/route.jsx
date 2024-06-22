@@ -9,6 +9,7 @@ import { fixGrammar } from "./fix-grammar";
 import { aiCheckState } from "@/app/main/resume/state/GlobalState";
 import { generateContent } from "./generate-content";
 import { NextResponse } from "next/server";
+import { general } from "./general";
 
 const genAI = new GoogleGenerativeAI(process.env.BARD_API_KEY || "");
 
@@ -47,6 +48,8 @@ export async function POST(req) {
       console.log("fixedgrammar")
       return await fixGrammar(prompt,model);
       break;
+    case "general": 
+    return await general(prompt,model)
   }
   // return await generateContent(prompt,model)
 }

@@ -12,12 +12,22 @@ function CoverLetterTemplate({ coverData, autoSaveData, coverLetterById }) {
     check = true;
   }
   return (
-    <div className=" text-sm max-w-full text-justify break-words">
-      <div className="font-bold text-black mb-5">{coverWatch.profile.date}</div>
-      <div className="font-bold text-black mb-5">
-        {coverWatch.employee.company}
-        <div className="py-1 pb-0">{coverWatch.employee.hiringManager}</div>
-      </div>
+    <div className=" text-sm max-w-full text-justify break-words relative">
+      {coverWatch.profile.date && (
+        <div className="font-bold text-black my-2.5">
+          {coverWatch.profile.date}
+        </div>
+      )}
+      {coverWatch.employee.company && (
+        <div className="font-bold text-black my-5">
+          {coverWatch.employee.company}
+        </div>
+      )}
+        {coverWatch.employee.hiringManager && (
+            <div className="py-1 pb-0 text-black my-2.5">{coverWatch.employee.hiringManager}</div> 
+
+      )}
+
       {/* <div className="w-full">{parse(coverWatch.letter.summary)}</div> */}
       <Tiptap
         value={"data.letter.summary"}

@@ -1,13 +1,14 @@
 "use client";
 
 import BardComp from "@/app/components/BardComp";
+import BardGeneral from "@/app/components/BardGeneral";
 import ProgressCard from "@/app/main/resume/components/ProgressCard";
 import { aiData } from "@/app/main/resume/state/GlobalState";
 import { Card, Tab, Tabs } from "@nextui-org/react";
 import { Heading } from "@radix-ui/themes";
 import Image from "next/image";
 import React, { useState } from "react";
-function TabRightSide({ onSubmit, data, handleTemplate, printResume,styleSwitch }) {
+function TabRightSide({ onSubmit,isSubmitting, data, handleTemplate, printResume,styleSwitch }) {
   
   // const setData = aiData(state=>state.setValue)
   return (
@@ -15,17 +16,18 @@ function TabRightSide({ onSubmit, data, handleTemplate, printResume,styleSwitch 
       <Tabs size="sm" aria-label="Options" color="primary">
         <Tab key="progress_card" title="Progress Card">
           <ProgressCard
+          isSubmitting={isSubmitting}
             printResume={printResume}
             onSubmit={onSubmit}
             handleTemplate={handleTemplate}
             styleSwitch={styleSwitch}
           />
         </Tab>
-        {/* <Tab key="ai" title="AI">
+        <Tab key="ai" title="AI">
           <div className="w-full">
-            <BardComp  enableCompletion = {true} aiForm={false}/>
+            <BardGeneral  enableCompletion = {true} aiForm={false}/>
           </div>
-        </Tab> */}
+        </Tab>
         <Tab key="template" title="Template">
         <div className="h-[30rem] overflow-y-auto overflow-x-hidden">
          <div className="w-[18rem] flex gap-4 flex-col">

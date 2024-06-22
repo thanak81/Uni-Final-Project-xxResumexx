@@ -10,7 +10,7 @@ import Template1Styling from "./templatess/CVTemplate/AllTemplates/TemplateStyli
 import Template2Styling from "./templatess/CVTemplate/AllTemplates/TemplateStyling/Template2Styling";
 import clsx from "clsx";
 
-function ProgressCard({ onSubmit, printResume, styleSwitch }) {
+function ProgressCard({ onSubmit,isSubmitting, printResume, styleSwitch }) {
 
   return (
     <div className="overflow-y-auto h-full w-[18rem]">
@@ -26,7 +26,7 @@ function ProgressCard({ onSubmit, printResume, styleSwitch }) {
         {/* <Button onClick={onSubmit}>
           <DownloadIcon /> Submit Resume
         </Button> */}
-        <SubmitDialogComp onSubmit={onSubmit} printResume={printResume} />
+        <SubmitDialogComp isSubmitting={isSubmitting} onSubmit={onSubmit} printResume={printResume} />
         <Divider className="" />
         <ScrollShadow
         hideScrollBar

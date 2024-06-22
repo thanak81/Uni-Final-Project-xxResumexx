@@ -2,7 +2,7 @@
 
 .page {
     font-family: Arial, Helvetica, sans-serif;
-    max-width: 216mm;
+    width: 216mm;
     position: relative;
     min-height: 297mm;
     /* max-height:max-content; */

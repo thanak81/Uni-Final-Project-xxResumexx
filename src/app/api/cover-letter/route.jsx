@@ -8,7 +8,6 @@ const prisma = new PrismaClient();
 
 export const GET = async () => {
   const session = await getServerSession(authOptions);
-  console.log("session id", session.user.id);
   const user_id = session.user.payload?.id
     ? session.user.payload.id
     : session.user.id;

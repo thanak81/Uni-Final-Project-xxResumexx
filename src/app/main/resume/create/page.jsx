@@ -103,6 +103,7 @@ function CreateForm() {
         <FormProvider {...methods}>
           <form onSubmit={methods.handleSubmit(onSubmit)} className="w-full">
             <Form
+
               activeRight={activeRight}
               autoSaveData={autoSaveData}
               selectedTemplate={selectedTemplate}
@@ -125,6 +126,7 @@ function CreateForm() {
           </div>
           {activeRight && (
             <TabRightSide
+              isSubmitting={methods.formState.isSubmitting}
               styleSwitch={styleSwitch}
               printResume={printResume}
               onSubmit={methods.handleSubmit(onSubmit)}

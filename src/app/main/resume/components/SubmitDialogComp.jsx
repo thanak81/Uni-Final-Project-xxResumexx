@@ -12,8 +12,10 @@ import {
 } from "@radix-ui/themes";
 import { DownloadIcon } from "@radix-ui/react-icons";
 import { useActive } from "../state/GlobalState";
-function SubmitDialogComp({ onSubmit, printResume }) {
+import { useFormContext } from "react-hook-form";
+function SubmitDialogComp({ onSubmit,isSubmitting, printResume }) {
   const active = useActive((state) => state.active);
+  console.log(isSubmitting)
   return (
     <Dialog.Root>
       <Dialog.Trigger>
@@ -42,9 +44,12 @@ function SubmitDialogComp({ onSubmit, printResume }) {
           <Box>
             <Dialog.Title>Save Resume</Dialog.Title>
             <Button
+            loading={isSubmitting}
               onClick={onSubmit}
               title="Save Resume"
-              className="cursor-pointer"
+              // disabled= {isSubmitting}
+              // color={`${isSubmitting? "gray" : ""}`}
+              className={`cursor-pointer ${isSubmitting? "bg-slate-500" : ""}`}
             >
               <DownloadIcon /> Save Resume
             </Button>

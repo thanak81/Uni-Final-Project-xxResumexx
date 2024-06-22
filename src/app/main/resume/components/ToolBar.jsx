@@ -38,7 +38,6 @@ function ToolBar({ editor, datas }) {
      
               <BardComp
                 width={"w-full"}
-                enableCompletion={false}
                 aiForm={true}
                 editor={editor}
               />

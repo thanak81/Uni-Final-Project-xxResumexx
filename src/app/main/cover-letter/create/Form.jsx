@@ -99,7 +99,7 @@ function FormComp({
           </div>
         ))}
       </ScrollShadow>
-      <div className="hidden md:block">
+      <div className="hidden md:block ">
         <div
           onClick={setActive}
           className="cursor-pointer"

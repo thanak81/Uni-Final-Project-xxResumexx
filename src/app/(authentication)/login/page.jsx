@@ -112,10 +112,9 @@ function LoginPage() {
             </div>
             <Button
               type="submit"
-              disabled={isSubmitting}
-              className={`text-white w-full  cursor-pointer  ${
-                isSubmitting ? "bg-slate-500" : "bg-blue-500"
-              }`}
+              loading={isSubmitting}
+              // disabled={isSubmitting}
+              className={`text-white w-full  cursor-pointer  `}
             >
               Login
             </Button>

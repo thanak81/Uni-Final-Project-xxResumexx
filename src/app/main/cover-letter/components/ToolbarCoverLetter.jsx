@@ -12,29 +12,40 @@ import {
   TextAlignRightIcon,
 } from "@radix-ui/react-icons";
 import NumberBullet from "@/app/components/icons/NumberBullet";
+import BardComp from "@/app/components/BardComp";
+import BardCover from "./BardCover";
 
 function ToolBarCoverLetter({ editor }) {
   if (!editor) {
     return null;
   }
   return (
-    <div className="flex gap-2 my-2 rounded">
-      <ToggleComp
-        pressed={editor.isActive("bold")}
-        onPressedChange={() => editor.chain().focus().toggleBold().run()}
-        icon={<FontBoldIcon />}
-      />
-      <ToggleComp
-        pressed={editor.isActive("bulletList") ? "is-active" : ""}
-        onPressedChange={() => editor.chain().focus().toggleBulletList().run()}
-        icon={<ListBulletIcon />}
-      />
-      <ToggleComp
-        pressed={editor.isActive("orderedList") ? "is-active" : ""}
-        onPressedChange={() => editor.chain().focus().toggleOrderedList().run()}
-        icon={<NumberBullet />}
-      />
- 
+    <div className="flex gap-2 my-2 rounded items-center w-full">
+      <div className="flex gap-2 items-center justify-center">
+        <ToggleComp
+          pressed={editor.isActive("bold")}
+          onPressedChange={() => editor.chain().focus().toggleBold().run()}
+          icon={<FontBoldIcon />}
+        />
+        <ToggleComp
+          pressed={editor.isActive("bulletList") ? "is-active" : ""}
+          onPressedChange={() =>
+            editor.chain().focus().toggleBulletList().run()
+          }
+          icon={<ListBulletIcon />}
+        />
+        <ToggleComp
+          pressed={editor.isActive("orderedList") ? "is-active" : ""}
+          onPressedChange={() =>
+            editor.chain().focus().toggleOrderedList().run()
+          }
+          icon={<NumberBullet />}
+        />
+        <div>
+          <BardCover editor={editor} aiForm={true} />
+        </div>
+      </div>
+
       {/* <ToggleComp
         pressed={editor.isActive({ textAlign: 'center' }) ? 'is-active' : ''}
         onPressedChange={() => editor.chain().focus().setTextAlign('center').run()}
