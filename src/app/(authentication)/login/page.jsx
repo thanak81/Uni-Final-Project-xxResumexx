@@ -12,15 +12,14 @@ import { z } from "zod";
 import { toast } from "react-toastify";
 import OauthComp from "../components/OauthComp";
 import { loginZod } from "@/app/zodValidation/zodValidation";
+import TextBetweenLine from "../components/TextBetweenLine";
 function LoginPage() {
-  
-
   const router = useRouter();
 
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    formState: { errors, isSubmitting },
   } = useForm({
     defaultValues: {
       email: "",
@@ -29,7 +28,6 @@ function LoginPage() {
     resolver: zodResolver(loginZod),
   });
 
-
   async function onSubmit(data) {
     const response = await signIn("credentials", {
       email: data?.email,
@@ -37,7 +35,7 @@ function LoginPage() {
       redirect: false,
     });
 
-    console.log(response)
+    console.log(response);
 
     if (response.status === 200) {
       toast.success("You are logged in!", {
@@ -69,12 +67,19 @@ function LoginPage() {
   }
 
   return (
-    <>
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <div className="flex  gap-10 justify-center">
-          <div className="flex flex-col gap-5 w-[25rem] mt-16">
-            <div className="self-start text-3xl font-bold">Login</div>
-            <div className="w-full  items-center gap-1.5">
+    <div className="grid lg:grid-cols-2 h-full w-full">
+
+      <div className="h-full border lg:block hidden bg-[url('/images/login.jpg')] bg-no-repeat bg-cover brightness-50 ">
+      </div>
+      <form onSubmit={handleSubmit(onSubmit)} className="">
+      <div className="fixed text-2xl font-bold mx-5 mt-5 text-yellow-500">xxResumexx</div>
+
+        <div className="flex h-full gap-10 justify-center items-center ">
+          <div className="flex flex-col gap-5 w-[25rem]">
+            <div className="self-center text-3xl font-bold text-blue-500">
+              Login
+            </div>
+            <div className="w-full flex flex-col  gap-2">
               <label htmlFor="email">Email</label>
 
               <Input
@@ -84,13 +89,13 @@ function LoginPage() {
                 type="email"
                 id="email"
                 placeholder="Email"
-                className="border border-black"
+                className="border border-black rounded-xl"
                 {...register("email")}
                 isInvalid={errors.email ? true : false}
                 errorMessage={errors.email && errors.email.message}
               />
             </div>
-            <div className="w-full  items-center gap-1.5">
+            <div className="w-full flex flex-col  gap-2">
               <label htmlFor="password">Password</label>
               <Input
                 radius="sm"
@@ -102,37 +107,44 @@ function LoginPage() {
                 isInvalid={errors.password ? true : false}
                 errorMessage={errors.password && errors.password.message}
                 {...register("password")}
-                className="border border-black"
+                className="border border-black rounded-xl"
               />
             </div>
             <Button
               type="submit"
-              className="text-white cursor-pointer w-full bg-blue-500"
+              disabled={isSubmitting}
+              className={`text-white w-full  cursor-pointer  ${
+                isSubmitting ? "bg-slate-500" : "bg-blue-500"
+              }`}
             >
               Login
             </Button>
             <div className="self-end">
-              <Link className="text-sm text-red-500" href={"/forgot-password/email"}>Forget Password?</Link>
+              <Link
+                className="text-sm text-red-500"
+                href={"/forgot-password/email"}
+              >
+                Forget Password?
+              </Link>
             </div>
             <div className="self-start">
               <div className="flex gap-2">
                 Dont have an account?
                 <span className="text-blue-500">
-                  <Link className="cursor-pointer" href="/register">
+                  <Link className="cursor-pointer font-semibold" href="/register">
                     Register
                   </Link>
                 </span>
               </div>
             </div>
-            {/* <div className="text-sm font-bold">
-              ------------------------ Or Continue with ----------------------
-            </div> */}
+            <TextBetweenLine>
+            Or Continue with
+            </TextBetweenLine>
             <OauthComp />
           </div>
         </div>
       </form>
-
-    </>
+    </div>
   );
 }
 

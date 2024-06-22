@@ -6,11 +6,11 @@ import PDFTemplate1 from "../PDFTemplate1/PDFTemplate1";
 
 function BasicsTemplate({ resumeData, margin, line }) {
   let resumeLocal = {
-    name: "Ronaldo JR",
+    name: "Name",
     phone: "0123456789",
-    summary: "I am a student",
+    summary: "Small Description Summary",
     address: "Phnom Penh, Cambodia",
-    email: "ronaldojr@gmail.com",
+    email: "user@gmail.com",
   };
 
   const resumeWatch = resumeData?.data?.basics;

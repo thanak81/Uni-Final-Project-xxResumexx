@@ -8,26 +8,52 @@ const prisma = new PrismaClient();
 
 export const PUT = async (req) => {
   const data = await req.json();
-  console.log("useracc",data)
+
   const session = await getServerSession(authOptions);
-  console.log("hey",session)
+
+  const getUser = await prisma.user.findUnique({
+    where: {
+      id: session.user.payload.id,
+    },
+  });
+  const hashPassMatched = await bcrypt.compare(
+    data.password,
+    getUser.hashedPassword
+  );
+  console.log(hashPassMatched);
+  if (!hashPassMatched) {
+    console.log("wrong pass");
+    return NextResponse.json(
+      { error: "Wrong password" },
+      { status: 403 }
+    );
+  }
+
+  if (getUser === null) {
+    return NextResponse.json({
+      message: "User not found",
+      date: new Date().toISOString(),
+    });
+  }
+
   const updateData = await prisma.user.update({
     where: {
       id: session.user.payload.id,
     },
     data: {
       name: data.name,
-      email: data.email
+      email: data.email,
     },
   });
+
   return NextResponse.json({
     message: "User updated succeessfully",
     payload: {
-      id : updateData.id,
+      id: updateData.id,
       image: updateData.image,
-      name :updateData.name,
+      name: updateData.name,
       email: updateData.email,
-      updatedAt : updateData.updatedAt
+      updatedAt: updateData.updatedAt,
     },
     date: new Date().toISOString(),
     status: 200,

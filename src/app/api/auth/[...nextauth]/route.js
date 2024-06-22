@@ -4,7 +4,7 @@ import CredentialsProvider from "next-auth/providers/credentials";
 import { PrismaAdapter } from "@auth/prisma-adapter"
 import bcrypt from "bcrypt"
 import GoogleProvider from "next-auth/providers/google"
-import { signIn } from "next-auth/react";
+import { signIn, signOut } from "next-auth/react";
 
 const prisma = new PrismaClient();
 export const authOptions = {
@@ -83,6 +83,7 @@ export const authOptions = {
     
     pages: {
         signIn: "/login",
+        signOut: "/signout"
     },
 }
 

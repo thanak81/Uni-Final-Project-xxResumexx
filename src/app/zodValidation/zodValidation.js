@@ -33,4 +33,7 @@ export const updateAccountZod = z.object({
   email: z.string().min(1, { message: "Email is required" }).email({
     message: "Please input a valid email",
   }),
+  password: z
+      .string()
+      .min(5, { message: "Password must be atleast 5 characters" })
 });

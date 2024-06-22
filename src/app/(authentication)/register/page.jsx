@@ -21,8 +21,9 @@ function RegisterPage() {
   const router = useRouter();
   const {
     register,
+    
     handleSubmit,
-    formState: { errors },
+    formState: { errors , isSubmitting },
   } = useForm({
     defaultValues: {
       name: "",
@@ -83,11 +84,15 @@ function RegisterPage() {
   }
 
   return (
-    <>
+    <div className="grid lg:grid-cols-2 h-full w-full">
+       <div className="h-full border lg:block hidden bg-[url('/images/login.jpg')] bg-no-repeat bg-cover brightness-50 ">
+       </div>
       <form onSubmit={handleSubmit(onSubmit)}>
-        <div className="flex  gap-10 justify-center">
-          <div className="flex flex-col gap-5 w-[25rem] mt-16">
-            <div className="self-start text-3xl font-bold">Register</div>
+      <div className="fixed text-2xl font-bold mx-5 mt-5 text-yellow-500">xxResumexx</div>
+
+        <div className="flex h-full gap-10 justify-center items-center">
+          <div className="flex flex-col gap-5 w-[25rem] ">
+            <div className="self-center text-3xl font-bold text-blue-500 ">Register</div>
             <div className="w-full flex flex-col gap-2">
               <label htmlFor="name">Name</label>
               <Input
@@ -158,7 +163,8 @@ function RegisterPage() {
 
             <Button
               type="submit"
-              className="text-white w-full  cursor-pointer bg-blue-500"
+              disabled={isSubmitting}
+              className={`text-white w-full  cursor-pointer  ${isSubmitting ? "bg-slate-500" : "bg-blue-500"}`}
             >
               Sign up
             </Button>
@@ -166,7 +172,7 @@ function RegisterPage() {
             <div className="self-start">
               <div className="flex gap-2">
                 Already have an account?
-                <span className="text-blue-500">
+                <span className="text-blue-500 font-semibold">
                   <Link href="/login">Login</Link>
                 </span>
               </div>
@@ -175,7 +181,7 @@ function RegisterPage() {
         </div>
       </form>
       {/* <OauthComp/> */}
-    </>
+    </div>
   );
 }
 

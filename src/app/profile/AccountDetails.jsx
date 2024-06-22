@@ -12,17 +12,17 @@ import Image from "next/image";
 import { useSession } from "next-auth/react";
 
 function AccountDetails({ profile, session }) {
-  const { data, update } = useSession();
-  console.log("data", data);
   const {
     register,
-    formState: { errors },
+    formState: { errors, isSubmitting },
     handleSubmit,
   } = useForm({
     resolver: zodResolver(updateAccountZod),
   });
   async function onSubmit(acc) {
+    console.log("acc", acc);
     const response = await accountDetailService(acc);
+    console.log("responsesuu", response);
     if (response.status === 200) {
       toast.success("Account updated sucessfully", {
         position: "top-right",
@@ -36,15 +36,24 @@ function AccountDetails({ profile, session }) {
         // transition: Bounce,
       });
     }
+    if (response.error) {
+      toast.error("Wrong password", {
+        position: "top-right",
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+        // transition: Bounce,
+      });
+    }
   }
-  // console.log(session);
-  async function updateSession() {
-    await update();
-    console.log("i update myself")
-  }
+
   return (
     <>
-      <div className="text-3xl font-bold ">Account Details</div>
+      <div className="text-3xl font-bold">Account Details</div>
       {session.provider === "google" ? (
         <>
           <div className="text-sm text-green-500 font-semibold.">
@@ -66,9 +75,9 @@ function AccountDetails({ profile, session }) {
         onSubmit={handleSubmit(onSubmit)}
         className="flex flex-col gap-5 w-full"
       >
-        <div className="flex flex-col lg:flex-row items-center gap-5 w-full">
+        <div className="flex flex-col lg:flex-row items-center  gap-5 w-full">
           {profile.image && (
-            <div className="lg:w-[15rem] w-[10rem]">
+            <div className="lg:w-[15rem] w-[10rem] ">
               <Image
                 alt="Profile Image"
                 className="rounded-full"
@@ -107,7 +116,29 @@ function AccountDetails({ profile, session }) {
               // onValueChange={setValue}
             />
           </div>
+      
         </div>
+        <div className="w-full">
+            <Input
+              radius="sm"
+              // key="inside"
+              variant="bordered"
+              label="Verify Password to change your data"
+              type="password"
+              labelPlacement="outside"
+              placeholder="Password"
+              required
+              isInvalid={errors.password ? true : false}
+              errorMessage={errors.password && errors.password.message}
+              disabled={session.provider === "google"}
+              // {...register("password")}
+              {...register("password")}
+
+              // isInvalid= {error ?  true : false}
+              //   errorMessage={Object.keys(errors).length ===0 ?"" : error }
+              // onValueChange={setValue}
+            />
+          </div>
         <div className="text-xs">
           <div>
             Account created date: {new Date(profile.createdAt).toUTCString()}
@@ -124,7 +155,12 @@ function AccountDetails({ profile, session }) {
             Log out
           </Link>
           {session.provider !== "google" && (
-            <Button color="blue" onClick={updateSession} type="submit" className="cursor-pointer">
+            <Button
+              // color="blue"
+              disabled={isSubmitting}
+              type="submit"
+              className={`text-white  cursor-pointer  ${isSubmitting ? "bg-slate-500" : "bg-blue-500"}`}
+            >
               Update Profile
             </Button>
           )}

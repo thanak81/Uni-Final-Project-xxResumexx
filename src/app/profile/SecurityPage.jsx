@@ -8,8 +8,19 @@ function SecurityPage({ profile }) {
   return (
     <>
       <div className="text-3xl font-bold">Security</div>
-      <div className="text-sm">
+      <div className="text-sm text-green-500 font-semibold">
         Here, you can update your password information
+      </div>
+      <div className="w-full">
+        <Input
+          radius="sm"
+          key="inside"
+          className="w-full"
+          variant="bordered"
+          label="Current Password"
+          placeholder="Current Password"
+          labelPlacement="outside"
+        />
       </div>
       <div className="flex flex-col lg:flex-row gap-5 justify-between w-full">
         <div className="w-full">
@@ -19,6 +30,7 @@ function SecurityPage({ profile }) {
             className="w-full"
             variant="bordered"
             label="New Password"
+            placeholder="Password"
             labelPlacement="outside"
           />
         </div>
@@ -28,6 +40,7 @@ function SecurityPage({ profile }) {
             key="outside"
             variant="bordered"
             label="Confirm Password"
+            placeholder="Confirm Password"
             labelPlacement="outside"
           />
         </div>
