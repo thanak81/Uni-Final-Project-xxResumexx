@@ -87,6 +87,7 @@ function FormProviderComp({id,mutation ,active,  coverLetterById, printRef , pri
           </div>
           {activeRight && (
           <TabRightSide
+          isSubmitting={methods.formState.isSubmitting}
           styleSwitch={styleSwitch}
           printResume={printCoverLetter}
           onSubmit={methods.handleSubmit(onSubmit)}

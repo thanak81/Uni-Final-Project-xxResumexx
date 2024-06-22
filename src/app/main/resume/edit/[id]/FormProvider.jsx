@@ -63,6 +63,7 @@ function FormProviderComp({id,mutation ,active, data,handleTemplate, selectedTem
           </div>
           {activeRight && (
           <TabRightSide
+          isSubmitting={methods.formState.isSubmitting}
           styleSwitch={styleSwitch}
           printResume={printResume}
           onSubmit={methods.handleSubmit(onSubmit)}
