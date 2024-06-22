@@ -84,7 +84,7 @@ function FormComp({
         className={`h-[75%] 
         ${active && activeRight ? "w-[100%]" : "w-[90vh]"}
         ${theme.theme === "light" ? "bg-[#ECF0F5]" : ""} 
-        flex flex-col gap-2 transition-all p-5 w-full`}
+        flex flex-col gap-2 transition-all  w-full`}
       >
         {formData.map((form) => (
           <div

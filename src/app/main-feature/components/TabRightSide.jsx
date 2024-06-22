@@ -11,7 +11,7 @@ function TabRightSide({ onSubmit, data, handleTemplate, printResume,styleSwitch 
   
   // const setData = aiData(state=>state.setValue)
   return (
-    <div >
+    <>
       <Tabs size="sm" aria-label="Options" color="primary">
         <Tab key="progress_card" title="Progress Card">
           <ProgressCard
@@ -49,7 +49,7 @@ function TabRightSide({ onSubmit, data, handleTemplate, printResume,styleSwitch 
          
         </Tab>
       </Tabs>
-    </div>
+    </>
   );
 }
 

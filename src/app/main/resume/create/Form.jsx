@@ -19,6 +19,8 @@ import NovelEditor from "../components/NovelEditor";
 import CustomForm from "./ResumeForm/CustomForm";
 import { useTheme } from "next-themes";
 import { toast } from "react-toastify";
+import { TransformComponent, TransformWrapper, useControls } from "react-zoom-pan-pinch";
+import Template1 from "./Template1";
 
 function FormComp({
   register,
@@ -43,25 +45,26 @@ function FormComp({
       if (Object.keys(autoSavedResumeData).length !== 0) {
         // Serialize the object before storing it in localStorage
         try {
-          
           const serializedData = JSON.stringify(autoSavedResumeData);
           localStorage.setItem("autoSavedResumeData", serializedData);
         } catch (err) {
           if (err.name === "QuotaExceededError") {
             window.localStorage.clear();
           }
-          toast.error(`Autosave is off.There an error on local storage. ${err}`, {
-            position: "top-right",
-            autoClose: 5000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: "dark",
-            // transition: Bounce,
-          });
-         
+          toast.error(
+            `Autosave is off.There an error on local storage. ${err}`,
+            {
+              position: "top-right",
+              autoClose: 5000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+              theme: "dark",
+              // transition: Bounce,
+            }
+          );
         }
       }
     }
@@ -127,21 +130,8 @@ function FormComp({
         
         flex flex-col gap-2 transition-all ${
           theme.theme === "light" ? "bg-[#ECF0F5]" : ""
-        } p-5  w-full`}
+        }   w-full`}
       >
-        {/* <ResumeHeader />
-         <PersonalForm
-           active={active}
-           register={register}
-           autoSaveData={autoSaveData}
-           selectedTemplate={selectedTemplate}
-         />
-        <ProfileForm autoSaveData={autoSaveData} />
-         <EducationForm autoSaveData={autoSaveData} />
-         <WorkForm autoSaveData={autoSaveData} />
-         <Skill autoSaveData={autoSaveData} />
-         <LanguageForm autoSaveData={autoSaveData} />
-         <CustomForm autoSaveData={autoSaveData} />  */}
         {formData.map((form) => (
           <div
             className={`w-full  px-5" key={form.id} ${
@@ -164,10 +154,11 @@ function FormComp({
           {!active ? <EyeIcon /> : <EyeCloseIcon />}
         </div>
         {active && (
-          <TemplateContainer
-            printRef={printRef}
-            selectedTemplate={selectedTemplate}
-          />
+            <TemplateContainer
+                  printRef={printRef}
+                  selectedTemplate={selectedTemplate}
+                />
+      
         )}
       </div>
     </Flex>
