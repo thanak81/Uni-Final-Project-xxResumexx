@@ -9,12 +9,12 @@ function OauthComp() {
   const session = useSession();
   // console.log(session)
   const router = useRouter();
-  useEffect(() => {
-    if (session) {
-      router.push("/");
-      router.refresh();
-    }
-  }, []);
+  // useEffect(() => {
+  //   if (session) {
+  //     router.push("/");
+  //     router.refresh();
+  //   }
+  // }, []);
 
   return (
     <div
