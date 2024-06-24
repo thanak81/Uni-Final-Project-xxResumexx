@@ -35,7 +35,7 @@ function BasicsTemplate({ resumeData, margin, line }) {
         ""
       )}
 
-      <div className={`${resumeWatch?.img.length !== 0 ? "mr-[150px]" : ""}`}>
+      <div className={`${resumeWatch?.img.length !== 0 ? "mr-[140px]" : ""}`}>
         <div className="text-2xl font-bold  text-center">
           {resumeWatch.name ? resumeWatch?.name : resumeLocal?.name}
         </div>

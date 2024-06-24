@@ -23,9 +23,10 @@ function BasicsTemplate({ coverData}) {
             {coverWatch.name ? coverWatch?.name : coverLocal?.name}
           </div>
           <div className="text-right  w-[50rem]">
-            <div>{coverWatch.phone? coverWatch?.phone: coverLocal?.phone}</div>
             <div>{coverWatch.address? coverWatch?.address: coverLocal?.address}</div>
             <div>{coverWatch.email? coverWatch?.email: coverLocal?.email}</div>
+            <div>{coverWatch.phone? coverWatch?.phone: coverLocal?.phone}</div>
+
             {/* <di>{coverWatch.email? coverWatch?.email: coverLocal?.email}</di> */}
           </div>
         </div>

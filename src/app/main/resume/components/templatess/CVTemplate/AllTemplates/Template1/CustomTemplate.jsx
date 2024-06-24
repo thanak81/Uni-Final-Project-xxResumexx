@@ -14,7 +14,7 @@ function CustomTemplate({ resumeData, line }) {
               </div>
               <div
                 className={cn(
-                  "prose marker:text-black [&_ul]:text-black list-disc px-5  text-black max-w-full text-justify text-sm",
+                  "prose marker:text-black [&_ul]:text-black list-disc px-5 mt-4  text-black max-w-full text-justify text-sm",
                   line
                 )}
               >
