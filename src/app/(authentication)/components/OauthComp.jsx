@@ -7,14 +7,14 @@ import { useRouter } from "next/navigation";
 
 function OauthComp() {
   const session = useSession();
-  console.log(session)
+  // console.log(session)
   const router = useRouter();
   useEffect(() => {
     if (session) {
       router.push("/");
       router.refresh();
     }
-  }, [router,session]);
+  }, []);
 
   return (
     <div

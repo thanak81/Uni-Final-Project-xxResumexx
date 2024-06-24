@@ -4,7 +4,6 @@ export const forgotPasswordService  = async (email)=> {
         body: JSON.stringify(email),
         headers: {"CONTENT-TYPE": "application/json"}
     })
-console.log(response)
     const data = await response.json();
     console.log("dataa",data)
     return data;

@@ -35,7 +35,7 @@ function LoginPage() {
       redirect: false,
     });
 
-    console.log(response);
+    // console.log(response);
 
     if (response.status === 200) {
       toast.success("You are logged in!", {
